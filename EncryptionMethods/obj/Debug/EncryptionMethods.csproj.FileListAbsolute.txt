@@ -1,0 +1,11 @@
+Y:\Programing\Shifr 2.5\main\EncryptionMethods\bin\Debug\EncryptionMethods.dll
+Y:\Programing\Shifr 2.5\main\EncryptionMethods\bin\Debug\EncryptionMethods.pdb
+Y:\Programing\Shifr 2.5\main\EncryptionMethods\bin\Debug\ConsoleIO.dll
+Y:\Programing\Shifr 2.5\main\EncryptionMethods\bin\Debug\UsefulMethods.dll
+Y:\Programing\Shifr 2.5\main\EncryptionMethods\bin\Debug\ConsoleIO.pdb
+Y:\Programing\Shifr 2.5\main\EncryptionMethods\bin\Debug\UsefulMethods.pdb
+Y:\Programing\Shifr 2.5\main\EncryptionMethods\obj\Debug\EncryptionMethods.csproj.CoreCompileInputs.cache
+Y:\Programing\Shifr 2.5\main\EncryptionMethods\obj\Debug\EncryptionMethods.csproj.CopyComplete
+Y:\Programing\Shifr 2.5\main\EncryptionMethods\obj\Debug\EncryptionMethods.dll
+Y:\Programing\Shifr 2.5\main\EncryptionMethods\obj\Debug\EncryptionMethods.pdb
+Y:\Programing\Shifr 2.5\main\EncryptionMethods\obj\Debug\EncryptionMethods.csproj.AssemblyReference.cache

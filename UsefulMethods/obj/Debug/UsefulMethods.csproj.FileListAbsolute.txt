@@ -1,0 +1,9 @@
+Y:\Programing\Shifr 2.5\main\UsefulMethods\bin\Debug\UsefulMethods.dll
+Y:\Programing\Shifr 2.5\main\UsefulMethods\bin\Debug\UsefulMethods.pdb
+Y:\Programing\Shifr 2.5\main\UsefulMethods\bin\Debug\ConsoleIO.dll
+Y:\Programing\Shifr 2.5\main\UsefulMethods\bin\Debug\ConsoleIO.pdb
+Y:\Programing\Shifr 2.5\main\UsefulMethods\obj\Debug\UsefulMethods.csproj.CoreCompileInputs.cache
+Y:\Programing\Shifr 2.5\main\UsefulMethods\obj\Debug\UsefulMethods.csproj.CopyComplete
+Y:\Programing\Shifr 2.5\main\UsefulMethods\obj\Debug\UsefulMethods.dll
+Y:\Programing\Shifr 2.5\main\UsefulMethods\obj\Debug\UsefulMethods.pdb
+Y:\Programing\Shifr 2.5\main\UsefulMethods\obj\Debug\UsefulMethods.csproj.AssemblyReference.cache

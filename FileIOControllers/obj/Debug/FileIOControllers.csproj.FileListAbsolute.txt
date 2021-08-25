@@ -1,0 +1,13 @@
+Y:\Programing\Shifr 2.5\main\FileIOControllers\bin\Debug\FileIOControllers.dll
+Y:\Programing\Shifr 2.5\main\FileIOControllers\bin\Debug\FileIOControllers.pdb
+Y:\Programing\Shifr 2.5\main\FileIOControllers\bin\Debug\EncryptionMethods.dll
+Y:\Programing\Shifr 2.5\main\FileIOControllers\bin\Debug\UsefulMethods.dll
+Y:\Programing\Shifr 2.5\main\FileIOControllers\bin\Debug\ConsoleIO.dll
+Y:\Programing\Shifr 2.5\main\FileIOControllers\bin\Debug\EncryptionMethods.pdb
+Y:\Programing\Shifr 2.5\main\FileIOControllers\bin\Debug\UsefulMethods.pdb
+Y:\Programing\Shifr 2.5\main\FileIOControllers\bin\Debug\ConsoleIO.pdb
+Y:\Programing\Shifr 2.5\main\FileIOControllers\obj\Debug\FileIOControllers.csproj.AssemblyReference.cache
+Y:\Programing\Shifr 2.5\main\FileIOControllers\obj\Debug\FileIOControllers.csproj.CoreCompileInputs.cache
+Y:\Programing\Shifr 2.5\main\FileIOControllers\obj\Debug\FileIOControllers.csproj.CopyComplete
+Y:\Programing\Shifr 2.5\main\FileIOControllers\obj\Debug\FileIOControllers.dll
+Y:\Programing\Shifr 2.5\main\FileIOControllers\obj\Debug\FileIOControllers.pdb

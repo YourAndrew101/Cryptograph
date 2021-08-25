@@ -1,0 +1,27 @@
+Y:\Programing\Shifr2.5\main\main\bin\Debug\main.exe.config
+Y:\Programing\Shifr2.5\main\main\bin\Debug\main.exe
+Y:\Programing\Shifr2.5\main\main\bin\Debug\main.pdb
+Y:\Programing\Shifr2.5\main\main\obj\Debug\main.csprojAssemblyReference.cache
+Y:\Programing\Shifr2.5\main\main\obj\Debug\main.csproj.CoreCompileInputs.cache
+Y:\Programing\Shifr2.5\main\main\obj\Debug\main.exe
+Y:\Programing\Shifr2.5\main\main\obj\Debug\main.pdb
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\main.exe.config
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\main.exe
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\main.pdb
+Y:\Programing\Shifr 2.5\main\main\obj\Debug\main.csproj.CoreCompileInputs.cache
+Y:\Programing\Shifr 2.5\main\main\obj\Debug\main.exe
+Y:\Programing\Shifr 2.5\main\main\obj\Debug\main.pdb
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\ConsoleIO.dll
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\ConsoleIO.pdb
+Y:\Programing\Shifr 2.5\main\main\obj\Debug\main.csproj.CopyComplete
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\EncryptionMethods.dll
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\UsefulMethods.dll
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\EncryptionMethods.pdb
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\UsefulMethods.pdb
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\Managers.dll
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\Managers.pdb
+Y:\Programing\Shifr 2.5\main\main\obj\Debug\main.csproj.AssemblyReference.cache
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\FileIOControllers.dll
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\FileIOControllers.pdb
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\ShortHand.dll
+Y:\Programing\Shifr 2.5\main\main\bin\Debug\ShortHand.pdb
