@@ -31,6 +31,10 @@ namespace Cryptograph
         {
             this.MainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ImageControlsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.ImageCopyButton = new System.Windows.Forms.Button();
+            this.ImagePasteButton = new System.Windows.Forms.Button();
+            this.ImageDeleteButton = new System.Windows.Forms.Button();
+            this.OutputPictureBox = new System.Windows.Forms.PictureBox();
             this.InputTextBox = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.AppModesMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,24 +51,20 @@ namespace Cryptograph
             this.DecryptoButton = new System.Windows.Forms.Button();
             this.TextControlButtonsPanel = new System.Windows.Forms.Panel();
             this.TextControlsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.TextCopyButton = new System.Windows.Forms.Button();
+            this.TextDeleteButton = new System.Windows.Forms.Button();
             this.SaveImageFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.OpenImageFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.OpenTextFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SaveTextFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.ImageDeleteButton = new System.Windows.Forms.Button();
-            this.ImageCopyButton = new System.Windows.Forms.Button();
-            this.ImagePasteButton = new System.Windows.Forms.Button();
-            this.OutputPictureBox = new System.Windows.Forms.PictureBox();
-            this.TextCopyButton = new System.Windows.Forms.Button();
-            this.TextDeleteButton = new System.Windows.Forms.Button();
             this.MainTableLayoutPanel.SuspendLayout();
             this.ImageControlsTableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OutputPictureBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.CryptoButtonPanel.SuspendLayout();
             this.DecryptoButtonPanel.SuspendLayout();
             this.TextControlButtonsPanel.SuspendLayout();
             this.TextControlsTableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.OutputPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // MainTableLayoutPanel
@@ -112,9 +112,68 @@ namespace Cryptograph
             this.ImageControlsTableLayoutPanel.Name = "ImageControlsTableLayoutPanel";
             this.ImageControlsTableLayoutPanel.RowCount = 1;
             this.ImageControlsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.ImageControlsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.ImageControlsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 88F));
             this.ImageControlsTableLayoutPanel.Size = new System.Drawing.Size(616, 88);
             this.ImageControlsTableLayoutPanel.TabIndex = 6;
+            // 
+            // ImageCopyButton
+            // 
+            this.ImageCopyButton.BackgroundImage = global::Cryptograph.Properties.Resources.copy;
+            this.ImageCopyButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ImageCopyButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ImageCopyButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ImageCopyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ImageCopyButton.Location = new System.Drawing.Point(424, 3);
+            this.ImageCopyButton.Name = "ImageCopyButton";
+            this.ImageCopyButton.Size = new System.Drawing.Size(83, 82);
+            this.ImageCopyButton.TabIndex = 0;
+            this.ImageCopyButton.UseVisualStyleBackColor = true;
+            this.ImageCopyButton.Visible = false;
+            this.ImageCopyButton.Click += new System.EventHandler(this.ImageCopyButton_Click);
+            // 
+            // ImagePasteButton
+            // 
+            this.ImagePasteButton.BackgroundImage = global::Cryptograph.Properties.Resources.paste;
+            this.ImagePasteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ImagePasteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ImagePasteButton.Location = new System.Drawing.Point(529, 3);
+            this.ImagePasteButton.Name = "ImagePasteButton";
+            this.ImagePasteButton.Size = new System.Drawing.Size(83, 82);
+            this.ImagePasteButton.TabIndex = 2;
+            this.ImagePasteButton.UseVisualStyleBackColor = true;
+            this.ImagePasteButton.Click += new System.EventHandler(this.ImagePasteButton_Click);
+            // 
+            // ImageDeleteButton
+            // 
+            this.ImageDeleteButton.BackColor = System.Drawing.SystemColors.Control;
+            this.ImageDeleteButton.BackgroundImage = global::Cryptograph.Properties.Resources.RecycleBin;
+            this.ImageDeleteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ImageDeleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ImageDeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ImageDeleteButton.Location = new System.Drawing.Point(313, 3);
+            this.ImageDeleteButton.Name = "ImageDeleteButton";
+            this.ImageDeleteButton.Size = new System.Drawing.Size(83, 82);
+            this.ImageDeleteButton.TabIndex = 1;
+            this.ImageDeleteButton.UseVisualStyleBackColor = false;
+            this.ImageDeleteButton.Visible = false;
+            this.ImageDeleteButton.Click += new System.EventHandler(this.ImageDeleteButton_Click);
+            // 
+            // OutputPictureBox
+            // 
+            this.OutputPictureBox.BackgroundImage = global::Cryptograph.Properties.Resources.NoImage;
+            this.OutputPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.OutputPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OutputPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OutputPictureBox.ErrorImage = null;
+            this.OutputPictureBox.InitialImage = null;
+            this.OutputPictureBox.Location = new System.Drawing.Point(801, 181);
+            this.OutputPictureBox.Name = "OutputPictureBox";
+            this.MainTableLayoutPanel.SetRowSpan(this.OutputPictureBox, 3);
+            this.OutputPictureBox.Size = new System.Drawing.Size(616, 773);
+            this.OutputPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.OutputPictureBox.TabIndex = 0;
+            this.OutputPictureBox.TabStop = false;
+            this.OutputPictureBox.DoubleClick += new System.EventHandler(this.OutputPictureBox_DoubleClick);
             // 
             // InputTextBox
             // 
@@ -130,7 +189,6 @@ namespace Cryptograph
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AppModesMenu,
@@ -274,69 +332,6 @@ namespace Cryptograph
             this.TextControlsTableLayoutPanel.TabIndex = 0;
             this.TextControlsTableLayoutPanel.Visible = false;
             // 
-            // OpenTextFileDialog
-            // 
-            this.OpenTextFileDialog.FileName = "openFileDialog1";
-            // 
-            // ImageDeleteButton
-            // 
-            this.ImageDeleteButton.BackColor = System.Drawing.SystemColors.Control;
-            this.ImageDeleteButton.BackgroundImage = global::Cryptograph.Properties.Resources.RecycleBin;
-            this.ImageDeleteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ImageDeleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ImageDeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ImageDeleteButton.Location = new System.Drawing.Point(313, 3);
-            this.ImageDeleteButton.Name = "ImageDeleteButton";
-            this.ImageDeleteButton.Size = new System.Drawing.Size(83, 82);
-            this.ImageDeleteButton.TabIndex = 1;
-            this.ImageDeleteButton.UseVisualStyleBackColor = false;
-            this.ImageDeleteButton.Visible = false;
-            this.ImageDeleteButton.Click += new System.EventHandler(this.ImageDeleteButton_Click);
-            // 
-            // ImageCopyButton
-            // 
-            this.ImageCopyButton.BackgroundImage = global::Cryptograph.Properties.Resources.copy;
-            this.ImageCopyButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ImageCopyButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ImageCopyButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ImageCopyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ImageCopyButton.Location = new System.Drawing.Point(424, 3);
-            this.ImageCopyButton.Name = "ImageCopyButton";
-            this.ImageCopyButton.Size = new System.Drawing.Size(83, 82);
-            this.ImageCopyButton.TabIndex = 0;
-            this.ImageCopyButton.UseVisualStyleBackColor = true;
-            this.ImageCopyButton.Visible = false;
-            this.ImageCopyButton.Click += new System.EventHandler(this.ImageCopyButton_Click);
-            // 
-            // ImagePasteButton
-            // 
-            this.ImagePasteButton.BackgroundImage = global::Cryptograph.Properties.Resources.paste;
-            this.ImagePasteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ImagePasteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ImagePasteButton.Location = new System.Drawing.Point(529, 3);
-            this.ImagePasteButton.Name = "ImagePasteButton";
-            this.ImagePasteButton.Size = new System.Drawing.Size(83, 82);
-            this.ImagePasteButton.TabIndex = 2;
-            this.ImagePasteButton.UseVisualStyleBackColor = true;
-            this.ImagePasteButton.Click += new System.EventHandler(this.ImagePasteButton_Click);
-            // 
-            // OutputPictureBox
-            // 
-            this.OutputPictureBox.BackgroundImage = global::Cryptograph.Properties.Resources.NoImage;
-            this.OutputPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.OutputPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.OutputPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OutputPictureBox.ErrorImage = null;
-            this.OutputPictureBox.InitialImage = null;
-            this.OutputPictureBox.Location = new System.Drawing.Point(801, 181);
-            this.OutputPictureBox.Name = "OutputPictureBox";
-            this.MainTableLayoutPanel.SetRowSpan(this.OutputPictureBox, 3);
-            this.OutputPictureBox.Size = new System.Drawing.Size(616, 773);
-            this.OutputPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.OutputPictureBox.TabIndex = 0;
-            this.OutputPictureBox.TabStop = false;
-            this.OutputPictureBox.DoubleClick += new System.EventHandler(this.OutputPictureBox_DoubleClick);
-            // 
             // TextCopyButton
             // 
             this.TextCopyButton.BackgroundImage = global::Cryptograph.Properties.Resources.copy;
@@ -365,6 +360,10 @@ namespace Cryptograph
             this.TextDeleteButton.UseVisualStyleBackColor = false;
             this.TextDeleteButton.Click += new System.EventHandler(this.TextDeleteButton_Click);
             // 
+            // OpenTextFileDialog
+            // 
+            this.OpenTextFileDialog.FileName = "openFileDialog1";
+            // 
             // ShorthandForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -378,13 +377,13 @@ namespace Cryptograph
             this.MainTableLayoutPanel.ResumeLayout(false);
             this.MainTableLayoutPanel.PerformLayout();
             this.ImageControlsTableLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.OutputPictureBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.CryptoButtonPanel.ResumeLayout(false);
             this.DecryptoButtonPanel.ResumeLayout(false);
             this.TextControlButtonsPanel.ResumeLayout(false);
             this.TextControlsTableLayoutPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.OutputPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }

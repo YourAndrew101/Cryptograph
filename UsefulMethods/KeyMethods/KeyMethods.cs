@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Numerics;
 using System.Text;
 using System.Threading;
@@ -73,11 +72,14 @@ namespace UsefulMethods
             return (ulong)MathMethods.PrimeNumberGenerate(min, max, rand);
         }
 
+
+        
         public static string KeyNumberToString(ulong key)
         {
             Random rand = new Random();
             StringBuilder sb = new StringBuilder();
 
+            //TODO bugs with generate
             foreach (char digitChar in key.ToString())
             {
                 int digitInt = int.Parse(digitChar.ToString());

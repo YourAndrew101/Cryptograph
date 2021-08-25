@@ -174,16 +174,9 @@ namespace ShortHandMethods
         {
             BitVector32[] colorBitVectors = GetColorBitVectors();
 
-            if (!colorBitVectors[0][bitMasks[0]])
-            {
-                Language = Languages.Eng;
-                Alphabet = en_alphabet;
-            }
-            else
-            {
-                Language = Languages.Rus;
-                Alphabet = ru_alphabet;
-            }
+            if (!colorBitVectors[0][bitMasks[0]]) Language = Languages.Eng;
+            else Language = Languages.Rus;
+            Alphabet = alphabets[(int)Language];
         }
         private void GetPixelTextLength()
         {

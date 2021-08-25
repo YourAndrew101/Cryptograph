@@ -164,7 +164,7 @@ namespace Cryptograph
                 if (_act == Acts.Crypto) numeral2Encryption.Crypto();
                 else numeral2Encryption.Decrypto();
             }
-            catch (Exception) { MessageBox.Show("Невірна система числення!!!"); }
+            catch (Exception) { MessageBox.Show("Невірна система числення!!!"); return; }
 
             _stringOut = numeral2Encryption.StringOut;
         }
@@ -177,7 +177,7 @@ namespace Cryptograph
                 if (_act == Acts.Crypto) numeral8Encryption.Crypto();
                 else numeral8Encryption.Decrypto();
             }
-            catch (Exception) { MessageBox.Show("Невірна система числення!!!"); }
+            catch (Exception) { MessageBox.Show("Невірна система числення!!!"); return; }
 
             _stringOut = numeral8Encryption.StringOut;
         }
@@ -190,7 +190,7 @@ namespace Cryptograph
                 if (_act == Acts.Crypto) numeral16Encryption.Crypto();
                 else numeral16Encryption.Decrypto();
             }
-            catch (Exception) { MessageBox.Show("Невірна система числення!!!"); }
+            catch (Exception) { MessageBox.Show("Невірна система числення!!!"); return; }
 
             _stringOut = numeral16Encryption.StringOut;
         }

@@ -65,16 +65,10 @@ namespace EncryptionMethods
 
         private void GetAlphabetLanguageForCode()
         {
-            if(_languageCode == BINENG || _languageCode == OCTENG || _languageCode == HEXENG)
-            {
-                Alphabet = en_alphabet;
-                Language = Languages.Eng;
-            }
-            if (_languageCode == BINRUS || _languageCode == OCTRUS || _languageCode == HEXRUS)
-            {
-                Alphabet = ru_alphabet;
-                Language = Languages.Rus;
-            }
+            if(_languageCode == BINENG || _languageCode == OCTENG || _languageCode == HEXENG) Language = Languages.Eng;
+            if (_languageCode == BINRUS || _languageCode == OCTRUS || _languageCode == HEXRUS) Language = Languages.Rus;
+
+            Alphabet = alphabets[(int)Language];
         }
         
 
