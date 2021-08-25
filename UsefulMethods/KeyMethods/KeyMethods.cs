@@ -7,6 +7,8 @@ namespace UsefulMethods
 {
     public static class KeyMethods
     {
+        private static Random rand = new Random();
+
         public static int Decrypto_Key(string keyString, char[] alphabet)
         {
             int key = 0;
@@ -21,7 +23,6 @@ namespace UsefulMethods
         }
         public static string Key_Generate(char[] alphabet, int keyLength)
         {
-            Random rand = new Random();
             StringBuilder sb = new StringBuilder(keyLength);
 
             for (int i = 0; i <= keyLength; i++) sb.Append(alphabet[rand.Next(0, alphabet.Length)].ToString());
@@ -31,8 +32,6 @@ namespace UsefulMethods
 
         public static void CalculateKeys(out ulong generalKey, out ulong publicKey, out ulong privateKey)
         {
-            Random rand = new Random();
-
             int keyLength = 3;
             int min = (int)Math.Pow(10, keyLength - 1);
             int max = (int)Math.Pow(10, keyLength);
@@ -72,27 +71,21 @@ namespace UsefulMethods
             return (ulong)MathMethods.PrimeNumberGenerate(min, max, rand);
         }
 
-
         
         public static string KeyNumberToString(ulong key)
         {
-            Random rand = new Random();
             StringBuilder sb = new StringBuilder();
 
-            //TODO bugs with generate
             foreach (char digitChar in key.ToString())
             {
                 int digitInt = int.Parse(digitChar.ToString());
                 int firstNumber = rand.Next(digitInt + 1, 100);
-                int secondNumber = firstNumber - digitInt;
+                string secondNumber = (firstNumber - digitInt).ToString().PadLeft(2, '0');
 
-                sb.Append(firstNumber.ToString().PadLeft(2, '0') + secondNumber.ToString().PadLeft(2, '0'));
-
-                Thread.Sleep(50);
+                sb.Append(firstNumber.ToString().PadLeft(2, '0') + secondNumber);
             }
-            BigInteger bi = BigInteger.Parse(sb.ToString());
 
-            return bi.ToString();
+            return sb.ToString();
         }
         public static ulong KeyStringToNumber(string keyString)
         {

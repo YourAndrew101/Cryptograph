@@ -210,14 +210,13 @@ namespace Cryptograph
             else
             {
                 RsaWaitLabel.Visible = true;
-                Task task = Task.Run(() =>
-                {
-                    var (generalKey, privateKey) = GetKeysForm.GetPairKeysForDecrypto(GeneralKeyBox, AnotherKeyBox);
-                    rsaEncryption = new RsaEncryption(_stringIn, generalKey, privateKey);
-                    rsaEncryption.Decrypto();
-                });
+
+                //TODO make multithreading form
+                var (generalKey, privateKey) = GetKeysForm.GetPairKeysForDecrypto(GeneralKeyBox, AnotherKeyBox);
+                rsaEncryption = new RsaEncryption(_stringIn, generalKey, privateKey);
+                Task task = Task.Run(() => rsaEncryption.Decrypto());
                 task.Wait();
-            }          
+            }
             _stringOut = rsaEncryption.StringOut;
             RsaWaitLabel.Visible = false;
         }

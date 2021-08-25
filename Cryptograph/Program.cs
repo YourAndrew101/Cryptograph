@@ -16,7 +16,7 @@ namespace Cryptograph
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ShorthandForm());
+            Application.Run(new EncryptionForm());
         }
     }
 }
