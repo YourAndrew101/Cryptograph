@@ -1,11 +1,11 @@
-﻿using Cryptograph.Properties;
-using FileIOControllers;
+﻿using FileIOControllers;
 using ShortHandMethods;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Text;
@@ -32,8 +32,26 @@ namespace Cryptograph
             InputTextBox_TextChanged(new object(), new EventArgs());
             OutputPictureBoxRefresh();
         }
-        private void ShorthandForm_FormClosing(object sender, FormClosingEventArgs e) => Application.Exit();
+        private void ShorthandForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SetSettings();
 
+            Application.Exit();
+        }
+
+        private static void SetSettings()
+        {
+            FileInfo file = new FileInfo("AppStartSettings.dat");
+            try
+            {
+                using (BinaryWriter binaryWriter = new BinaryWriter(file.Open(FileMode.Create)))
+                {
+                    binaryWriter.Write(Program.Forms.ShortHand.ToString());
+                    file.IsReadOnly = true;
+                }
+            }
+            catch (UnauthorizedAccessException) { }
+        }
 
         private void CryptoButton_Click(object sender, EventArgs e)
         {
@@ -83,15 +101,7 @@ namespace Cryptograph
         private void OutputPictureBoxRefresh()
         {
             OutputPictureBox.Image = _image;
-
-            if (OutputPictureBox.Image != null)
-            {
-                ImageCopyButton.Visible = ImageDeleteButton.Visible = true;
-            }
-            else
-            {
-                ImageCopyButton.Visible = ImageDeleteButton.Visible = false;
-            }
+            ImageCopyButton.Visible = ImageDeleteButton.Visible = OutputPictureBox.Image != null;
         }
         private void OutputPictureBox_DoubleClick(object sender, EventArgs e) => OpenImageToolStripMenuItem_Click(sender, e);
 
@@ -136,6 +146,8 @@ namespace Cryptograph
 
         private void AppModesShorthandMenuItem_Click(object sender, EventArgs e)
         {
+            SetSettings();
+
             EncryptionForm encryptionForm = new EncryptionForm();
             encryptionForm.Show();
 

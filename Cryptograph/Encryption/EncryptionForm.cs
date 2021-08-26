@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -15,27 +16,26 @@ namespace Cryptograph
 {
     public partial class EncryptionForm : Form
     {
-        public enum Acts
-        {
-            Crypto,
-            Decrypto
-        }
+        public enum Acts { Crypto, Decrypto }
         private Acts _act;
         private string _cryptoType;
 
         private string _stringIn;
         private string _stringOut;
 
+        readonly FileInfo fileSettings = new FileInfo("AppStartSettings.dat");
+
         public EncryptionForm()
         {
             InitializeComponent();
             InitializeBackgroundWorker();
 
+            CryptoMethodsListBox.SelectedIndex = 0;
+
             OpenFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
             SaveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
-            
-            _act = Acts.Crypto;
-            CryptoMethodsListBox.SelectedIndex = 0;
+
+            GetSettings();
         }
 
         private void InitializeBackgroundWorker()
@@ -45,7 +45,48 @@ namespace Cryptograph
             backgroundWorker.WorkerSupportsCancellation = true;
         }
 
-        private void EncryptionForm_FormClosed(object sender, FormClosedEventArgs e) => Application.Exit();
+        private void GetSettings()
+        {
+            using (BinaryReader binaryReader = new BinaryReader(fileSettings.OpenRead()))
+            {         
+                binaryReader.ReadString();
+                
+                if (binaryReader.PeekChar() == -1) return;
+                _act = (Acts)Enum.Parse(typeof(Acts), binaryReader.ReadString());
+                _cryptoType = binaryReader.ReadString();
+
+                ApplySettings();
+            }
+        }
+        private void ApplySettings()
+        {
+            CryptoMethodsListBox.SelectedItem = _cryptoType;
+
+            if(_act == Acts.Crypto) CryptoButton.Checked = true;
+            if (_act == Acts.Decrypto) DecryptoButton.Checked = true;
+        }
+        private void SetSettings()
+        {
+            try
+            {
+                using (BinaryWriter binaryWriter = new BinaryWriter(fileSettings.OpenWrite()))
+                {
+                    binaryWriter.Write(Program.Forms.Encryption.ToString());
+                    binaryWriter.Write(_act.ToString());
+                    binaryWriter.Write(_cryptoType);
+
+                    fileSettings.IsReadOnly = true;
+                }
+            }
+            catch (UnauthorizedAccessException) { }
+        }
+
+        private void EncryptionForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SetSettings();
+
+            Application.Exit();
+        }
 
 
         private void CryptoButton_CheckedChanged(object sender, EventArgs e)
@@ -59,11 +100,13 @@ namespace Cryptograph
             SetLabelsAndPanels();
         }
 
+
         private void CryptoMethodsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _cryptoType = CryptoMethodsListBox.SelectedItem.ToString();
             SetLabelsAndPanels();
         }
+
 
         private void InputTextBox_TextChanged(object sender, EventArgs e) => OutputTextBox.Text = "";
         private void GetInputTextBox() => _stringIn = InputTextBox.Text;
@@ -203,6 +246,7 @@ namespace Cryptograph
         private void AppModesShorthandMenuItem_Click(object sender, EventArgs e)
         {
             BackgroundWorker_Cancel();
+            SetSettings();
 
             ShorthandForm shorthandForm = new ShorthandForm();
             shorthandForm.Show();
