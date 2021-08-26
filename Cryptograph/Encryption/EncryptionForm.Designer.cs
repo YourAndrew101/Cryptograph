@@ -62,9 +62,9 @@ namespace Cryptograph
             this.FileToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CopyButton = new System.Windows.Forms.Button();
             this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.CopyButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -118,6 +118,7 @@ namespace Cryptograph
             this.OutputTextBox.Size = new System.Drawing.Size(387, 349);
             this.OutputTextBox.TabIndex = 1;
             this.OutputTextBox.Text = "";
+            this.OutputTextBox.TextChanged += new System.EventHandler(this.OutputTextBox_TextChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -422,7 +423,7 @@ namespace Cryptograph
             // AppModesShorthandMenuItem
             // 
             this.AppModesShorthandMenuItem.Name = "AppModesShorthandMenuItem";
-            this.AppModesShorthandMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.AppModesShorthandMenuItem.Size = new System.Drawing.Size(209, 34);
             this.AppModesShorthandMenuItem.Text = "Стінографія";
             this.AppModesShorthandMenuItem.Click += new System.EventHandler(this.AppModesShorthandMenuItem_Click);
             // 
@@ -452,14 +453,6 @@ namespace Cryptograph
             this.SaveToolStripMenuItem.Text = "Зберегти";
             this.SaveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
-            // OpenFileDialog
-            // 
-            this.OpenFileDialog.InitialDirectory = "Y:\\";
-            // 
-            // SaveFileDialog
-            // 
-            this.SaveFileDialog.InitialDirectory = "Y:\\";
-            // 
             // CopyButton
             // 
             this.CopyButton.BackColor = System.Drawing.SystemColors.Control;
@@ -477,6 +470,14 @@ namespace Cryptograph
             this.CopyButton.Visible = false;
             this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
             // 
+            // OpenFileDialog
+            // 
+            this.OpenFileDialog.InitialDirectory = "Y:\\";
+            // 
+            // SaveFileDialog
+            // 
+            this.SaveFileDialog.InitialDirectory = "Y:\\";
+            // 
             // EncryptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -487,7 +488,6 @@ namespace Cryptograph
             this.Name = "EncryptionForm";
             this.Text = "Шифрування";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EncryptionForm_FormClosed);
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

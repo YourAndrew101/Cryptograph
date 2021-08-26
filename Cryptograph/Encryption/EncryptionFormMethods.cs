@@ -1,5 +1,6 @@
 ﻿using EncryptionMethods;
 using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,6 +11,9 @@ namespace Cryptograph
 {
     public partial class EncryptionForm : Form
     {
+        private readonly BackgroundWorker backgroundWorker = new BackgroundWorker();
+        private bool backgroundWorkerIsCancelled = false;
+
         private bool CheckKeys()
         {
             switch (_cryptoType)
@@ -69,16 +73,6 @@ namespace Cryptograph
                         AnotherKeyBox.Text = "";
                         PrivateKeyBox.Text = "";
                     }
-
-
-                    /*if (!GeneralKeyBox.Text.All(c => char.IsDigit(c)) || !AnotherKeyBox.Text.All(c => char.IsDigit(c)))
-                    {
-                        MessageBox.Show("Неправильний формат ключа");
-
-                        GeneralKeyBox.Text = "";
-                        AnotherKeyBox.Text = "";
-                        return false;
-                    }*/
                 }
             }
             if (_act == Acts.Decrypto)
@@ -197,29 +191,62 @@ namespace Cryptograph
 
         private void RsaEncryption()
         {
-            RsaEncryption rsaEncryption = new RsaEncryption();
+            RsaEncryption rsaEncryption;
 
             SetRSAKeyPanel();
 
             if (_act == Acts.Crypto)
             {
                 var (publicKey, generalKey, privateKey) = GetKeysForm.GetPairKeysForCrypto(GeneralKeyBox, AnotherKeyBox, PrivateKeyBox, GeneratePairKeysCheckBox);
+
                 rsaEncryption = new RsaEncryption(_stringIn, publicKey, generalKey, privateKey);
                 rsaEncryption.Crypto();
+                _stringOut = rsaEncryption.StringOut;
             }
             else
             {
                 RsaWaitLabel.Visible = true;
 
-                //TODO make multithreading form
-                var (generalKey, privateKey) = GetKeysForm.GetPairKeysForDecrypto(GeneralKeyBox, AnotherKeyBox);
-                rsaEncryption = new RsaEncryption(_stringIn, generalKey, privateKey);
-                Task task = Task.Run(() => rsaEncryption.Decrypto());
-                task.Wait();
+                _stringOut = "";
+                try { backgroundWorker.RunWorkerAsync(); }
+                catch (InvalidOperationException) { BackgroundWorker_Cancel(); }
             }
-            _stringOut = rsaEncryption.StringOut;
-            RsaWaitLabel.Visible = false;
         }
+
+        private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (!backgroundWorkerIsCancelled)
+            {
+                _stringOut = (string)e.Result;
+                SetOutputTextBox();
+
+                RsaWaitLabel.Visible = false;
+            }
+            else backgroundWorkerIsCancelled = false;
+        } 
+        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            RsaEncryption rsaEncryption;
+
+            var (generalKey, privateKey) = GetKeysForm.GetPairKeysForDecrypto(GeneralKeyBox, AnotherKeyBox);
+            rsaEncryption = new RsaEncryption(_stringIn, generalKey, privateKey);
+            Task task = Task.Run(() => rsaEncryption.Decrypto());
+            task.Wait();
+
+            e.Result = rsaEncryption.StringOut;           
+        }
+        private void BackgroundWorker_Cancel()
+        {
+            if (backgroundWorker.IsBusy)
+            {
+                backgroundWorkerIsCancelled = true;
+                backgroundWorker.CancelAsync();
+                backgroundWorker.Dispose();
+                RsaWaitLabel.Visible = false;
+            }
+        }
+
+
         private void SetRSAKeyPanel()
         {
             if (_act == Acts.Crypto)

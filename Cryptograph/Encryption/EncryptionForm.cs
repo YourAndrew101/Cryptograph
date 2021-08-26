@@ -29,16 +29,22 @@ namespace Cryptograph
         public EncryptionForm()
         {
             InitializeComponent();
+            InitializeBackgroundWorker();
 
             OpenFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
             SaveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            
+            _act = Acts.Crypto;
+            CryptoMethodsListBox.SelectedIndex = 0;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void InitializeBackgroundWorker()
         {
-            CryptoMethodsListBox.SelectedIndex = 0;
-            _act = Acts.Crypto;
+            backgroundWorker.DoWork += BackgroundWorker_DoWork;
+            backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
+            backgroundWorker.WorkerSupportsCancellation = true;
         }
+
         private void EncryptionForm_FormClosed(object sender, FormClosedEventArgs e) => Application.Exit();
 
 
@@ -59,20 +65,13 @@ namespace Cryptograph
             SetLabelsAndPanels();
         }
 
-        private void InputTextBox_TextChanged(object sender, EventArgs e)
-        {
-            OutputTextBox.Text = "";
-            CopyButton.Visible = false;
-        }
+        private void InputTextBox_TextChanged(object sender, EventArgs e) => OutputTextBox.Text = "";
         private void GetInputTextBox() => _stringIn = InputTextBox.Text;
         private void SetInputTextBox() => InputTextBox.Text = _stringIn;
 
         private void GetOutputTextBox() => _stringOut = OutputTextBox.Text;
-        private void SetOutputTextBox()
-        {
-            OutputTextBox.Text = _stringOut;
-            CopyButton.Visible = true;
-        }
+        private void SetOutputTextBox() => OutputTextBox.Text = _stringOut;   
+        private void OutputTextBox_TextChanged(object sender, EventArgs e) => CopyButton.Visible = OutputTextBox.Text != "";
 
 
         private void SetLabelsAndPanels()
@@ -150,41 +149,23 @@ namespace Cryptograph
 
         private void ActionButton_Click(object sender, EventArgs e)
         {
+            BackgroundWorker_Cancel();
+
             GetInputTextBox();
 
             if (!CheckKeys()) return;
             switch (_cryptoType)
             {
-                case "ROT1":
-                    Rot1Encryption();
-                    break;
-                case "ROT13":
-                    Rot13Encryption();
-                    break;
-                case "Шифр Цезаря":
-                    CesarEncryption();
-                    break;
-                case "Транспозиція":
-                    TranspositionEncryption();
-                    break;
-                case "Двійковий код":
-                    Numeral2Encryption();
-                    break;
-                case "Вісімковий код":
-                    Numeral8Encryption();
-                    break;
-                case "Шістнадцятковий код":
-                    Numeral16Encryption();
-                    break;
-                case "RSA шифрування":
-                    RsaEncryption();
-                    break;
-                case "Шифр Віженера":
-                    VigenerEncryption();
-                    break;
-                default:
-                    _stringOut = "";
-                    break;
+                case "ROT1": Rot1Encryption(); break;
+                case "ROT13": Rot13Encryption(); break;
+                case "Шифр Цезаря": CesarEncryption(); break;
+                case "Транспозиція": TranspositionEncryption(); break;
+                case "Двійковий код": Numeral2Encryption(); break;
+                case "Вісімковий код": Numeral8Encryption(); break;
+                case "Шістнадцятковий код": Numeral16Encryption(); break;
+                case "RSA шифрування": RsaEncryption(); break;
+                case "Шифр Віженера": VigenerEncryption(); break;
+                default: _stringOut = ""; break;
             }
 
             SetOutputTextBox();
@@ -206,7 +187,9 @@ namespace Cryptograph
         }
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(_stringOut == null)
+            BackgroundWorker_Cancel();
+
+            if (_stringOut == "" || _stringOut == null)
             {
                 MessageBox.Show("Відсутній текст для збереження");
                 return;
@@ -219,6 +202,8 @@ namespace Cryptograph
 
         private void AppModesShorthandMenuItem_Click(object sender, EventArgs e)
         {
+            BackgroundWorker_Cancel();
+
             ShorthandForm shorthandForm = new ShorthandForm();
             shorthandForm.Show();
 

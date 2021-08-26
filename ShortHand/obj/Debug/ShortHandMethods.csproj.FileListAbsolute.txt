@@ -11,3 +11,16 @@ Y:\Programing\Shifr 2.5\main\ShortHand\obj\Debug\ShortHandMethods.csproj.CoreCom
 Y:\Programing\Shifr 2.5\main\ShortHand\obj\Debug\ShortHandMethods.csproj.CopyComplete
 Y:\Programing\Shifr 2.5\main\ShortHand\obj\Debug\ShortHand.dll
 Y:\Programing\Shifr 2.5\main\ShortHand\obj\Debug\ShortHand.pdb
+Y:\Programing\Shifr\ShortHand\bin\Debug\ShortHand.dll
+Y:\Programing\Shifr\ShortHand\bin\Debug\ShortHand.pdb
+Y:\Programing\Shifr\ShortHand\bin\Debug\EncryptionMethods.dll
+Y:\Programing\Shifr\ShortHand\bin\Debug\UsefulMethods.dll
+Y:\Programing\Shifr\ShortHand\bin\Debug\ConsoleIO.dll
+Y:\Programing\Shifr\ShortHand\bin\Debug\EncryptionMethods.pdb
+Y:\Programing\Shifr\ShortHand\bin\Debug\UsefulMethods.pdb
+Y:\Programing\Shifr\ShortHand\bin\Debug\ConsoleIO.pdb
+Y:\Programing\Shifr\ShortHand\obj\Debug\ShortHandMethods.csproj.AssemblyReference.cache
+Y:\Programing\Shifr\ShortHand\obj\Debug\ShortHandMethods.csproj.CoreCompileInputs.cache
+Y:\Programing\Shifr\ShortHand\obj\Debug\ShortHandMethods.csproj.CopyComplete
+Y:\Programing\Shifr\ShortHand\obj\Debug\ShortHand.dll
+Y:\Programing\Shifr\ShortHand\obj\Debug\ShortHand.pdb

@@ -20,3 +20,25 @@ Y:\Programing\Shifr 2.5\main\Cryptograph\obj\Debug\Cryptograph.EncryptionForm.re
 Y:\Programing\Shifr 2.5\main\Cryptograph\obj\Debug\Cryptograph.ShorthandForm.resources
 Y:\Programing\Shifr 2.5\main\Cryptograph\bin\Debug\ShortHand.dll
 Y:\Programing\Shifr 2.5\main\Cryptograph\bin\Debug\ShortHand.pdb
+Y:\Programing\Shifr\Cryptograph\bin\Debug\Cryptograph.exe.config
+Y:\Programing\Shifr\Cryptograph\bin\Debug\Cryptograph.exe
+Y:\Programing\Shifr\Cryptograph\bin\Debug\Cryptograph.pdb
+Y:\Programing\Shifr\Cryptograph\bin\Debug\EncryptionMethods.dll
+Y:\Programing\Shifr\Cryptograph\bin\Debug\FileIOControllers.dll
+Y:\Programing\Shifr\Cryptograph\bin\Debug\ShortHand.dll
+Y:\Programing\Shifr\Cryptograph\bin\Debug\UsefulMethods.dll
+Y:\Programing\Shifr\Cryptograph\bin\Debug\ConsoleIO.dll
+Y:\Programing\Shifr\Cryptograph\bin\Debug\EncryptionMethods.pdb
+Y:\Programing\Shifr\Cryptograph\bin\Debug\FileIOControllers.pdb
+Y:\Programing\Shifr\Cryptograph\bin\Debug\ShortHand.pdb
+Y:\Programing\Shifr\Cryptograph\bin\Debug\UsefulMethods.pdb
+Y:\Programing\Shifr\Cryptograph\bin\Debug\ConsoleIO.pdb
+Y:\Programing\Shifr\Cryptograph\obj\Debug\Cryptograph.csproj.AssemblyReference.cache
+Y:\Programing\Shifr\Cryptograph\obj\Debug\Cryptograph.EncryptionForm.resources
+Y:\Programing\Shifr\Cryptograph\obj\Debug\Cryptograph.Properties.Resources.resources
+Y:\Programing\Shifr\Cryptograph\obj\Debug\Cryptograph.ShorthandForm.resources
+Y:\Programing\Shifr\Cryptograph\obj\Debug\Cryptograph.csproj.GenerateResource.cache
+Y:\Programing\Shifr\Cryptograph\obj\Debug\Cryptograph.csproj.CoreCompileInputs.cache
+Y:\Programing\Shifr\Cryptograph\obj\Debug\Cryptograph.csproj.CopyComplete
+Y:\Programing\Shifr\Cryptograph\obj\Debug\Cryptograph.exe
+Y:\Programing\Shifr\Cryptograph\obj\Debug\Cryptograph.pdb

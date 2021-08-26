@@ -4,3 +4,9 @@ Y:\Programing\Shifr 2.5\main\ConsoleIO\obj\Debug\ConsoleIO.csprojAssemblyReferen
 Y:\Programing\Shifr 2.5\main\ConsoleIO\obj\Debug\ConsoleIO.csproj.CoreCompileInputs.cache
 Y:\Programing\Shifr 2.5\main\ConsoleIO\obj\Debug\ConsoleIO.dll
 Y:\Programing\Shifr 2.5\main\ConsoleIO\obj\Debug\ConsoleIO.pdb
+Y:\Programing\Shifr\ConsoleIO\bin\Debug\ConsoleIO.dll
+Y:\Programing\Shifr\ConsoleIO\bin\Debug\ConsoleIO.pdb
+Y:\Programing\Shifr\ConsoleIO\obj\Debug\ConsoleIO.csproj.AssemblyReference.cache
+Y:\Programing\Shifr\ConsoleIO\obj\Debug\ConsoleIO.csproj.CoreCompileInputs.cache
+Y:\Programing\Shifr\ConsoleIO\obj\Debug\ConsoleIO.dll
+Y:\Programing\Shifr\ConsoleIO\obj\Debug\ConsoleIO.pdb
