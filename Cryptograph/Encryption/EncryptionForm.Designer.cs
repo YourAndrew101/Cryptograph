@@ -195,7 +195,8 @@ namespace Cryptograph
             "Вісімковий код",
             "Шістнадцятковий код",
             "Шифр Віженера",
-            "RSA шифрування"});
+            "RSA шифрування",
+            "AES шифрування"});
             this.CryptoMethodsListBox.Location = new System.Drawing.Point(65, 80);
             this.CryptoMethodsListBox.Name = "CryptoMethodsListBox";
             this.CryptoMethodsListBox.Size = new System.Drawing.Size(341, 28);

@@ -47,10 +47,11 @@ namespace Cryptograph
 
         private void GetSettings()
         {
-            using (BinaryReader binaryReader = new BinaryReader(fileSettings.OpenRead()))
-            {         
+            using (BinaryReader binaryReader = new BinaryReader(fileSettings.Open(FileMode.OpenOrCreate)))
+            {
+                if (binaryReader.PeekChar() == -1) return;
                 binaryReader.ReadString();
-                
+
                 if (binaryReader.PeekChar() == -1) return;
                 _act = (Acts)Enum.Parse(typeof(Acts), binaryReader.ReadString());
                 _cryptoType = binaryReader.ReadString();
@@ -206,8 +207,9 @@ namespace Cryptograph
                 case "Двійковий код": Numeral2Encryption(); break;
                 case "Вісімковий код": Numeral8Encryption(); break;
                 case "Шістнадцятковий код": Numeral16Encryption(); break;
-                case "RSA шифрування": RsaEncryption(); break;
                 case "Шифр Віженера": VigenerEncryption(); break;
+                case "RSA шифрування": RsaEncryption(); break;
+                case "AES шифрування": AESEncryption(); break;
                 default: _stringOut = ""; break;
             }
 

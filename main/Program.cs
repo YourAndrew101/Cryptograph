@@ -1,4 +1,5 @@
 ﻿using ConsoleIO;
+using EncryptionMethods;
 using Managers;
 using ShortHandMethods;
 using System.Drawing;
@@ -10,6 +11,11 @@ namespace main
         static void Main(string[] args)
         {
             Settings.SetConsoleParams();
+
+
+            AesEncryption aesEncryption;
+            aesEncryption = new AesEncryption("I love lesbians", "1234567891011123");
+            aesEncryption.Crypto();
 
             while (true)
             {

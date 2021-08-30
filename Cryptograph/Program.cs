@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EncryptionMethods;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,9 +9,9 @@ using System.Windows.Forms;
 namespace Cryptograph
 {
     public static class Program
-    {       
+    {
         public enum Forms { Encryption, ShortHand }
-        /// <summary>
+        /// <summary>S
         /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
@@ -20,18 +21,19 @@ namespace Cryptograph
             Application.SetCompatibleTextRenderingDefault(false);
 
             Form startForm;
-            if (GetSettings() == Forms.Encryption.ToString()) startForm = new EncryptionForm();
-            else startForm = new ShorthandForm();
-            
+            if (GetSettings() == Forms.ShortHand.ToString()) startForm = new ShorthandForm();
+            else startForm = new EncryptionForm();
+
             Application.Run(startForm);
         }
 
         private static string GetSettings()
         {
             FileInfo file = new FileInfo("AppStartSettings.dat");
-            file.IsReadOnly = false;
+            if (file.Exists) file.IsReadOnly = false;
+            else return "";
 
-            using (BinaryReader binaryReader = new BinaryReader(file.OpenRead())) return binaryReader.ReadString(); 
+            using (BinaryReader binaryReader = new BinaryReader(file.OpenRead())) return binaryReader.ReadString();
         }
     }
 }

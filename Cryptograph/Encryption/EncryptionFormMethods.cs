@@ -103,6 +103,7 @@ namespace Cryptograph
             return true;
         }
 
+
         private void Rot1Encryption()
         {
             RotEncryption rotEncryption = new RotEncryption(_stringIn, RotEncryption.ROT1_SHIFT);
@@ -139,6 +140,7 @@ namespace Cryptograph
             _stringOut = cesarEncryption.StringOut;
         }
 
+
         private void TranspositionEncryption()
         {
             TranspositionEncryption transpositionEncryption = new TranspositionEncryption(_stringIn);
@@ -148,6 +150,7 @@ namespace Cryptograph
 
             _stringOut = transpositionEncryption.StringOut;
         }
+
 
         private void Numeral2Encryption()
         {
@@ -188,6 +191,26 @@ namespace Cryptograph
 
             _stringOut = numeral16Encryption.StringOut;
         }
+
+
+        private void VigenerEncryption()
+        {
+            VigenerEncryption vigenerEncryption = new VigenerEncryption(_stringIn);
+
+            if (_act == Acts.Crypto)
+            {
+                vigenerEncryption = new VigenerEncryption(_stringIn, GetKeysForm.GetSimpleKeyForCrypto(SimpleKeyCryptoBox, SimpleKeyLengthUpDown, vigenerEncryption.Alphabet));
+                vigenerEncryption.Crypto();
+            }
+            else
+            {
+                vigenerEncryption = new VigenerEncryption(_stringIn, GetKeysForm.GetSimpleKeyForDecrypto(SimpleKeyDecryptoBox));
+                vigenerEncryption.Decrypto();
+            }
+
+            _stringOut = vigenerEncryption.StringOut;
+        }
+
 
         private void RsaEncryption()
         {
@@ -246,7 +269,6 @@ namespace Cryptograph
             }
         }
 
-
         private void SetRSAKeyPanel()
         {
             if (_act == Acts.Crypto)
@@ -260,22 +282,17 @@ namespace Cryptograph
             }
         }
 
-        private void VigenerEncryption()
+
+        private void AESEncryption()
         {
-            VigenerEncryption vigenerEncryption = new VigenerEncryption(_stringIn);
+            AesEncryption aesEncryption;
 
             if (_act == Acts.Crypto)
             {
-                vigenerEncryption = new VigenerEncryption(_stringIn, GetKeysForm.GetSimpleKeyForCrypto(SimpleKeyCryptoBox, SimpleKeyLengthUpDown, vigenerEncryption.Alphabet));
-                vigenerEncryption.Crypto();
+                aesEncryption = new AesEncryption(_stringIn, "a");
+                
             }
-            else
-            {
-                vigenerEncryption = new VigenerEncryption(_stringIn, GetKeysForm.GetSimpleKeyForDecrypto(SimpleKeyDecryptoBox));
-                vigenerEncryption.Decrypto();
-            }
-
-            _stringOut = vigenerEncryption.StringOut;
         }
+
     }
 }

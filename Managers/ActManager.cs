@@ -24,18 +24,7 @@ namespace Managers
                 new CommandInfo("назад", null),
                 new CommandInfo("Зашифрувати;", Crypto),
                 new CommandInfo("Розшифрувати;", Decrypto),
-                new CommandInfo("Стінографія", ShortHandCrypto)
             };
-        }
-
-        private void ShortHandCrypto()
-        {
-            object actObject;
-            if (TextManager.Load) actObject = new Bitmap(_stringIn);
-            else actObject = _stringIn;
-            ShortHandManager shortHandManager = new ShortHandManager(actObject);
-
-            _doThingAfterCommand = shortHandManager.Run();
         }
 
         void Crypto()
