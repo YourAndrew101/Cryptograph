@@ -9,8 +9,15 @@ namespace EncryptionMethods
 {
     public class AesEncryption : MainEncryption
     {
-        private readonly Encoding stringsEncoding = Encoding.UTF8;
-
+        private readonly TypesOfInputs _typeOfInputString;
+        private readonly TypesOfInputs _typeOfOutputString;
+        private readonly TypesOfInputs _typeOfPassword;
+        public enum TypesOfInputs
+        {
+            Hex,
+            Base64,
+            Unicode,
+        }
 
         private readonly byte[][] _rCon = new byte[10][]
         {
@@ -44,17 +51,31 @@ namespace EncryptionMethods
             { 0xe1, 0xf8, 0x98, 0x11, 0x69, 0xd9, 0x8e, 0x94, 0x9b, 0x1e, 0x87, 0xe9, 0xce, 0x55, 0x28, 0xdf },
             { 0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68, 0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16 }
         };
-
+        private readonly byte[,] _invSBox = new byte[,]
+        {
+            {0x52, 0x09, 0x6a, 0xd5, 0x30, 0x36, 0xa5, 0x38, 0xbf, 0x40, 0xa3, 0x9e, 0x81, 0xf3, 0xd7, 0xfb },
+            {0x7c, 0xe3, 0x39, 0x82, 0x9b, 0x2f, 0xff, 0x87, 0x34, 0x8e, 0x43, 0x44, 0xc4, 0xde, 0xe9, 0xcb},
+            {0x54, 0x7b, 0x94, 0x32, 0xa6, 0xc2, 0x23, 0x3d, 0xee, 0x4c, 0x95, 0x0b, 0x42, 0xfa, 0xc3, 0x4e},
+            {0x08, 0x2e, 0xa1, 0x66, 0x28, 0xd9, 0x24, 0xb2, 0x76, 0x5b, 0xa2, 0x49, 0x6d, 0x8b, 0xd1, 0x25},
+            {0x72, 0xf8, 0xf6, 0x64, 0x86, 0x68, 0x98, 0x16, 0xd4, 0xa4, 0x5c, 0xcc, 0x5d, 0x65, 0xb6, 0x92},
+            {0x6c, 0x70, 0x48, 0x50, 0xfd, 0xed, 0xb9, 0xda, 0x5e, 0x15, 0x46, 0x57, 0xa7, 0x8d, 0x9d, 0x84},
+            {0x90, 0xd8, 0xab, 0x00, 0x8c, 0xbc, 0xd3, 0x0a, 0xf7, 0xe4, 0x58, 0x05, 0xb8, 0xb3, 0x45, 0x06},
+            {0xd0, 0x2c, 0x1e, 0x8f, 0xca, 0x3f, 0x0f, 0x02, 0xc1, 0xaf, 0xbd, 0x03, 0x01, 0x13, 0x8a, 0x6b},
+            {0x3a, 0x91, 0x11, 0x41, 0x4f, 0x67, 0xdc, 0xea, 0x97, 0xf2, 0xcf, 0xce, 0xf0, 0xb4, 0xe6, 0x73},
+            {0x96, 0xac, 0x74, 0x22, 0xe7, 0xad, 0x35, 0x85, 0xe2, 0xf9, 0x37, 0xe8, 0x1c, 0x75, 0xdf, 0x6e},
+            {0x47, 0xf1, 0x1a, 0x71, 0x1d, 0x29, 0xc5, 0x89, 0x6f, 0xb7, 0x62, 0x0e, 0xaa, 0x18, 0xbe, 0x1b},
+            {0xfc, 0x56, 0x3e, 0x4b, 0xc6, 0xd2, 0x79, 0x20, 0x9a, 0xdb, 0xc0, 0xfe, 0x78, 0xcd, 0x5a, 0xf4},
+            {0x1f, 0xdd, 0xa8, 0x33, 0x88, 0x07, 0xc7, 0x31, 0xb1, 0x12, 0x10, 0x59, 0x27, 0x80, 0xec, 0x5f},
+            {0x60, 0x51, 0x7f, 0xa9, 0x19, 0xb5, 0x4a, 0x0d, 0x2d, 0xe5, 0x7a, 0x9f, 0x93, 0xc9, 0x9c, 0xef},
+            {0xa0, 0xe0, 0x3b, 0x4d, 0xae, 0x2a, 0xf5, 0xb0, 0xc8, 0xeb, 0xbb, 0x3c, 0x83, 0x53, 0x99, 0x61},
+            {0x17, 0x2b, 0x04, 0x7e, 0xba, 0x77, 0xd6, 0x26, 0xe1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0c, 0x7d}
+        };
 
         private string _stringIn;
         public override string StringIn
         {
             protected get => _stringIn;
-            set
-            {
-                int padLength = value.Length % 16 == 0 ? 0 : ((value.Length / 16) + 1) * 16;
-                _stringIn = value.PadRight(padLength, '\0');
-            }
+            set => _stringIn = value.Trim();
         }
         private readonly List<byte[][]> _stringInBytes = new List<byte[][]>();
 
@@ -103,6 +124,22 @@ namespace EncryptionMethods
                 }
             }
         }
+        
+        
+
+        private void PrintMatrix(byte[][] matrix)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    Console.Write("{0}", matrix[i][j].ToString("x").PadLeft(2, '0'));
+                }
+                Console.Write("  ");
+            }
+            Console.WriteLine();
+        }
+
 
 
         private void RotWord(ref byte[] word)
@@ -112,9 +149,26 @@ namespace EncryptionMethods
             for (int i = 1; i < word.Length; i++) word[i - 1] = word[i];
             word[word.Length - 1] = first;
         }
+        private void InvRotWord(ref byte[] word)
+        {
+            byte first = word[word.Length - 1];
+            byte temp = 0;
+            for (int i = 0; i < word.Length; i++)
+            {
+                byte temp1 = word[i];
+                word[i] = temp;
+                temp = temp1;
+            }
+
+            word[0] = first;
+        }
         private void SubBytesWord(ref byte[] word)
         {
             for (int i = 0; i < word.Length; i++) word[i] = _sBox[(word[i] & 0xf0) >> 4, word[i] & 0xf];
+        }
+        private void InvSubBytesWord(ref byte[] word)
+        {
+            for (int i = 0; i < word.Length; i++) word[i] = _invSBox[(word[i] & 0xf0) >> 4, word[i] & 0xf];
         }
         private byte[] XorTwoWords(byte[] word1, byte[] word2)
         {
@@ -138,6 +192,69 @@ namespace EncryptionMethods
         }
 
 
+        //TODO make differnt types of input and output text
+        private string GetOutputStringFromByteArray(byte[] inputBytes)
+        {
+            switch (_typeOfOutputString)
+            {
+                case TypesOfInputs.Hex:
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        foreach (byte byteChar in inputBytes) sb.Append(string.Format("{0} ", byteChar.ToString("x").PadLeft(2, '0')));
+                        return sb.ToString();
+                    }
+                case TypesOfInputs.Base64:
+                    return Convert.ToBase64String(inputBytes);
+                case TypesOfInputs.Unicode:
+                    return Encoding.Default.GetString(inputBytes);
+                default:
+                    return null;
+            }
+        }
+        private byte[] GetByteArrayFromInputString(string inputString)
+        {
+            switch (_typeOfInputString)
+            {
+                case TypesOfInputs.Hex:
+                    {
+                        string[] ss = inputString.Split();
+                        var b = from s in ss select Convert.ToByte(s, 16);
+                        return b.ToArray();
+                    }
+                case TypesOfInputs.Base64:
+                    {                    
+                        return Convert.FromBase64String(inputString);
+                    }
+                case TypesOfInputs.Unicode:
+                    {
+                        int padLength = inputString.Length % 16 == 0 ? 0 : ((inputString.Length / 16) + 1) * 16;
+                        inputString = inputString.PadRight(padLength, '\0');
+                        return Encoding.Default.GetBytes(inputString);
+                    }
+                default:
+                    return Array.Empty<byte>();
+            }
+        }
+        private byte[] GetByteArrayFromPassword(string password)
+        {
+            switch (_typeOfPassword)
+            {
+                case TypesOfInputs.Hex:
+                    {
+                        string[] s = password.Split();
+                        var _ = from c in s select Convert.ToByte(c, 16);
+                        return _.ToArray();
+                    }
+                case TypesOfInputs.Base64:
+                    return Convert.FromBase64String(password);
+                case TypesOfInputs.Unicode:
+                    return Encoding.Default.GetBytes(password);
+                default:
+                    return Array.Empty<byte>();
+            }
+        }
+
+
         public override void Crypto()
         {
             StringBuilder sb = new StringBuilder();
@@ -156,27 +273,11 @@ namespace EncryptionMethods
                 ShiftRows(_stringInBytes[i]);
                 AddRoundKey(_stringInBytes[i], _roundsKeys[10]);
 
-                Console.WriteLine("Bytes");
-                PrintMatrix(_stringInBytes[i]);
-
                 byte[] _stringOutBytes = GetByteOutputText(_stringInBytes[i]);
-                sb.Append(Convert.ToBase64String(_stringOutBytes));
+                sb.Append(GetOutputStringFromByteArray(_stringOutBytes));
             }
 
             StringOut = sb.ToString();
-            Console.WriteLine(StringOut);
-        }
-        private void PrintMatrix(byte[][] matrix)
-        {
-            for(int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    Console.Write("{0:x}", matrix[i][j].ToString("x").PadLeft(2, '0'));
-                }
-                Console.Write("  ");
-            }
-            Console.WriteLine();
         }
 
         private void AddRoundKey(byte[][] stringInMatrix, byte[][] keyMatrix)
@@ -233,13 +334,89 @@ namespace EncryptionMethods
 
         public override void Decrypto()
         {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < _stringInBytes.Count; i++)
+            {
+                AddRoundKey(_stringInBytes[i], _roundsKeys[10]);
 
+                for (int j = 9; j > 0; j--)
+                {
+                    InvShiftRows(_stringInBytes[i]);
+                    InvSubBytes(_stringInBytes[i]);
+                    AddRoundKey(_stringInBytes[i], _roundsKeys[j]);
+                    _stringInBytes[i] = InvMixColumns(_stringInBytes[i]);
+                }
+
+                InvShiftRows(_stringInBytes[i]);
+                InvSubBytes(_stringInBytes[i]);
+                AddRoundKey(_stringInBytes[i], _roundsKeys[0]);
+
+                byte[] _stringOutBytes = GetByteOutputText(_stringInBytes[i]);
+                sb.Append(GetOutputStringFromByteArray(_stringOutBytes));
+            }
+
+            StringOut = sb.ToString();
+        }
+
+        private void InvSubBytes(byte[][] stringInMatrix)
+        {
+            for (int i = 0; i < stringInMatrix.Length; i++) InvSubBytesWord(ref stringInMatrix[i]);
+        }
+        private void InvShiftRows(byte[][] stringInMatrix)
+        {
+            for (int i = 1; i < stringInMatrix.Length; i++)
+            {
+                byte[] col = GetColFromMatrix(stringInMatrix, i);
+                for (int j = 0; j < i; j++) InvRotWord(ref col);
+                SetColToMatrix(ref stringInMatrix, col, i);
+            }
+        }
+        private byte[][] InvMixColumns(byte[][] stringInMatrix)
+        {
+            byte[][] tempArray = new byte[4][];
+
+            for (int i = 0; i < stringInMatrix.GetLength(0); i++)
+            {
+                tempArray[i] = new byte[4];
+                tempArray[i][0] = (byte)((GMul(0x0e, stringInMatrix[i][0])) ^ (GMul(0x0b, stringInMatrix[i][1])) ^ (GMul(0x0d, stringInMatrix[i][2])) ^ (GMul(0x09, stringInMatrix[i][3])));
+                tempArray[i][1] = (byte)((GMul(0x09, stringInMatrix[i][0])) ^ (GMul(0x0e, stringInMatrix[i][1])) ^ (GMul(0x0b, stringInMatrix[i][2])) ^ (GMul(0x0d, stringInMatrix[i][3])));
+                tempArray[i][2] = (byte)((GMul(0x0d, stringInMatrix[i][0])) ^ (GMul(0x09, stringInMatrix[i][1])) ^ (GMul(0x0e, stringInMatrix[i][2])) ^ (GMul(0x0b, stringInMatrix[i][3])));
+                tempArray[i][3] = (byte)((GMul(0x0b, stringInMatrix[i][0])) ^ (GMul(0x0d, stringInMatrix[i][1])) ^ (GMul(0x09, stringInMatrix[i][2])) ^ (GMul(0x0e, stringInMatrix[i][3])));
+            }
+
+            return tempArray;
+
+            byte GMul(byte a, byte b)
+            {
+                byte p = 0;
+
+                for (int counter = 0; counter < 8; counter++)
+                {
+                    if ((b & 1) != 0) p ^= a;
+
+                    bool hi_bit_set = (a & 0x80) != 0;
+
+                    a <<= 1;
+                    if (hi_bit_set) a ^= 0x1B;
+                    b >>= 1;
+                }
+
+                return p;
+            }
         }
 
 
-        public AesEncryption(string stringIn, string key)
+
+        public AesEncryption(string stringIn, string key,
+            TypesOfInputs typeOfInputString = TypesOfInputs.Unicode, 
+            TypesOfInputs typeOfOutputString = TypesOfInputs.Unicode, 
+            TypesOfInputs typeOfPassword = TypesOfInputs.Unicode)
         {
             StringIn = stringIn;
+
+            _typeOfInputString = typeOfInputString;
+            _typeOfOutputString = typeOfOutputString;
+            _typeOfPassword = typeOfPassword;
 
             GetByteKey(key);
             GetByteInputText(StringIn);
@@ -249,7 +426,7 @@ namespace EncryptionMethods
         {
             using (MD5 md5 = MD5.Create())
             {
-                byte[] inputBytes = stringsEncoding.GetBytes(key);
+                byte[] inputBytes = GetByteArrayFromPassword(key);
                 _keyHashByte = md5.ComputeHash(inputBytes);
 
                 GetCipherKey();
@@ -258,11 +435,15 @@ namespace EncryptionMethods
         }
         private void GetByteInputText(string text)
         {
-            string[] strings = text.SplitStringForSegmentsLength(16);
+            string[] strings = new string[] { };
+               
+            if (_typeOfInputString == TypesOfInputs.Unicode) strings = text.SplitStringForSegmentsLength(16);
+            if (_typeOfInputString == TypesOfInputs.Hex) strings = text.SplitStringForSegmentsLength(48);
+            if (_typeOfInputString == TypesOfInputs.Base64) strings = text.SplitStringForSegmentsLength(24);
 
             foreach (string str in strings)
             {
-                byte[] textBytes = stringsEncoding.GetBytes(str);
+                byte[] textBytes =  GetByteArrayFromInputString(str);
                 byte[][] textFinalBytes = new byte[4][];
 
                 for (int i = 0; i < textBytes.Length; i++)

@@ -12,11 +12,6 @@ namespace main
         {
             Settings.SetConsoleParams();
 
-
-            AesEncryption aesEncryption;
-            aesEncryption = new AesEncryption("I love lesbians", "1234567891011123");
-            aesEncryption.Crypto();
-
             while (true)
             {
                 string string_in = TextManager.GetNewString("Ваш текст або шлях до файлу: ");

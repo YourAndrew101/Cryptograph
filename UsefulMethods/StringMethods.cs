@@ -9,8 +9,9 @@ namespace UsefulMethods
     public static class StringMethods
     {
         public static string[] SplitStringForSegmentsLength(this string str, int segmentLength)
-        {
+        {          
             string[] strings = new string[str.Length / segmentLength];
+            if (str.Length < segmentLength) return new string[] { str };
 
             for (int i = 0; i < strings.Length; i++)
             {
