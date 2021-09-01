@@ -31,6 +31,8 @@ namespace Cryptograph
             InitializeBackgroundWorker();
 
             CryptoMethodsListBox.SelectedIndex = 0;
+            InputStringFormatComboBox.SelectedIndex = 0;
+            OutputStringFormatComboBox.SelectedIndex = 2;
 
             OpenFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
             SaveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
@@ -123,6 +125,7 @@ namespace Cryptograph
             if (_act == Acts.Crypto)
             {
                 ActionButton.Text = "Шифрувати";
+
                 if (_cryptoType == "Шифр Цезаря" || _cryptoType == "Шифр Віженера")
                 {
                     KeyCryptoPanel.Visible = true;

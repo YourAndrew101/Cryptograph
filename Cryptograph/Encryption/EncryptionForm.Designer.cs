@@ -65,6 +65,10 @@ namespace Cryptograph
             this.CopyButton = new System.Windows.Forms.Button();
             this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.InputStringFormatComboBox = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.OutputStringFormatComboBox = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -73,6 +77,8 @@ namespace Cryptograph
             ((System.ComponentModel.ISupportInitialize)(this.SimpleKeyLengthUpDown)).BeginInit();
             this.KeyDecryptoPanel.SuspendLayout();
             this.GeneralMenuStrip.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -87,7 +93,8 @@ namespace Cryptograph
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.RsaWaitLabel, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.GeneralMenuStrip, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.CopyButton, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 2, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -460,12 +467,13 @@ namespace Cryptograph
             this.CopyButton.BackgroundImage = global::Cryptograph.Properties.Resources.copy;
             this.CopyButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CopyButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CopyButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.CopyButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CopyButton.FlatAppearance.BorderSize = 0;
             this.CopyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CopyButton.Location = new System.Drawing.Point(1161, 221);
+            this.CopyButton.Location = new System.Drawing.Point(311, 3);
             this.CopyButton.Name = "CopyButton";
-            this.CopyButton.Size = new System.Drawing.Size(82, 81);
+            this.tableLayoutPanel5.SetRowSpan(this.CopyButton, 2);
+            this.CopyButton.Size = new System.Drawing.Size(72, 75);
             this.CopyButton.TabIndex = 6;
             this.CopyButton.UseVisualStyleBackColor = false;
             this.CopyButton.Visible = false;
@@ -478,6 +486,67 @@ namespace Cryptograph
             // SaveFileDialog
             // 
             this.SaveFileDialog.InitialDirectory = "Y:\\";
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.80311F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.19689F));
+            this.tableLayoutPanel4.Controls.Add(this.InputStringFormatComboBox, 1, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 221);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(386, 81);
+            this.tableLayoutPanel4.TabIndex = 8;
+            // 
+            // InputStringFormatComboBox
+            // 
+            this.InputStringFormatComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.InputStringFormatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.InputStringFormatComboBox.FormattingEnabled = true;
+            this.InputStringFormatComboBox.Items.AddRange(new object[] {
+            "UTF-8",
+            "Base64",
+            "Hex"});
+            this.InputStringFormatComboBox.Location = new System.Drawing.Point(256, 43);
+            this.InputStringFormatComboBox.Name = "InputStringFormatComboBox";
+            this.InputStringFormatComboBox.Size = new System.Drawing.Size(127, 28);
+            this.InputStringFormatComboBox.TabIndex = 4;
+            this.InputStringFormatComboBox.Visible = false;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 3;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.03891F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.96109F));
+            this.tableLayoutPanel5.Controls.Add(this.CopyButton, 2, 0);
+            this.tableLayoutPanel5.Controls.Add(this.OutputStringFormatComboBox, 0, 1);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(856, 221);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.61728F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.38272F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(386, 81);
+            this.tableLayoutPanel5.TabIndex = 9;
+            // 
+            // OutputStringFormatComboBox
+            // 
+            this.OutputStringFormatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.OutputStringFormatComboBox.FormattingEnabled = true;
+            this.OutputStringFormatComboBox.Items.AddRange(new object[] {
+            "UTF-8",
+            "Base64",
+            "Hex"});
+            this.OutputStringFormatComboBox.Location = new System.Drawing.Point(3, 43);
+            this.OutputStringFormatComboBox.Name = "OutputStringFormatComboBox";
+            this.OutputStringFormatComboBox.Size = new System.Drawing.Size(123, 28);
+            this.OutputStringFormatComboBox.TabIndex = 4;
+            this.OutputStringFormatComboBox.Visible = false;
             // 
             // EncryptionForm
             // 
@@ -503,6 +572,8 @@ namespace Cryptograph
             this.KeyDecryptoPanel.PerformLayout();
             this.GeneralMenuStrip.ResumeLayout(false);
             this.GeneralMenuStrip.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -545,6 +616,10 @@ namespace Cryptograph
         private System.Windows.Forms.Button CopyButton;
         private System.Windows.Forms.ToolStripMenuItem AppModesMenu;
         private System.Windows.Forms.ToolStripMenuItem AppModesShorthandMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.ComboBox InputStringFormatComboBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.ComboBox OutputStringFormatComboBox;
     }
 }
 

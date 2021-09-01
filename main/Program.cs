@@ -1,8 +1,5 @@
 ﻿using ConsoleIO;
-using EncryptionMethods;
 using Managers;
-using ShortHandMethods;
-using System.Drawing;
 
 namespace main
 {

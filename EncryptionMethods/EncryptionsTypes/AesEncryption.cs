@@ -221,10 +221,7 @@ namespace EncryptionMethods
                         var b = from s in ss select Convert.ToByte(s, 16);
                         return b.ToArray();
                     }
-                case TypesOfInputs.Base64:
-                    {                    
-                        return Convert.FromBase64String(inputString);
-                    }
+                case TypesOfInputs.Base64: return Convert.FromBase64String(inputString);
                 case TypesOfInputs.Unicode:
                     {
                         int padLength = inputString.Length % 16 == 0 ? 0 : ((inputString.Length / 16) + 1) * 16;
@@ -421,6 +418,8 @@ namespace EncryptionMethods
             GetByteKey(key);
             GetByteInputText(StringIn);
         }
+
+        public AesEncryption(string stringIn) : base(stringIn) { }
 
         private void GetByteKey(string key)
         {
