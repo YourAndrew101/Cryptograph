@@ -11,12 +11,11 @@ namespace EncryptionMethods
     {
         private readonly TypesOfInputs _typeOfInputString;
         private readonly TypesOfInputs _typeOfOutputString;
-        private readonly TypesOfInputs _typeOfPassword;
         public enum TypesOfInputs
         {
             Hex,
             Base64,
-            Unicode,
+            UTF8,
         }
 
         private readonly byte[][] _rCon = new byte[10][]
@@ -170,6 +169,8 @@ namespace EncryptionMethods
         {
             for (int i = 0; i < word.Length; i++) word[i] = _invSBox[(word[i] & 0xf0) >> 4, word[i] & 0xf];
         }
+
+        //TODO bug with hex format
         private byte[] XorTwoWords(byte[] word1, byte[] word2)
         {
             byte[] outWord = new byte[4];
@@ -192,7 +193,6 @@ namespace EncryptionMethods
         }
 
 
-        //TODO make differnt types of input and output text
         private string GetOutputStringFromByteArray(byte[] inputBytes)
         {
             switch (_typeOfOutputString)
@@ -205,8 +205,8 @@ namespace EncryptionMethods
                     }
                 case TypesOfInputs.Base64:
                     return Convert.ToBase64String(inputBytes);
-                case TypesOfInputs.Unicode:
-                    return Encoding.Default.GetString(inputBytes);
+                case TypesOfInputs.UTF8:
+                    return Encoding.UTF8.GetString(inputBytes);
                 default:
                     return null;
             }
@@ -222,35 +222,16 @@ namespace EncryptionMethods
                         return b.ToArray();
                     }
                 case TypesOfInputs.Base64: return Convert.FromBase64String(inputString);
-                case TypesOfInputs.Unicode:
+                case TypesOfInputs.UTF8:
                     {
                         int padLength = inputString.Length % 16 == 0 ? 0 : ((inputString.Length / 16) + 1) * 16;
                         inputString = inputString.PadRight(padLength, '\0');
-                        return Encoding.Default.GetBytes(inputString);
+                        return Encoding.UTF8.GetBytes(inputString);
                     }
                 default:
                     return Array.Empty<byte>();
             }
         }
-        private byte[] GetByteArrayFromPassword(string password)
-        {
-            switch (_typeOfPassword)
-            {
-                case TypesOfInputs.Hex:
-                    {
-                        string[] s = password.Split();
-                        var _ = from c in s select Convert.ToByte(c, 16);
-                        return _.ToArray();
-                    }
-                case TypesOfInputs.Base64:
-                    return Convert.FromBase64String(password);
-                case TypesOfInputs.Unicode:
-                    return Encoding.Default.GetBytes(password);
-                default:
-                    return Array.Empty<byte>();
-            }
-        }
-
 
         public override void Crypto()
         {
@@ -405,15 +386,13 @@ namespace EncryptionMethods
 
 
         public AesEncryption(string stringIn, string key,
-            TypesOfInputs typeOfInputString = TypesOfInputs.Unicode, 
-            TypesOfInputs typeOfOutputString = TypesOfInputs.Unicode, 
-            TypesOfInputs typeOfPassword = TypesOfInputs.Unicode)
+            TypesOfInputs typeOfInputString = TypesOfInputs.UTF8, 
+            TypesOfInputs typeOfOutputString = TypesOfInputs.UTF8)
         {
             StringIn = stringIn;
 
             _typeOfInputString = typeOfInputString;
             _typeOfOutputString = typeOfOutputString;
-            _typeOfPassword = typeOfPassword;
 
             GetByteKey(key);
             GetByteInputText(StringIn);
@@ -425,7 +404,7 @@ namespace EncryptionMethods
         {
             using (MD5 md5 = MD5.Create())
             {
-                byte[] inputBytes = GetByteArrayFromPassword(key);
+                byte[] inputBytes = Encoding.UTF8.GetBytes(key);
                 _keyHashByte = md5.ComputeHash(inputBytes);
 
                 GetCipherKey();
@@ -436,7 +415,7 @@ namespace EncryptionMethods
         {
             string[] strings = new string[] { };
                
-            if (_typeOfInputString == TypesOfInputs.Unicode) strings = text.SplitStringForSegmentsLength(16);
+            if (_typeOfInputString == TypesOfInputs.UTF8) strings = text.SplitStringForSegmentsLength(16);
             if (_typeOfInputString == TypesOfInputs.Hex) strings = text.SplitStringForSegmentsLength(48);
             if (_typeOfInputString == TypesOfInputs.Base64) strings = text.SplitStringForSegmentsLength(24);
 

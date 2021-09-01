@@ -30,9 +30,7 @@ namespace Cryptograph
             InitializeComponent();
             InitializeBackgroundWorker();
 
-            CryptoMethodsListBox.SelectedIndex = 0;
-            InputStringFormatComboBox.SelectedIndex = 0;
-            OutputStringFormatComboBox.SelectedIndex = 2;
+            CryptoMethodsListBox.SelectedIndex = 0;          
 
             OpenFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
             SaveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
@@ -65,7 +63,7 @@ namespace Cryptograph
         {
             CryptoMethodsListBox.SelectedItem = _cryptoType;
 
-            if(_act == Acts.Crypto) CryptoButton.Checked = true;
+            if (_act == Acts.Crypto) CryptoButton.Checked = true;
             if (_act == Acts.Decrypto) DecryptoButton.Checked = true;
         }
         private void SetSettings()
@@ -116,7 +114,7 @@ namespace Cryptograph
         private void SetInputTextBox() => InputTextBox.Text = _stringIn;
 
         private void GetOutputTextBox() => _stringOut = OutputTextBox.Text;
-        private void SetOutputTextBox() => OutputTextBox.Text = _stringOut;   
+        private void SetOutputTextBox() => OutputTextBox.Text = _stringOut;
         private void OutputTextBox_TextChanged(object sender, EventArgs e) => CopyButton.Visible = OutputTextBox.Text != "";
 
 
@@ -126,64 +124,75 @@ namespace Cryptograph
             {
                 ActionButton.Text = "Шифрувати";
 
-                if (_cryptoType == "Шифр Цезаря" || _cryptoType == "Шифр Віженера")
-                {
-                    KeyCryptoPanel.Visible = true;
-                    KeyDecryptoPanel.Visible = false;
-                    KeysRSAPanel.Visible = false;
-                }
-                else
-                {
-                    if (_cryptoType == "RSA шифрування")
-                    {
-                        SetKeysRSAPanelForCrypto();
-                        KeysRSAPanel.Visible = true;
-                        KeyCryptoPanel.Visible = false;
-                        KeyDecryptoPanel.Visible = false;
-                    }
-                    else
-                    {
-                        KeysRSAPanel.Visible = false;
-                        KeyCryptoPanel.Visible = false;
-                        KeyDecryptoPanel.Visible = false;
-                    }
-                }
+                if (_cryptoType == "Шифр Цезаря" || _cryptoType == "Шифр Віженера"){ SetSimpleKeysPanelForCrypto(); return; }
+                if (_cryptoType == "RSA шифрування"){ SetKeysRSAPanelForCrypto(); return; }
+                if (_cryptoType == "AES шифрування"){ SetKeysAESPanelForCrypto(); return; }
+
+                SetSimpleNoKeysPanelForCrypto();
             }
             if (_act == Acts.Decrypto)
             {
                 ActionButton.Text = "Розшифрувати";
-                if (_cryptoType == "Шифр Цезаря" || _cryptoType == "Шифр Віженера")
-                {
-                    KeyCryptoPanel.Visible = false;
-                    KeyDecryptoPanel.Visible = true;
-                    KeysRSAPanel.Visible = false;
-                }
-                else
-                {
-                    if (_cryptoType == "RSA шифрування")
-                    {
-                        SetKeysRSAPanelForDecrypto();
-                        KeysRSAPanel.Visible = true;
-                        KeyCryptoPanel.Visible = false;
-                        KeyDecryptoPanel.Visible = false;
-                    }
-                    else
-                    {
-                        KeysRSAPanel.Visible = false;
-                        KeyCryptoPanel.Visible = false;
-                        KeyDecryptoPanel.Visible = false;
-                    }
-                }
+
+                if (_cryptoType == "Шифр Цезаря" || _cryptoType == "Шифр Віженера") { SetSimpleKeysPanelForDecrypto(); return; }
+                if (_cryptoType == "RSA шифрування") { SetKeysRSAPanelForDecrypto(); return; }
+                if (_cryptoType == "AES шифрування") { SetKeysAESPanelForDecrypto(); return; }
+                SetSimpleNoKeysPanelForCrypto();
             }
+        }
+
+        private void SetSimpleNoKeysPanelForCrypto()
+        {
+            InputStringFormatComboBox.Visible = false;
+            OutputStringFormatComboBox.Visible = false;
+
+            KeysRSAPanel.Visible = false;
+            KeyCryptoPanel.Visible = false;
+            KeyDecryptoPanel.Visible = false;
+        }
+
+        private void SetSimpleKeysPanelForCrypto()
+        {
+            KeyCryptoPanel.Visible = true;
+            KeyDecryptoPanel.Visible = false;
+            KeysRSAPanel.Visible = false;
+
+            SimpleKeyCryptoBox.Text = "";
+            SimpleKeyLengthUpDown.Value = 0;
+
+            InputStringFormatComboBox.Visible = false;
+            OutputStringFormatComboBox.Visible = false;
+        }
+        private void SetSimpleKeysPanelForDecrypto()
+        {
+            KeyCryptoPanel.Visible = false;
+            KeyDecryptoPanel.Visible = true;
+            KeysRSAPanel.Visible = false;
+
+            InputStringFormatComboBox.Visible = false;
+            OutputStringFormatComboBox.Visible = false;
+
+            SimpleKeyDecryptoBox.Text = "";
         }
 
         private void SetKeysRSAPanelForCrypto()
         {
+            KeysRSAPanel.Visible = true;
+            KeyCryptoPanel.Visible = false;
+            KeyDecryptoPanel.Visible = false;
+
+            InputStringFormatComboBox.Visible = false;
+            OutputStringFormatComboBox.Visible = false;
+
             GeneratePairKeysCheckBox.Visible = true;
             AnotherKeyNameLabel.Text = "Публічний ключ";
         }
         private void SetKeysRSAPanelForDecrypto()
         {
+            KeysRSAPanel.Visible = true;
+            KeyCryptoPanel.Visible = false;
+            KeyDecryptoPanel.Visible = false;
+
             GeneratePairKeysCheckBox.Visible = false;
             AnotherKeyNameLabel.Text = "Приватний ключ";
             AnotherKeyBox.Text = "";
@@ -191,6 +200,54 @@ namespace Cryptograph
 
             PrivateKeyBox.Visible = false;
             PrivateKeyLabel.Visible = false;
+            InputStringFormatComboBox.Visible = false;
+            OutputStringFormatComboBox.Visible = false;
+        }
+
+        private void SetKeysAESPanelForCrypto()
+        {
+            KeyCryptoPanel.Visible = true;
+            KeyDecryptoPanel.Visible = false;
+            KeysRSAPanel.Visible = false;
+
+            SimpleKeyCryptoBox.Text = "";
+            SimpleKeyLengthUpDown.Value = 0;
+
+            InputStringFormatComboBox.Visible = true;
+            OutputStringFormatComboBox.Visible = true;
+            
+            InputStringFormatComboBox.Items.Clear();
+            InputStringFormatComboBox.Items.Add("UTF8");
+            InputStringFormatComboBox.Items.Add("Hex");
+
+            OutputStringFormatComboBox.Items.Clear();
+            OutputStringFormatComboBox.Items.Add("Base64");
+            OutputStringFormatComboBox.Items.Add("Hex");
+
+            InputStringFormatComboBox.SelectedItem = "UTF8";
+            OutputStringFormatComboBox.SelectedItem = "Base64";
+        }
+        private void SetKeysAESPanelForDecrypto()
+        {
+            KeyCryptoPanel.Visible = false;
+            KeyDecryptoPanel.Visible = true;
+            KeysRSAPanel.Visible = false;
+
+            SimpleKeyDecryptoBox.Text = "";
+
+            InputStringFormatComboBox.Visible = true;
+            OutputStringFormatComboBox.Visible = true;
+
+            InputStringFormatComboBox.Items.Clear();
+            InputStringFormatComboBox.Items.Add("Base64");
+            InputStringFormatComboBox.Items.Add("Hex");
+
+            OutputStringFormatComboBox.Items.Clear();
+            OutputStringFormatComboBox.Items.Add("UTF8");
+            OutputStringFormatComboBox.Items.Add("Hex");
+
+            InputStringFormatComboBox.SelectedItem = "Base64";
+            OutputStringFormatComboBox.SelectedItem = "UTF8";
         }
 
 
@@ -199,6 +256,7 @@ namespace Cryptograph
             BackgroundWorker_Cancel();
 
             GetInputTextBox();
+            if (_stringIn == "") { MessageBox.Show("Потрібно вказати вхідний текст"); return; }
 
             if (!CheckKeys()) return;
             switch (_cryptoType)

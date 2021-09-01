@@ -24,6 +24,8 @@ namespace Cryptograph
                     return CheckPairKeys();
                 case "Шифр Віженера":
                     return CheckSimpleKey();
+                case "AES шифрування":
+                    return CheckSimpleKey();
                 default:
                     return true;
             }
@@ -58,12 +60,14 @@ namespace Cryptograph
                     MessageBox.Show("Потрібно вказати ключі шифрування або \nвказати необхідність генерування ключа");
                     return false;
                 }
-                if ((AnotherKeyBox.Text != "" || GeneralKeyBox.Text != "") && GeneratePairKeysCheckBox.Checked)
+                if (AnotherKeyBox.Text != "" || GeneralKeyBox.Text != "")
                 {
                     try
                     {
                         KeyMethods.KeyStringToNumber(GeneralKeyBox.Text);
                         KeyMethods.KeyStringToNumber(AnotherKeyBox.Text);
+
+                        GetKeysForm.GetPairKeysForCrypto(GeneralKeyBox, AnotherKeyBox, PrivateKeyBox, GeneratePairKeysCheckBox);
                     }
                     catch (Exception)
                     {
@@ -72,6 +76,8 @@ namespace Cryptograph
                         GeneralKeyBox.Text = "";
                         AnotherKeyBox.Text = "";
                         PrivateKeyBox.Text = "";
+
+                        return false;
                     }
                 }
             }
@@ -82,11 +88,12 @@ namespace Cryptograph
                     MessageBox.Show("Потрібно вказати ключі шифрування");
                     return false;
                 }
-
                 try
                 {
                     KeyMethods.KeyStringToNumber(GeneralKeyBox.Text);
                     KeyMethods.KeyStringToNumber(AnotherKeyBox.Text);
+
+                    GetKeysForm.GetSimpleKeyForDecrypto(SimpleKeyDecryptoBox);
                 }
                 catch (Exception)
                 {
@@ -285,14 +292,39 @@ namespace Cryptograph
 
         private void AESEncryption()
         {
-            AesEncryption aesEncryption;
+            AesEncryption aesEncryption = new AesEncryption(_stringIn);
 
             if (_act == Acts.Crypto)
             {
-                aesEncryption = new AesEncryption(_stringIn, "a");
-                
+                var (inputStringFormat, outputStringFormat) = GetStringsFormats();
+                try
+                {
+                    aesEncryption = new AesEncryption(_stringIn, GetKeysForm.GetSimpleKeyForCrypto(SimpleKeyCryptoBox, SimpleKeyLengthUpDown, aesEncryption.Alphabet),
+                                                        inputStringFormat, outputStringFormat);
+                }
+                catch (Exception) { MessageBox.Show("Неправильний формат вхідного тексту"); return; }
+                aesEncryption.Crypto();
             }
+            if (_act == Acts.Decrypto)
+            {
+                var (inputStringFormat, outputStringFormat) = GetStringsFormats();
+                try
+                {
+                    aesEncryption = new AesEncryption(_stringIn, GetKeysForm.GetSimpleKeyForDecrypto(SimpleKeyDecryptoBox),
+                    inputStringFormat, outputStringFormat);
+                }
+                catch (Exception) { MessageBox.Show("Неправильний формат вхідного тексту"); _stringOut = ""; return; }
+                aesEncryption.Decrypto();
+            }
+
+            _stringOut = aesEncryption.StringOut;
         }
 
+        //TODO automatic change of format output text
+        private (AesEncryption.TypesOfInputs, AesEncryption.TypesOfInputs) GetStringsFormats()
+        {
+            return ((AesEncryption.TypesOfInputs)Enum.Parse(typeof(AesEncryption.TypesOfInputs), InputStringFormatComboBox.SelectedItem.ToString()),
+                (AesEncryption.TypesOfInputs)Enum.Parse(typeof(AesEncryption.TypesOfInputs), OutputStringFormatComboBox.SelectedItem.ToString()));
+        }
     }
 }
