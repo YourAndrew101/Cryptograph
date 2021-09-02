@@ -317,8 +317,6 @@ namespace Cryptograph
 
         private void InputTextBox_DragDrop(object sender, DragEventArgs e)
         {
-            InputTextBox.BackColor = Color.White;
-
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             StringBuilder sb = new StringBuilder();
 

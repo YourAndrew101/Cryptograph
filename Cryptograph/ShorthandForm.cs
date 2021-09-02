@@ -29,9 +29,18 @@ namespace Cryptograph
             OpenTextFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
             SaveTextFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
 
+            InputTextBox.AllowDrop = true;
+            InputTextBox.DragDrop += InputTextBox_DragDrop;
+            InputTextBox.DragEnter += InputTextBox_DragEnter;
+
+            OutputPictureBox.AllowDrop = true;
+            OutputPictureBox.DragDrop += OutputPictureBox_DragDrop; ;
+            OutputPictureBox.DragEnter += OutputPictureBox_DragEnter; ;
+
             InputTextBox_TextChanged(new object(), new EventArgs());
             OutputPictureBoxRefresh();
         }
+
         private void ShorthandForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             SetSettings();
@@ -169,6 +178,51 @@ namespace Cryptograph
         {
             _image = Clipboard.GetImage() as Bitmap;
             OutputPictureBoxRefresh();
+        }
+
+
+        private void InputTextBox_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+
+        private void InputTextBox_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            StringBuilder sb = new StringBuilder();
+
+            foreach (string file in files)
+            {
+                FileInfo fileInfo = new FileInfo(file);
+
+                if (fileInfo.Extension == ".txt")
+                    using (StreamReader sr = fileInfo.OpenText())
+                        sb.Append(sr.ReadToEnd());
+                else { MessageBox.Show("Неправильний формат файлу"); return; }
+
+                sb.Append("\n");
+            }
+
+            InputTextBox.Text = sb.ToString();
+        }
+
+        private void OutputPictureBox_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+
+        private void OutputPictureBox_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] file = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+            FileInfo fileInfo = new FileInfo(file[0]);
+
+            if (fileInfo.Extension == ".bmp")
+            {
+                _image = new Bitmap(file[0]);
+                OutputPictureBoxRefresh();
+            }
+            else { MessageBox.Show("Неправильний формат файлу"); }
         }
     }
 }
