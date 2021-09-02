@@ -25,7 +25,7 @@ namespace UsefulMethods
         {
             StringBuilder sb = new StringBuilder(keyLength);
 
-            for (int i = 0; i <= keyLength; i++) sb.Append(alphabet[rand.Next(0, alphabet.Length)].ToString());
+            for (int i = 0; i < keyLength; i++) sb.Append(alphabet[rand.Next(0, alphabet.Length)].ToString());
 
             return sb.ToString();
         }

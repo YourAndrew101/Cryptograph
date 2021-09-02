@@ -206,7 +206,7 @@ namespace EncryptionMethods
                 case TypesOfInputs.Base64:
                     return Convert.ToBase64String(inputBytes);
                 case TypesOfInputs.UTF8:
-                    return Encoding.UTF8.GetString(inputBytes);
+                    return Encoding.Unicode.GetString(inputBytes);
                 default:
                     return null;
             }
@@ -226,7 +226,7 @@ namespace EncryptionMethods
                     {
                         int padLength = inputString.Length % 16 == 0 ? 0 : ((inputString.Length / 16) + 1) * 16;
                         inputString = inputString.PadRight(padLength, '\0');
-                        return Encoding.UTF8.GetBytes(inputString);
+                        return Encoding.Unicode.GetBytes(inputString);
                     }
                 default:
                     return Array.Empty<byte>();
@@ -236,6 +236,8 @@ namespace EncryptionMethods
         public override void Crypto()
         {
             StringBuilder sb = new StringBuilder();
+
+            List<byte> _stringOutBytes = new List<byte>();
             for (int i = 0; i < _stringInBytes.Count; i++)
             {
                 AddRoundKey(_stringInBytes[i], _roundsKeys[0]);
@@ -251,10 +253,10 @@ namespace EncryptionMethods
                 ShiftRows(_stringInBytes[i]);
                 AddRoundKey(_stringInBytes[i], _roundsKeys[10]);
 
-                byte[] _stringOutBytes = GetByteOutputText(_stringInBytes[i]);
-                sb.Append(GetOutputStringFromByteArray(_stringOutBytes));
+                _stringOutBytes.AddRange(GetByteOutputText(_stringInBytes[i]));              
             }
 
+            sb.Append(GetOutputStringFromByteArray(_stringOutBytes.ToArray()));
             StringOut = sb.ToString();
         }
 
@@ -413,25 +415,18 @@ namespace EncryptionMethods
         }
         private void GetByteInputText(string text)
         {
-            string[] strings = new string[] { };
-               
-            if (_typeOfInputString == TypesOfInputs.UTF8) strings = text.SplitStringForSegmentsLength(16);
-            if (_typeOfInputString == TypesOfInputs.Hex) strings = text.SplitStringForSegmentsLength(48);
-            if (_typeOfInputString == TypesOfInputs.Base64) strings = text.SplitStringForSegmentsLength(24);
+            byte[] textBytes = GetByteArrayFromInputString(text);
+            byte[][] textFinalBytes = new byte[4][];        
 
-            foreach (string str in strings)
+            for(int i = 0; i < textBytes.Length; i++)
             {
-                byte[] textBytes =  GetByteArrayFromInputString(str);
-                byte[][] textFinalBytes = new byte[4][];
+                int j = i % 16;
+                if(j == 0) textFinalBytes = new byte[4][];
+                if (j % 4 == 0) textFinalBytes[j / 4] = new byte[4];
+                
+                textFinalBytes[j / 4][j % 4] = textBytes[i];
 
-                for (int i = 0; i < textBytes.Length; i++)
-                {
-                    if (i % 4 == 0) textFinalBytes[i / 4] = new byte[4];
-
-                    textFinalBytes[i / 4][i % 4] = textBytes[i];
-                }
-
-                _stringInBytes.Add(textFinalBytes);
+                if (j == 15) _stringInBytes.Add(textFinalBytes);
             }
         }
         private byte[] GetByteOutputText(byte[][] inputBytes)
