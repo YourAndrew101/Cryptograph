@@ -30,7 +30,6 @@ namespace Cryptograph
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.InputTextBox = new System.Windows.Forms.RichTextBox();
             this.OutputTextBox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.CryptoButton = new System.Windows.Forms.RadioButton();
@@ -62,13 +61,14 @@ namespace Cryptograph
             this.FileToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CopyButton = new System.Windows.Forms.Button();
-            this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.InputStringFormatComboBox = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.CopyButton = new System.Windows.Forms.Button();
             this.OutputStringFormatComboBox = new System.Windows.Forms.ComboBox();
+            this.InputTextBox = new System.Windows.Forms.RichTextBox();
+            this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -87,7 +87,6 @@ namespace Cryptograph
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 461F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.InputTextBox, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.OutputTextBox, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 3);
@@ -95,6 +94,7 @@ namespace Cryptograph
             this.tableLayoutPanel1.Controls.Add(this.GeneralMenuStrip, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.InputTextBox, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -105,16 +105,6 @@ namespace Cryptograph
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1246, 1055);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // InputTextBox
-            // 
-            this.InputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InputTextBox.Location = new System.Drawing.Point(3, 308);
-            this.InputTextBox.Name = "InputTextBox";
-            this.InputTextBox.Size = new System.Drawing.Size(386, 358);
-            this.InputTextBox.TabIndex = 0;
-            this.InputTextBox.Text = "";
-            this.InputTextBox.TextChanged += new System.EventHandler(this.InputTextBox_TextChanged);
             // 
             // OutputTextBox
             // 
@@ -461,32 +451,6 @@ namespace Cryptograph
             this.SaveToolStripMenuItem.Text = "Зберегти";
             this.SaveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
-            // CopyButton
-            // 
-            this.CopyButton.BackColor = System.Drawing.SystemColors.Control;
-            this.CopyButton.BackgroundImage = global::Cryptograph.Properties.Resources.copy;
-            this.CopyButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.CopyButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CopyButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CopyButton.FlatAppearance.BorderSize = 0;
-            this.CopyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CopyButton.Location = new System.Drawing.Point(311, 3);
-            this.CopyButton.Name = "CopyButton";
-            this.tableLayoutPanel5.SetRowSpan(this.CopyButton, 2);
-            this.CopyButton.Size = new System.Drawing.Size(72, 75);
-            this.CopyButton.TabIndex = 6;
-            this.CopyButton.UseVisualStyleBackColor = false;
-            this.CopyButton.Visible = false;
-            this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
-            // 
-            // OpenFileDialog
-            // 
-            this.OpenFileDialog.InitialDirectory = "Y:\\";
-            // 
-            // SaveFileDialog
-            // 
-            this.SaveFileDialog.InitialDirectory = "Y:\\";
-            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
@@ -530,6 +494,24 @@ namespace Cryptograph
             this.tableLayoutPanel5.Size = new System.Drawing.Size(386, 81);
             this.tableLayoutPanel5.TabIndex = 9;
             // 
+            // CopyButton
+            // 
+            this.CopyButton.BackColor = System.Drawing.SystemColors.Control;
+            this.CopyButton.BackgroundImage = global::Cryptograph.Properties.Resources.copy;
+            this.CopyButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CopyButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CopyButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CopyButton.FlatAppearance.BorderSize = 0;
+            this.CopyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CopyButton.Location = new System.Drawing.Point(311, 3);
+            this.CopyButton.Name = "CopyButton";
+            this.tableLayoutPanel5.SetRowSpan(this.CopyButton, 2);
+            this.CopyButton.Size = new System.Drawing.Size(72, 75);
+            this.CopyButton.TabIndex = 6;
+            this.CopyButton.UseVisualStyleBackColor = false;
+            this.CopyButton.Visible = false;
+            this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
+            // 
             // OutputStringFormatComboBox
             // 
             this.OutputStringFormatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -539,6 +521,24 @@ namespace Cryptograph
             this.OutputStringFormatComboBox.Size = new System.Drawing.Size(123, 28);
             this.OutputStringFormatComboBox.TabIndex = 4;
             this.OutputStringFormatComboBox.Visible = false;
+            // 
+            // InputTextBox
+            // 
+            this.InputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.InputTextBox.Location = new System.Drawing.Point(3, 308);
+            this.InputTextBox.Name = "InputTextBox";
+            this.InputTextBox.Size = new System.Drawing.Size(386, 358);
+            this.InputTextBox.TabIndex = 0;
+            this.InputTextBox.Text = "";
+            this.InputTextBox.TextChanged += new System.EventHandler(this.InputTextBox_TextChanged);
+            // 
+            // OpenFileDialog
+            // 
+            this.OpenFileDialog.InitialDirectory = "Y:\\";
+            // 
+            // SaveFileDialog
+            // 
+            this.SaveFileDialog.InitialDirectory = "Y:\\";
             // 
             // EncryptionForm
             // 
@@ -573,7 +573,6 @@ namespace Cryptograph
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.RichTextBox InputTextBox;
         private System.Windows.Forms.RichTextBox OutputTextBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.RadioButton CryptoButton;
@@ -612,6 +611,7 @@ namespace Cryptograph
         private System.Windows.Forms.ComboBox InputStringFormatComboBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.ComboBox OutputStringFormatComboBox;
+        private System.Windows.Forms.RichTextBox InputTextBox;
     }
 }
 

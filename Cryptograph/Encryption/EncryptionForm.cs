@@ -35,6 +35,10 @@ namespace Cryptograph
             OpenFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
             SaveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
 
+            InputTextBox.AllowDrop = true;
+            InputTextBox.DragDrop += InputTextBox_DragDrop;
+            InputTextBox.DragEnter += InputTextBox_DragEnter;
+
             GetSettings();
         }
 
@@ -305,6 +309,34 @@ namespace Cryptograph
             string path = SaveFileDialog.FileName;
             TxtFileController.Save(path, _stringOut);
         }
+
+        private void InputTextBox_DragEnter(object sender, DragEventArgs e)
+        {
+            if(e.Data.GetDataPresent(DataFormats.FileDrop))  e.Effect = DragDropEffects.Copy;
+        }
+
+        private void InputTextBox_DragDrop(object sender, DragEventArgs e)
+        {
+            InputTextBox.BackColor = Color.White;
+
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            StringBuilder sb = new StringBuilder();
+
+            foreach (string file in files)
+            {
+                FileInfo fileInfo = new FileInfo(file);
+
+                if (fileInfo.Extension == ".txt")
+                    using (StreamReader sr = fileInfo.OpenText())
+                        sb.Append(sr.ReadToEnd());
+                else { MessageBox.Show("Неправильний формат файлу"); return; }
+
+                sb.Append("\n");
+            }
+
+            InputTextBox.Text = sb.ToString();
+        }
+
 
         private void AppModesShorthandMenuItem_Click(object sender, EventArgs e)
         {

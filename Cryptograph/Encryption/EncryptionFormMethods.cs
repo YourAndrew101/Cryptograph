@@ -320,7 +320,6 @@ namespace Cryptograph
             _stringOut = aesEncryption.StringOut;
         }
 
-        //TODO automatic change of format output text
         private (AesEncryption.TypesOfInputs, AesEncryption.TypesOfInputs) GetStringsFormats()
         {
             return ((AesEncryption.TypesOfInputs)Enum.Parse(typeof(AesEncryption.TypesOfInputs), InputStringFormatComboBox.SelectedItem.ToString()),
