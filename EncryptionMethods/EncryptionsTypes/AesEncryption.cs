@@ -107,7 +107,7 @@ namespace EncryptionMethods
                     {
                         Array.Copy(_roundsKeys[i - 1][3], wi, _roundsKeys[i - 1][3].Length);
 
-                        RotWord(ref wi);
+                        RotWord(ref wi, 1);
                         SubBytesWord(ref wi);
 
                         wi = XorTwoWords(wi, _rCon[i - 1]);
@@ -124,29 +124,14 @@ namespace EncryptionMethods
             }
         }
         
-        
 
-        private void PrintMatrix(byte[][] matrix)
+        private void RotWord(ref byte[] word, int shiftCount)
         {
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    Console.Write("{0}", matrix[i][j].ToString("x").PadLeft(2, '0'));
-                }
-                Console.Write("  ");
-            }
-            Console.WriteLine();
-        }
+            byte[] fistElements = new byte[shiftCount];
+            Array.Copy(word, fistElements, shiftCount);
 
-
-
-        private void RotWord(ref byte[] word)
-        {
-            byte first = word[0];
-
-            for (int i = 1; i < word.Length; i++) word[i - 1] = word[i];
-            word[word.Length - 1] = first;
+            for (int i = shiftCount; i < word.Length; i++) word[i - shiftCount] = word[i];
+            for (int i = 0; i < fistElements.Length; i++) word[word.Length - shiftCount + i] = fistElements[i];
         }
         private void InvRotWord(ref byte[] word)
         {
@@ -170,7 +155,6 @@ namespace EncryptionMethods
             for (int i = 0; i < word.Length; i++) word[i] = _invSBox[(word[i] & 0xf0) >> 4, word[i] & 0xf];
         }
 
-        //TODO bug with hex format
         private byte[] XorTwoWords(byte[] word1, byte[] word2)
         {
             byte[] outWord = new byte[4];
@@ -273,7 +257,7 @@ namespace EncryptionMethods
             for (int i = 1; i < stringInMatrix.Length; i++)
             {
                 byte[] col = GetColFromMatrix(stringInMatrix, i);
-                for (int j = 0; j < i; j++) RotWord(ref col);
+                RotWord(ref col, i);
                 SetColToMatrix(ref stringInMatrix, col, i);
             }
         }

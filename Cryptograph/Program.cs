@@ -11,7 +11,7 @@ namespace Cryptograph
     public static class Program
     {
         public enum Forms { Encryption, ShortHand }
-        /// <summary>S
+        /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
@@ -27,6 +27,7 @@ namespace Cryptograph
             Application.Run(startForm);
         }
 
+        //TODO bug with load last form
         private static string GetSettings()
         {
             FileInfo file = new FileInfo("AppStartSettings.dat");
