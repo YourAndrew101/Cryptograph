@@ -30,18 +30,25 @@ namespace Cryptograph
             InitializeComponent();
             InitializeBackgroundWorker();
 
-            CryptoMethodsListBox.SelectedIndex = 0;          
+            CryptoMethodsListBox.SelectedIndex = 0;
 
-            OpenFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
-            SaveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
-
-            InputTextBox.AllowDrop = true;
-            InputTextBox.DragDrop += InputTextBox_DragDrop;
-            InputTextBox.DragEnter += InputTextBox_DragEnter;
+            SetFileDialogFilter();
+            SetDragnDrop();
 
             GetSettings();
         }
 
+        private void SetDragnDrop()
+        {
+            InputTextBox.AllowDrop = true;
+            InputTextBox.DragDrop += InputTextBox_DragDrop;
+            InputTextBox.DragEnter += InputTextBox_DragEnter;
+        }
+        private void SetFileDialogFilter()
+        {
+            OpenFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            SaveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+        }
         private void InitializeBackgroundWorker()
         {
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
@@ -49,19 +56,30 @@ namespace Cryptograph
             backgroundWorker.WorkerSupportsCancellation = true;
         }
 
+        private void EncryptionForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SetSettings();
+
+            Application.Exit();
+        }
+
         private void GetSettings()
         {
-            using (BinaryReader binaryReader = new BinaryReader(fileSettings.Open(FileMode.OpenOrCreate)))
-            {
-                if (binaryReader.PeekChar() == -1) return;
-                binaryReader.ReadString();
+            //try
+            //{
+                using (BinaryReader binaryReader = new BinaryReader(fileSettings.Open(FileMode.OpenOrCreate)))
+                {
+                    if (binaryReader.PeekChar() == -1) return;
+                    binaryReader.ReadString();
 
-                if (binaryReader.PeekChar() == -1) return;
-                _act = (Acts)Enum.Parse(typeof(Acts), binaryReader.ReadString());
-                _cryptoType = binaryReader.ReadString();
+                    if (binaryReader.PeekChar() == -1) return;
+                    _act = (Acts)Enum.Parse(typeof(Acts), binaryReader.ReadString());
+                    _cryptoType = binaryReader.ReadString();
 
-                ApplySettings();
-            }
+                    ApplySettings();
+                }
+            //}
+            //catch (UnauthorizedAccessException) { }
         }
         private void ApplySettings()
         {
@@ -70,7 +88,7 @@ namespace Cryptograph
             if (_act == Acts.Crypto) CryptoButton.Checked = true;
             if (_act == Acts.Decrypto) DecryptoButton.Checked = true;
         }
-        private void SetSettings()
+        private void SetSettings(bool readonlyFlag = true)
         {
             try
             {
@@ -80,17 +98,10 @@ namespace Cryptograph
                     binaryWriter.Write(_act.ToString());
                     binaryWriter.Write(_cryptoType);
 
-                    fileSettings.IsReadOnly = true;
+                    fileSettings.IsReadOnly = readonlyFlag;
                 }
             }
             catch (UnauthorizedAccessException) { }
-        }
-
-        private void EncryptionForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            SetSettings();
-
-            Application.Exit();
         }
 
 
@@ -339,7 +350,7 @@ namespace Cryptograph
         private void AppModesShorthandMenuItem_Click(object sender, EventArgs e)
         {
             BackgroundWorker_Cancel();
-            SetSettings();
+            SetSettings(false);
 
             ShorthandForm shorthandForm = new ShorthandForm();
             shorthandForm.Show();

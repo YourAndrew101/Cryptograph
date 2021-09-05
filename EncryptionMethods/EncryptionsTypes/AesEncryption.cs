@@ -204,6 +204,7 @@ namespace EncryptionMethods
             }
         }
 
+
         public override void Crypto()
         {
             StringBuilder sb = new StringBuilder();

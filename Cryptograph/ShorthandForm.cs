@@ -22,23 +22,30 @@ namespace Cryptograph
         public ShorthandForm()
         {
             InitializeComponent();
+            SetFileDialogFilters();
+            SetDragnDrop();
 
-            OpenImageFileDialog.Filter = "Image Files(*.BMP)| *.BMP; | All files(*.*) | *.*";
-            SaveImageFileDialog.Filter = "Image FilSes(*.BMP)| *.BMP; | All files(*.*) | *.*";
+            InputTextBox_TextChanged(new object(), new EventArgs());
+            OutputPictureBoxRefresh();
+        }
 
-            OpenTextFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
-            SaveTextFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
-
+        private void SetDragnDrop()
+        {
             InputTextBox.AllowDrop = true;
             InputTextBox.DragDrop += InputTextBox_DragDrop;
             InputTextBox.DragEnter += InputTextBox_DragEnter;
 
             OutputPictureBox.AllowDrop = true;
-            OutputPictureBox.DragDrop += OutputPictureBox_DragDrop; ;
-            OutputPictureBox.DragEnter += OutputPictureBox_DragEnter; ;
+            OutputPictureBox.DragDrop += OutputPictureBox_DragDrop;
+            OutputPictureBox.DragEnter += OutputPictureBox_DragEnter;
+        }
+        private void SetFileDialogFilters()
+        {
+            OpenImageFileDialog.Filter = "Image Files(*.BMP)| *.BMP; | All files(*.*) | *.*";
+            SaveImageFileDialog.Filter = "Image FilSes(*.BMP)| *.BMP; | All files(*.*) | *.*";
 
-            InputTextBox_TextChanged(new object(), new EventArgs());
-            OutputPictureBoxRefresh();
+            OpenTextFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            SaveTextFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
 
         private void ShorthandForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -48,7 +55,7 @@ namespace Cryptograph
             Application.Exit();
         }
 
-        private static void SetSettings()
+        private static void SetSettings(bool readonlyFlag = true)
         {
             FileInfo file = new FileInfo("AppStartSettings.dat");
             try
@@ -56,7 +63,7 @@ namespace Cryptograph
                 using (BinaryWriter binaryWriter = new BinaryWriter(file.Open(FileMode.Create)))
                 {
                     binaryWriter.Write(Program.Forms.ShortHand.ToString());
-                    file.IsReadOnly = true;
+                    file.IsReadOnly = readonlyFlag;
                 }
             }
             catch (UnauthorizedAccessException) { }
@@ -155,8 +162,6 @@ namespace Cryptograph
 
         private void AppModesShorthandMenuItem_Click(object sender, EventArgs e)
         {
-            SetSettings();
-
             EncryptionForm encryptionForm = new EncryptionForm();
             encryptionForm.Show();
 
@@ -185,7 +190,6 @@ namespace Cryptograph
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
-
         private void InputTextBox_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -205,12 +209,10 @@ namespace Cryptograph
 
             InputTextBox.Text = sb.ToString();
         }
-
         private void OutputPictureBox_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
-
         private void OutputPictureBox_DragDrop(object sender, DragEventArgs e)
         {
             string[] file = (string[])e.Data.GetData(DataFormats.FileDrop);

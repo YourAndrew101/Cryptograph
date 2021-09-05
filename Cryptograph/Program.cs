@@ -27,7 +27,6 @@ namespace Cryptograph
             Application.Run(startForm);
         }
 
-        //TODO bug with load last form
         private static string GetSettings()
         {
             FileInfo file = new FileInfo("AppStartSettings.dat");
