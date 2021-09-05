@@ -133,19 +133,6 @@ namespace EncryptionMethods
             for (int i = shiftCount; i < word.Length; i++) word[i - shiftCount] = word[i];
             for (int i = 0; i < fistElements.Length; i++) word[word.Length - shiftCount + i] = fistElements[i];
         }
-        private void InvRotWord(ref byte[] word)
-        {
-            byte first = word[word.Length - 1];
-            byte temp = 0;
-            for (int i = 0; i < word.Length; i++)
-            {
-                byte temp1 = word[i];
-                word[i] = temp;
-                temp = temp1;
-            }
-
-            word[0] = first;
-        }
         private void SubBytesWord(ref byte[] word)
         {
             for (int i = 0; i < word.Length; i++) word[i] = _sBox[(word[i] & 0xf0) >> 4, word[i] & 0xf];
@@ -331,7 +318,7 @@ namespace EncryptionMethods
             for (int i = 1; i < stringInMatrix.Length; i++)
             {
                 byte[] col = GetColFromMatrix(stringInMatrix, i);
-                for (int j = 0; j < i; j++) InvRotWord(ref col);
+                RotWord(ref col, stringInMatrix.Length - i);
                 SetColToMatrix(ref stringInMatrix, col, i);
             }
         }
@@ -372,11 +359,9 @@ namespace EncryptionMethods
 
 
         public AesEncryption(string stringIn, string key,
-            TypesOfInputs typeOfInputString = TypesOfInputs.UTF8, 
-            TypesOfInputs typeOfOutputString = TypesOfInputs.UTF8)
+            TypesOfInputs typeOfInputString = TypesOfInputs.UTF8,
+            TypesOfInputs typeOfOutputString = TypesOfInputs.UTF8) : base(stringIn)
         {
-            StringIn = stringIn;
-
             _typeOfInputString = typeOfInputString;
             _typeOfOutputString = typeOfOutputString;
 
