@@ -25,6 +25,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileIOControllers", "FileIO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortHandMethods", "ShortHand\ShortHandMethods.csproj", "{85EAB087-7472-4AF7-8FC0-F6FDEEB74DEB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinFroms Interface", "WinFroms Interface", "{FC2ACDD1-24E7-4C0B-B6F3-8A5894B3CA8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console Interface", "Console Interface", "{12D6D294-E394-40C2-B12A-F1DC668F34AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF Interface", "WPF Interface", "{76E73B53-B049-472B-B9B1-04957E0DE7AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptographWPF", "CryptographWPF\CryptographWPF.csproj", "{9D88CCFD-418E-4204-9C8C-1DEF8CD1B2C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,9 +71,20 @@ Global
 		{85EAB087-7472-4AF7-8FC0-F6FDEEB74DEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85EAB087-7472-4AF7-8FC0-F6FDEEB74DEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85EAB087-7472-4AF7-8FC0-F6FDEEB74DEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D88CCFD-418E-4204-9C8C-1DEF8CD1B2C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D88CCFD-418E-4204-9C8C-1DEF8CD1B2C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D88CCFD-418E-4204-9C8C-1DEF8CD1B2C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D88CCFD-418E-4204-9C8C-1DEF8CD1B2C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C01303FE-84F9-4EB1-B29F-FF10E1FF970A} = {12D6D294-E394-40C2-B12A-F1DC668F34AF}
+		{918B8AF7-4DE6-4CED-9892-EBBE0DC7616B} = {12D6D294-E394-40C2-B12A-F1DC668F34AF}
+		{0BD44630-2C2B-46CA-B22E-48EF16D0989C} = {12D6D294-E394-40C2-B12A-F1DC668F34AF}
+		{69695647-0E6D-4509-8A58-30F123ABA36A} = {FC2ACDD1-24E7-4C0B-B6F3-8A5894B3CA8D}
+		{9D88CCFD-418E-4204-9C8C-1DEF8CD1B2C0} = {76E73B53-B049-472B-B9B1-04957E0DE7AB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86428E76-C4BE-4F06-8073-FE052C2C7705}

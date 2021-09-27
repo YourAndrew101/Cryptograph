@@ -186,13 +186,13 @@ namespace Managers
             if (_act == "Crypto")
             {
                 aesEncryption = new AesEncryption(_stringIn, GetKeysConsole.GetSimpleKeyForCrypto(aesEncryption.Alphabet),
-                    EncryptionMethods.AesEncryption.TypesOfInputs.Unicode, EncryptionMethods.AesEncryption.TypesOfInputs.Base64);
+                    EncryptionMethods.AesEncryption.TypesOfInputs.UTF8, EncryptionMethods.AesEncryption.TypesOfInputs.Base64);
                 aesEncryption.Crypto();
             }
             else
             {
                 aesEncryption = new AesEncryption(_stringIn, GetKeysConsole.GetSimpleKeyForDecrypto(),
-                    EncryptionMethods.AesEncryption.TypesOfInputs.Base64, EncryptionMethods.AesEncryption.TypesOfInputs.Unicode);
+                    EncryptionMethods.AesEncryption.TypesOfInputs.Base64, EncryptionMethods.AesEncryption.TypesOfInputs.UTF8);
                 aesEncryption.Decrypto();
             }
 
