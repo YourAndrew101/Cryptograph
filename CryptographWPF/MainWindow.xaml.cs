@@ -38,6 +38,11 @@ namespace CryptographWPF
 
         private void InputTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            (TextBox)sender
+        }
+
+        private void InputTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
 
         }
     }

@@ -58,7 +58,7 @@
                  Style="{StaticResource InputTextBox}"
                  TextWrapping="Wrap"
                  AcceptsReturn="True" 
-                 GotFocus="InputTextBox_GotFocus">
+                 GotFocus="InputTextBox_GotFocus" LostFocus="InputTextBox_LostFocus">
         </TextBox>
         <TextBox x:Name="OutputTextBox"                  
                  Height="305"
