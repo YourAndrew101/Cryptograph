@@ -21,8 +21,6 @@ namespace CryptographWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string _placeHolderInputTextBox = "Введіть ваш текст...";
-
 
         public MainWindow()
         {
@@ -40,12 +38,7 @@ namespace CryptographWPF
 
         private void InputTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (((TextBox)sender).Text == _placeHolderInputTextBox) ((TextBox)sender).Text = "";
-        }
 
-        private void InputTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (((TextBox)sender).Text.Trim().Equals("")) ((TextBox)sender).Text = _placeHolderInputTextBox;
         }
     }
 }

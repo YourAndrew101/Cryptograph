@@ -4,5 +4,12 @@
              xmlns:local="clr-namespace:CryptographWPF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MainGridTheme.xaml"/>
+                <ResourceDictionary Source="Theme/SideMenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/InputTextBoxTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

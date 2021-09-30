@@ -399,6 +399,7 @@ namespace Cryptograph
             // 
             // GeneralMenuStrip
             // 
+            this.GeneralMenuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.GeneralMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.GeneralMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AppModesMenu,
