@@ -9,6 +9,8 @@
                 <ResourceDictionary Source="Theme/MainGridTheme.xaml"/>
                 <ResourceDictionary Source="Theme/SideMenuButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/InputTextBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/OutputTextBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/EncryptionTypesComboBoxTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

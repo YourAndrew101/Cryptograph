@@ -4,7 +4,7 @@
     <SolidColorBrush x:Key="TextBox.Static.Background" Color="#2A333C"/>
     <SolidColorBrush x:Key="TextBox.Static.Foreground" Color="#E9E9CF"/>
 
-    <Style x:Key="InputTextBox" TargetType="{x:Type TextBox}">
+    <Style x:Key="OutputTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="{StaticResource TextBox.Static.Background}"/>
         <Setter Property="Foreground" Value="{StaticResource TextBox.Static.Foreground}"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -14,6 +14,7 @@
         <Setter Property="AllowDrop" Value="true"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="IsReadOnly" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">

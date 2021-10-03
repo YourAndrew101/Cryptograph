@@ -21,13 +21,20 @@ namespace CryptographWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string inputPlaceholder = "Текст для шифрування...";
+        private string outputPlaceholder = "Зашифрований текст";
 
         public MainWindow()
         {
             InitializeComponent();
-
             InitializeComponentsColors();
-            Timeline.DesiredFrameRateProperty.OverrideMetadata(typeof(Timeline), new FrameworkPropertyMetadata { DefaultValue = 5 });
+            InitializeComponentsSettings();
+        }
+
+        private void InitializeComponentsSettings()
+        {
+            InputTextBox.Text = inputPlaceholder;
+            OutputTextBox.Text = outputPlaceholder;
         }
 
         private void InitializeComponentsColors()
@@ -38,12 +45,12 @@ namespace CryptographWPF
 
         private void InputTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            (TextBox)sender
+            if (((TextBox)sender).Text == inputPlaceholder) ((TextBox)sender).Text = "";
         }
 
         private void InputTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-
+            if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = inputPlaceholder;
         }
     }
 }
