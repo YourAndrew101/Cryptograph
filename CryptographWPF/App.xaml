@@ -11,6 +11,8 @@
                 <ResourceDictionary Source="Theme/InputTextBoxTheme.xaml"/>
                 <ResourceDictionary Source="Theme/OutputTextBoxTheme.xaml"/>
                 <ResourceDictionary Source="Theme/EncryptionTypesComboBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TypeOfActionRadioButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ActionButtonTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

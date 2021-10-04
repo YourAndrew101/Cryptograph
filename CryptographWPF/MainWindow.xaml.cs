@@ -21,8 +21,11 @@ namespace CryptographWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string inputPlaceholder = "Текст для шифрування...";
-        private string outputPlaceholder = "Зашифрований текст";
+        private string _inputPlaceholder = "Текст для шифрування...";
+        private string _outputPlaceholder = "Зашифрований текст";
+
+        private string _encryptionType;
+
 
         public MainWindow()
         {
@@ -33,10 +36,9 @@ namespace CryptographWPF
 
         private void InitializeComponentsSettings()
         {
-            InputTextBox.Text = inputPlaceholder;
-            OutputTextBox.Text = outputPlaceholder;
+            InputTextBox.Text = _inputPlaceholder;
+            OutputTextBox.Text = _outputPlaceholder;
         }
-
         private void InitializeComponentsColors()
         {
             MainGrid.Background = new SolidColorBrush(ColorSchemes.BackgroundColor);
@@ -45,12 +47,14 @@ namespace CryptographWPF
 
         private void InputTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (((TextBox)sender).Text == inputPlaceholder) ((TextBox)sender).Text = "";
+            if (((TextBox)sender).Text == _inputPlaceholder) ((TextBox)sender).Text = "";
         }
-
         private void InputTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = inputPlaceholder;
+            if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = _inputPlaceholder;
         }
+
+
+        private void EncryptionsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => _encryptionType = EncryptionsComboBox.SelectedItem.ToString();
     }
 }
