@@ -24,7 +24,12 @@ namespace CryptographWPF
         private string _inputPlaceholder = "Текст для шифрування...";
         private string _outputPlaceholder = "Зашифрований текст";
 
+        private string[] _encryptionTypes = {"ROT1", "ROT13", "Шифр Цезаря", "Транспозиція", "Двійковий код",
+            "Вісімковий код", "Шістнадцятковий код", "Шифр Віженера", "RSA шифрування", "AES шифрування"};
         private string _encryptionType;
+
+        private enum Acts { Crypto, Decrypto};
+        private Acts _act;
 
 
         public MainWindow()
@@ -38,6 +43,10 @@ namespace CryptographWPF
         {
             InputTextBox.Text = _inputPlaceholder;
             OutputTextBox.Text = _outputPlaceholder;
+
+            CryptoRadioButton.IsChecked = true;
+
+            EncryptionsComboBox.SelectedIndex = 0;
         }
         private void InitializeComponentsColors()
         {
@@ -55,6 +64,48 @@ namespace CryptographWPF
         }
 
 
-        private void EncryptionsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => _encryptionType = EncryptionsComboBox.SelectedItem.ToString();
+        private void EncryptionsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
+            _encryptionType = ((TextBlock)selectedItem.Content).Text;
+
+            UpdatePanels();
+        }
+
+        private void CryptoRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            _act = Acts.Crypto;
+            UpdatePanels();
+        }
+        private void DecryptoRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            _act = Acts.Decrypto;
+            UpdatePanels();
+        }
+
+
+        private void UpdatePanels()
+        {
+            if(_act == Acts.Crypto)
+            {
+                ActionButton.Content = "Шифрувати";
+
+                if (_encryptionType == _encryptionTypes[2] || _encryptionType == _encryptionTypes[7]) SetSimpleKeyPanel();
+            }
+            if(_act == Acts.Decrypto)
+            {
+                ActionButton.Content = "Дешифрувати";
+            }
+        }
+
+        private void SetSimpleKeyPanel()
+        {
+            var sp = new StackPanel();
+            sp.Children.Add(new TextBlock());
+            MainGrid.Children.Add(sp);
+            Grid.SetColumn(sp, 0);
+            Grid.SetRow(sp, 1);
+        }
     }
 }
