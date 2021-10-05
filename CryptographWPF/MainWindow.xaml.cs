@@ -105,13 +105,19 @@ namespace CryptographWPF
 
                 if (_encryptionType == _encryptionTypes[2] || _encryptionType == _encryptionTypes[7])
                 {
-                    GetSimpleKeyStackPanel();
+                    GetSimpleKeyCryptoStackPanel();
                     SetKeyStackPanel();
                 }
             }
             if(_act == Acts.Decrypto)
             {
                 ActionButton.Content = "Дешифрувати";
+
+                if (_encryptionType == _encryptionTypes[2] || _encryptionType == _encryptionTypes[7])
+                {
+                    GetSimpleKeyDecryptoStackPanel();
+                    SetKeyStackPanel();
+                }
             }
         }
 
@@ -122,12 +128,12 @@ namespace CryptographWPF
             Grid.SetRow(_keyStackPanel, 4);
         }
 
-        private void GetSimpleKeyStackPanel()
+        private void GetSimpleKeyCryptoStackPanel()
         {
             _keyStackPanel.Children.Clear();
 
             TextBox keyTextBox = new TextBox();
-            keyTextBox.Style = Application.Current.FindResource("SimpleKeyTextBoxStyle") as Style;
+            keyTextBox.Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style;
             string keyTextBoxPlaceholder = "Ваш ключ...";
             keyTextBox.Text = keyTextBoxPlaceholder;
             keyTextBox.GotFocus += KeyTextBox_GotFocus;
@@ -143,10 +149,10 @@ namespace CryptographWPF
             }
 
             Label label = new Label();
-            label.Style = Application.Current.FindResource("SimpleKeyLabelStyle") as Style;
+            label.Style = Application.Current.TryFindResource("SimpleKeyCryptoLabelStyle") as Style;
 
             TextBox keyLengthTextBox = new TextBox();
-            keyLengthTextBox.Style = Application.Current.FindResource("SimpleKeyTextBoxStyle") as Style; 
+            keyLengthTextBox.Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style; 
             string keyLengthTextBoxPlaceholder = "Довжина ключа...";
             keyLengthTextBox.Text = keyLengthTextBoxPlaceholder;
             keyLengthTextBox.GotFocus += KeyLengthTextBox_GotFocus;
@@ -166,6 +172,27 @@ namespace CryptographWPF
             _keyStackPanel.Children.Add(label);
             _keyStackPanel.Children.Add(keyLengthTextBox);
         }
+        private void GetSimpleKeyDecryptoStackPanel()
+        {
+            _keyStackPanel.Children.Clear();
 
+            TextBox keyTextBox = new TextBox();
+            keyTextBox.Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style;
+            string keyTextBoxPlaceholder = "Ваш ключ...";
+            keyTextBox.Text = keyTextBoxPlaceholder;
+            keyTextBox.GotFocus += KeyTextBox_GotFocus;
+            keyTextBox.LostFocus += KeyTextBox_LostFocus;
+
+            void KeyTextBox_LostFocus(object sender, RoutedEventArgs e)
+            {
+                if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = keyTextBoxPlaceholder;
+            }
+            void KeyTextBox_GotFocus(object sender, RoutedEventArgs e)
+            {
+                if (((TextBox)sender).Text == keyTextBoxPlaceholder) ((TextBox)sender).Text = "";
+            }
+
+            _keyStackPanel.Children.Add(keyTextBox);
+        }
     }
 }

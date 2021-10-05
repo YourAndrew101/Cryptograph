@@ -4,7 +4,7 @@
     <SolidColorBrush x:Key="TextBox.Static.Background" Color="#2A333C"/>
     <SolidColorBrush x:Key="TextBox.Static.Foreground" Color="#E9E9CF"/>
 
-    <Style x:Key="SimpleKeyTextBoxStyle" TargetType="{x:Type TextBox}">
+    <Style x:Key="SimpleKeyCryptoTextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="{StaticResource TextBox.Static.Background}"/>
         <Setter Property="Foreground" Value="{StaticResource TextBox.Static.Foreground}"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -33,7 +33,7 @@
 
     <SolidColorBrush x:Key="Label.Static.Foreground" Color="#E9E9CF"/>
 
-    <Style x:Key="SimpleKeyLabelStyle" TargetType="{x:Type Label}">
+    <Style x:Key="SimpleKeyCryptoLabelStyle" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="{StaticResource Label.Static.Foreground}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Content" Value="АБО"/>
