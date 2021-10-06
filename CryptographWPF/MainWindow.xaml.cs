@@ -24,7 +24,7 @@ namespace CryptographWPF
         private string _inputPlaceholder = "Текст для шифрування...";
         private string _outputPlaceholder = "Зашифрований текст";
 
-        private string[] _encryptionTypes = {"ROT1", "ROT13", "Шифр Цезаря", "Транспозиція", "Двійковий код",
+        readonly private string[] _encryptionTypes = {"ROT1", "ROT13", "Шифр Цезаря", "Транспозиція", "Двійковий код",
             "Вісімковий код", "Шістнадцятковий код", "Шифр Віженера", "RSA шифрування", "AES шифрування"};
         private string _encryptionType;
 
@@ -98,27 +98,24 @@ namespace CryptographWPF
             OutputTextBox.Text = _outputPlaceholder;
 
             MainGrid.Children.Remove(_keyStackPanel);
+            _keyStackPanel.Children.Clear();
 
             if (_act == Acts.Crypto)
             {
                 ActionButton.Content = "Шифрувати";
 
-                if (_encryptionType == _encryptionTypes[2] || _encryptionType == _encryptionTypes[7])
-                {
-                    GetSimpleKeyCryptoStackPanel();
-                    SetKeyStackPanel();
-                }
+                if (_encryptionType == _encryptionTypes[2] || _encryptionType == _encryptionTypes[7]) GetSimpleKeyCryptoStackPanel();
+                if (_encryptionType == _encryptionTypes[8]) GetPairKeyCryptoPanel();
             }
             if(_act == Acts.Decrypto)
             {
                 ActionButton.Content = "Дешифрувати";
 
-                if (_encryptionType == _encryptionTypes[2] || _encryptionType == _encryptionTypes[7])
-                {
-                    GetSimpleKeyDecryptoStackPanel();
-                    SetKeyStackPanel();
-                }
+                if (_encryptionType == _encryptionTypes[2] || _encryptionType == _encryptionTypes[7]) GetSimpleKeyDecryptoStackPanel();
+                if (_encryptionType == _encryptionTypes[8]) GetPairKeyCryptoPanel();
             }
+
+            SetKeyStackPanel();
         }
 
         private void SetKeyStackPanel()
@@ -130,10 +127,13 @@ namespace CryptographWPF
 
         private void GetSimpleKeyCryptoStackPanel()
         {
-            _keyStackPanel.Children.Clear();
-
-            TextBox keyTextBox = new TextBox();
-            keyTextBox.Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style;
+            GetSimpleKeyTextBox(_keyStackPanel);                     
+            GetSimpleKeyLabel(_keyStackPanel);
+            GetKeyLengthTextBox(_keyStackPanel);     
+        }
+        private void GetSimpleKeyTextBox(StackPanel keyStackPanel)
+        {
+            TextBox keyTextBox = new TextBox { Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style };
             string keyTextBoxPlaceholder = "Ваш ключ...";
             keyTextBox.Text = keyTextBoxPlaceholder;
             keyTextBox.GotFocus += KeyTextBox_GotFocus;
@@ -148,11 +148,17 @@ namespace CryptographWPF
                 if (((TextBox)sender).Text == keyTextBoxPlaceholder) ((TextBox)sender).Text = "";
             }
 
-            Label label = new Label();
-            label.Style = Application.Current.TryFindResource("SimpleKeyCryptoLabelStyle") as Style;
+            keyStackPanel.Children.Add(keyTextBox);
+        }
+        private void GetSimpleKeyLabel(StackPanel keyStackPanel)
+        {
+            Label label = new Label { Style = Application.Current.TryFindResource("SimpleKeyCryptoLabelStyle") as Style };
 
-            TextBox keyLengthTextBox = new TextBox();
-            keyLengthTextBox.Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style; 
+            keyStackPanel.Children.Add(label);
+        }
+        private void GetKeyLengthTextBox(StackPanel keyStackPanel)
+        {
+            TextBox keyLengthTextBox = new TextBox { Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style };
             string keyLengthTextBoxPlaceholder = "Довжина ключа...";
             keyLengthTextBox.Text = keyLengthTextBoxPlaceholder;
             keyLengthTextBox.GotFocus += KeyLengthTextBox_GotFocus;
@@ -167,17 +173,15 @@ namespace CryptographWPF
                 if (((TextBox)sender).Text == keyLengthTextBoxPlaceholder) ((TextBox)sender).Text = "";
             }
 
-
-            _keyStackPanel.Children.Add(keyTextBox);
-            _keyStackPanel.Children.Add(label);
-            _keyStackPanel.Children.Add(keyLengthTextBox);
+            keyStackPanel.Children.Add(keyLengthTextBox);
         }
+
+
         private void GetSimpleKeyDecryptoStackPanel()
         {
             _keyStackPanel.Children.Clear();
 
-            TextBox keyTextBox = new TextBox();
-            keyTextBox.Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style;
+            TextBox keyTextBox = new TextBox{ Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style };
             string keyTextBoxPlaceholder = "Ваш ключ...";
             keyTextBox.Text = keyTextBoxPlaceholder;
             keyTextBox.GotFocus += KeyTextBox_GotFocus;
@@ -193,6 +197,83 @@ namespace CryptographWPF
             }
 
             _keyStackPanel.Children.Add(keyTextBox);
+        }
+
+
+        private void GetPairKeyCryptoPanel()
+        {
+            GetGeneralKeyTextBox(_keyStackPanel);
+            GetPublicKeyTextBox(_keyStackPanel);
+            GetPrivateKeyTextBox(_keyStackPanel);
+            GetGenerateKeysComboBox(_keyStackPanel);
+        }
+        private void GetGeneralKeyTextBox(StackPanel keyStackPanel)
+        {
+            TextBox generalKeyTextBox = new TextBox { Style = Application.Current.TryFindResource("PairKeyCryptoTextBoxStyle") as Style };
+            string generalKeyTextBoxPlaceholder = "Загальний ключ...";
+            generalKeyTextBox.Text = generalKeyTextBoxPlaceholder;
+            generalKeyTextBox.HorizontalAlignment = HorizontalAlignment.Center;
+            generalKeyTextBox.GotFocus += GeneralKeyTextBox_GotFocus;
+            generalKeyTextBox.LostFocus += GeneralKeyTextBox_LostFocus;
+
+            void GeneralKeyTextBox_LostFocus(object sender, RoutedEventArgs e)
+            {
+                if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = generalKeyTextBoxPlaceholder;
+            }
+            void GeneralKeyTextBox_GotFocus(object sender, RoutedEventArgs e)
+            {
+                if (((TextBox)sender).Text == generalKeyTextBoxPlaceholder) ((TextBox)sender).Text = "";
+            }
+
+            keyStackPanel.Children.Add(generalKeyTextBox);
+        }
+        private void GetPublicKeyTextBox(StackPanel keyStackPanel)
+        {
+            TextBox publicKeyTextBox = new TextBox { Style = Application.Current.TryFindResource("PairKeyCryptoTextBoxStyle") as Style };
+            string publicKeyTextBoxPlaceholder = "Публічний ключ...";
+            publicKeyTextBox.Text = publicKeyTextBoxPlaceholder;
+            publicKeyTextBox.HorizontalAlignment = HorizontalAlignment.Center;
+            publicKeyTextBox.Margin = new Thickness(0, 5, 0, 0);
+            publicKeyTextBox.GotFocus += PublicKeyTextBox_GotFocus;
+            publicKeyTextBox.LostFocus += PublicKeyTextBox_LostFocus;
+
+            void PublicKeyTextBox_LostFocus(object sender, RoutedEventArgs e)
+            {
+                if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = publicKeyTextBoxPlaceholder;
+            }
+            void PublicKeyTextBox_GotFocus(object sender, RoutedEventArgs e)
+            {
+                if (((TextBox)sender).Text == publicKeyTextBoxPlaceholder) ((TextBox)sender).Text = "";
+            }
+
+            keyStackPanel.Children.Add(publicKeyTextBox);
+        }
+        private void GetPrivateKeyTextBox(StackPanel keyStackPanel)
+        {
+            TextBox privateKeyTextBox = new TextBox { Style = Application.Current.TryFindResource("PairKeyCryptoTextBoxStyle") as Style };
+            string privateKeyTextBoxPlaceholder = "Приватний ключ...";
+            privateKeyTextBox.Text = privateKeyTextBoxPlaceholder;
+            privateKeyTextBox.HorizontalAlignment = HorizontalAlignment.Center;
+            privateKeyTextBox.Margin = new Thickness(0, 5, 0, 0);
+            privateKeyTextBox.GotFocus += PrivateKeyTextBox_GotFocus;
+            privateKeyTextBox.LostFocus += PrivateKeyTextBox_LostFocus;
+
+            void PrivateKeyTextBox_LostFocus(object sender, RoutedEventArgs e)
+            {
+                if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = privateKeyTextBoxPlaceholder;
+            }
+            void PrivateKeyTextBox_GotFocus(object sender, RoutedEventArgs e)
+            {
+                if (((TextBox)sender).Text == privateKeyTextBoxPlaceholder) ((TextBox)sender).Text = "";
+            }
+
+            keyStackPanel.Children.Add(privateKeyTextBox);
+        }
+        private void GetGenerateKeysComboBox(StackPanel keyStackPanel)
+        {
+            CheckBox generateKeysCheckBox = new CheckBox { Style = Application.Current.TryFindResource("GenerateKeysCheckBoxStyle") as Style };
+
+            keyStackPanel.Children.Add(generateKeysCheckBox);
         }
     }
 }
