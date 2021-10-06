@@ -112,7 +112,7 @@ namespace CryptographWPF
                 ActionButton.Content = "Дешифрувати";
 
                 if (_encryptionType == _encryptionTypes[2] || _encryptionType == _encryptionTypes[7]) GetSimpleKeyDecryptoStackPanel();
-                if (_encryptionType == _encryptionTypes[8]) GetPairKeyCryptoPanel();
+                if (_encryptionType == _encryptionTypes[8]) GetPairKeyDecryptoPanel();
             }
 
             SetKeyStackPanel();
@@ -175,7 +175,6 @@ namespace CryptographWPF
 
             keyStackPanel.Children.Add(keyLengthTextBox);
         }
-
 
         private void GetSimpleKeyDecryptoStackPanel()
         {
@@ -274,6 +273,14 @@ namespace CryptographWPF
             CheckBox generateKeysCheckBox = new CheckBox { Style = Application.Current.TryFindResource("GenerateKeysCheckBoxStyle") as Style };
 
             keyStackPanel.Children.Add(generateKeysCheckBox);
+        }
+
+        private void GetPairKeyDecryptoPanel()
+        {
+            _keyStackPanel.Children.Clear();
+
+            GetGeneralKeyTextBox(_keyStackPanel);
+            GetPrivateKeyTextBox(_keyStackPanel);
         }
     }
 }
