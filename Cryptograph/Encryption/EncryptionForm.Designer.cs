@@ -97,7 +97,7 @@ namespace Cryptograph
             this.tableLayoutPanel1.Controls.Add(this.InputTextBox, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 142F));
@@ -112,7 +112,7 @@ namespace Cryptograph
             this.OutputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OutputTextBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.OutputTextBox.Location = new System.Drawing.Point(571, 201);
-            this.OutputTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OutputTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.OutputTextBox.Name = "OutputTextBox";
             this.OutputTextBox.Size = new System.Drawing.Size(258, 232);
             this.OutputTextBox.TabIndex = 1;
@@ -131,7 +131,7 @@ namespace Cryptograph
             this.tableLayoutPanel2.Controls.Add(this.CryptoMethodsListBox, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(264, 201);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 6;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.01087F));
@@ -149,7 +149,7 @@ namespace Cryptograph
             this.CryptoButton.Checked = true;
             this.CryptoButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CryptoButton.Location = new System.Drawing.Point(43, 108);
-            this.CryptoButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CryptoButton.Margin = new System.Windows.Forms.Padding(2);
             this.CryptoButton.Name = "CryptoButton";
             this.CryptoButton.Size = new System.Drawing.Size(227, 17);
             this.CryptoButton.TabIndex = 0;
@@ -163,7 +163,7 @@ namespace Cryptograph
             this.DecryptoButton.AutoSize = true;
             this.DecryptoButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DecryptoButton.Location = new System.Drawing.Point(43, 130);
-            this.DecryptoButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DecryptoButton.Margin = new System.Windows.Forms.Padding(2);
             this.DecryptoButton.Name = "DecryptoButton";
             this.DecryptoButton.Size = new System.Drawing.Size(227, 17);
             this.DecryptoButton.TabIndex = 1;
@@ -176,7 +176,7 @@ namespace Cryptograph
             this.ActionButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ActionButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ActionButton.Location = new System.Drawing.Point(43, 170);
-            this.ActionButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ActionButton.Margin = new System.Windows.Forms.Padding(2);
             this.ActionButton.Name = "ActionButton";
             this.ActionButton.Size = new System.Drawing.Size(227, 23);
             this.ActionButton.TabIndex = 2;
@@ -201,7 +201,7 @@ namespace Cryptograph
             "RSA шифрування",
             "AES шифрування"});
             this.CryptoMethodsListBox.Location = new System.Drawing.Point(43, 53);
-            this.CryptoMethodsListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CryptoMethodsListBox.Margin = new System.Windows.Forms.Padding(2);
             this.CryptoMethodsListBox.Name = "CryptoMethodsListBox";
             this.CryptoMethodsListBox.Size = new System.Drawing.Size(227, 21);
             this.CryptoMethodsListBox.TabIndex = 3;
@@ -216,7 +216,7 @@ namespace Cryptograph
             this.tableLayoutPanel3.Controls.Add(this.KeyDecryptoPanel, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(264, 437);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.20513F));
@@ -236,7 +236,7 @@ namespace Cryptograph
             this.KeysRSAPanel.Controls.Add(this.GeneralKeyBox);
             this.KeysRSAPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.KeysRSAPanel.Location = new System.Drawing.Point(2, 149);
-            this.KeysRSAPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.KeysRSAPanel.Margin = new System.Windows.Forms.Padding(2);
             this.KeysRSAPanel.Name = "KeysRSAPanel";
             this.KeysRSAPanel.Size = new System.Drawing.Size(299, 96);
             this.KeysRSAPanel.TabIndex = 7;
@@ -246,7 +246,7 @@ namespace Cryptograph
             // 
             this.GeneratePairKeysCheckBox.AutoSize = true;
             this.GeneratePairKeysCheckBox.Location = new System.Drawing.Point(54, 77);
-            this.GeneratePairKeysCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GeneratePairKeysCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.GeneratePairKeysCheckBox.Name = "GeneratePairKeysCheckBox";
             this.GeneratePairKeysCheckBox.Size = new System.Drawing.Size(177, 17);
             this.GeneratePairKeysCheckBox.TabIndex = 7;
@@ -266,7 +266,7 @@ namespace Cryptograph
             // PrivateKeyBox
             // 
             this.PrivateKeyBox.Location = new System.Drawing.Point(41, 52);
-            this.PrivateKeyBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PrivateKeyBox.Margin = new System.Windows.Forms.Padding(2);
             this.PrivateKeyBox.Name = "PrivateKeyBox";
             this.PrivateKeyBox.Size = new System.Drawing.Size(117, 20);
             this.PrivateKeyBox.TabIndex = 5;
@@ -284,7 +284,7 @@ namespace Cryptograph
             // AnotherKeyBox
             // 
             this.AnotherKeyBox.Location = new System.Drawing.Point(173, 6);
-            this.AnotherKeyBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AnotherKeyBox.Margin = new System.Windows.Forms.Padding(2);
             this.AnotherKeyBox.Name = "AnotherKeyBox";
             this.AnotherKeyBox.Size = new System.Drawing.Size(109, 20);
             this.AnotherKeyBox.TabIndex = 2;
@@ -302,7 +302,7 @@ namespace Cryptograph
             // GeneralKeyBox
             // 
             this.GeneralKeyBox.Location = new System.Drawing.Point(13, 6);
-            this.GeneralKeyBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GeneralKeyBox.Margin = new System.Windows.Forms.Padding(2);
             this.GeneralKeyBox.Name = "GeneralKeyBox";
             this.GeneralKeyBox.Size = new System.Drawing.Size(123, 20);
             this.GeneralKeyBox.TabIndex = 0;
@@ -316,7 +316,7 @@ namespace Cryptograph
             this.KeyCryptoPanel.Controls.Add(this.OR_label);
             this.KeyCryptoPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.KeyCryptoPanel.Location = new System.Drawing.Point(2, 104);
-            this.KeyCryptoPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.KeyCryptoPanel.Margin = new System.Windows.Forms.Padding(2);
             this.KeyCryptoPanel.Name = "KeyCryptoPanel";
             this.KeyCryptoPanel.Size = new System.Drawing.Size(299, 41);
             this.KeyCryptoPanel.TabIndex = 4;
@@ -325,7 +325,7 @@ namespace Cryptograph
             // SimpleKeyLengthUpDown
             // 
             this.SimpleKeyLengthUpDown.Location = new System.Drawing.Point(163, 6);
-            this.SimpleKeyLengthUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SimpleKeyLengthUpDown.Margin = new System.Windows.Forms.Padding(2);
             this.SimpleKeyLengthUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -357,7 +357,7 @@ namespace Cryptograph
             // SimpleKeyCryptoBox
             // 
             this.SimpleKeyCryptoBox.Location = new System.Drawing.Point(0, 6);
-            this.SimpleKeyCryptoBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SimpleKeyCryptoBox.Margin = new System.Windows.Forms.Padding(2);
             this.SimpleKeyCryptoBox.Name = "SimpleKeyCryptoBox";
             this.SimpleKeyCryptoBox.Size = new System.Drawing.Size(94, 20);
             this.SimpleKeyCryptoBox.TabIndex = 0;
@@ -379,7 +379,7 @@ namespace Cryptograph
             this.KeyDecryptoPanel.Controls.Add(this.label3);
             this.KeyDecryptoPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.KeyDecryptoPanel.Location = new System.Drawing.Point(2, 2);
-            this.KeyDecryptoPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.KeyDecryptoPanel.Margin = new System.Windows.Forms.Padding(2);
             this.KeyDecryptoPanel.Name = "KeyDecryptoPanel";
             this.KeyDecryptoPanel.Size = new System.Drawing.Size(299, 70);
             this.KeyDecryptoPanel.TabIndex = 6;
@@ -388,7 +388,7 @@ namespace Cryptograph
             // SimpleKeyDecryptoBox
             // 
             this.SimpleKeyDecryptoBox.Location = new System.Drawing.Point(87, 7);
-            this.SimpleKeyDecryptoBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SimpleKeyDecryptoBox.Margin = new System.Windows.Forms.Padding(2);
             this.SimpleKeyDecryptoBox.Name = "SimpleKeyDecryptoBox";
             this.SimpleKeyDecryptoBox.Size = new System.Drawing.Size(94, 20);
             this.SimpleKeyDecryptoBox.TabIndex = 3;
@@ -479,7 +479,7 @@ namespace Cryptograph
             this.tableLayoutPanel4.Controls.Add(this.InputStringFormatComboBox, 1, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(2, 144);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -493,7 +493,7 @@ namespace Cryptograph
             this.InputStringFormatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.InputStringFormatComboBox.FormattingEnabled = true;
             this.InputStringFormatComboBox.Location = new System.Drawing.Point(171, 28);
-            this.InputStringFormatComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InputStringFormatComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.InputStringFormatComboBox.Name = "InputStringFormatComboBox";
             this.InputStringFormatComboBox.Size = new System.Drawing.Size(85, 21);
             this.InputStringFormatComboBox.TabIndex = 4;
@@ -508,7 +508,7 @@ namespace Cryptograph
             this.tableLayoutPanel5.Controls.Add(this.CopyButton, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.OutputStringFormatComboBox, 0, 1);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(571, 144);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.61728F));
@@ -527,7 +527,7 @@ namespace Cryptograph
             this.CopyButton.FlatAppearance.BorderSize = 0;
             this.CopyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CopyButton.Location = new System.Drawing.Point(207, 2);
-            this.CopyButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CopyButton.Margin = new System.Windows.Forms.Padding(2);
             this.CopyButton.Name = "CopyButton";
             this.tableLayoutPanel5.SetRowSpan(this.CopyButton, 2);
             this.CopyButton.Size = new System.Drawing.Size(48, 49);
@@ -541,7 +541,7 @@ namespace Cryptograph
             this.OutputStringFormatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.OutputStringFormatComboBox.FormattingEnabled = true;
             this.OutputStringFormatComboBox.Location = new System.Drawing.Point(2, 28);
-            this.OutputStringFormatComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OutputStringFormatComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.OutputStringFormatComboBox.Name = "OutputStringFormatComboBox";
             this.OutputStringFormatComboBox.Size = new System.Drawing.Size(82, 21);
             this.OutputStringFormatComboBox.TabIndex = 4;
@@ -551,7 +551,7 @@ namespace Cryptograph
             // 
             this.InputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InputTextBox.Location = new System.Drawing.Point(2, 201);
-            this.InputTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InputTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.InputTextBox.Name = "InputTextBox";
             this.InputTextBox.Size = new System.Drawing.Size(258, 232);
             this.InputTextBox.TabIndex = 0;
@@ -573,7 +573,7 @@ namespace Cryptograph
             this.ClientSize = new System.Drawing.Size(831, 686);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MainMenuStrip = this.GeneralMenuStrip;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "EncryptionForm";
             this.Text = "Шифрування";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EncryptionForm_FormClosed);

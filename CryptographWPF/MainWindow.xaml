@@ -135,7 +135,7 @@
                 Grid.Row="3"
                 Margin="30,19,30,0"              
                 VerticalAlignment="Top" 
-                Style="{StaticResource ActionButtonStyle}"/>
+                Style="{StaticResource ActionButtonStyle}" />
     </Grid>
 
 
