@@ -32,11 +32,11 @@
 
     <SolidColorBrush x:Key="CheckBox.Static.Background" Color="#3E4750"/>
     <SolidColorBrush x:Key="CheckBox.Static.Foreground" Color="#E9E9CF"/>
-    <SolidColorBrush x:Key="CheckBox.Static.Border" Color="#2A333C"/>
+    <SolidColorBrush x:Key="CheckBox.Static.Border" Color="#E9E9CF"/>
     <SolidColorBrush x:Key="CheckBox.Static.Glyph" Color="#E9E9CF"/>
 
     <SolidColorBrush x:Key="CheckBox.MouseOver.Background" Color="#525B64"/>
-    <SolidColorBrush x:Key="CheckBox.MouseOver.Border" Color="#2A333C"/>
+    <SolidColorBrush x:Key="CheckBox.MouseOver.Border" Color="#E9E9CF"/>
     <SolidColorBrush x:Key="CheckBox.MouseOver.Glyph" Color="#E9E9CF"/>
 
     <SolidColorBrush x:Key="CheckBox.Disabled.Background" Color="#3E4750"/>
@@ -54,9 +54,9 @@
         <Setter Property="BorderBrush" Value="{StaticResource CheckBox.Static.Border}"/>
         <Setter Property="Foreground" Value="{StaticResource CheckBox.Static.Foreground}"/>
         <Setter Property="Content" Value="Згенерувати ключі"/>
-        <Setter Property="Margin" Value="-10,5,0,0"/>
+        <Setter Property="Margin" Value="-23,5,0,0"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="0.75"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">

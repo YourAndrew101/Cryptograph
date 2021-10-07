@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# IDE0011: Добавить фигурные скобки
+csharp_prefer_braces = true
+
+# IDE0011: Добавить фигурные скобки
+dotnet_diagnostic.IDE0011.severity = none

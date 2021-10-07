@@ -24,14 +24,17 @@ namespace CryptographWPF
         private string _inputPlaceholder = "Текст для шифрування...";
         private string _outputPlaceholder = "Зашифрований текст";
 
-        readonly private string[] _encryptionTypes = {"ROT1", "ROT13", "Шифр Цезаря", "Транспозиція", "Двійковий код",
+        private readonly string[] _encryptionTypes = {"ROT1", "ROT13", "Шифр Цезаря", "Транспозиція", "Двійковий код",
             "Вісімковий код", "Шістнадцятковий код", "Шифр Віженера", "RSA шифрування", "AES шифрування"};
         private string _encryptionType;
 
         private enum Acts { Crypto, Decrypto};
         private Acts _act;
 
-        private StackPanel _keyStackPanel = new StackPanel();
+        private DockPanel _keyDockPanel = new DockPanel();
+        private DockPanel _encodingInDockPanel = new DockPanel();
+        private DockPanel _encodingOutDockPanel = new DockPanel();
+
 
         public MainWindow()
         {
@@ -97,41 +100,81 @@ namespace CryptographWPF
             InputTextBox.Text = _inputPlaceholder;
             OutputTextBox.Text = _outputPlaceholder;
 
-            MainGrid.Children.Remove(_keyStackPanel);
-            _keyStackPanel.Children.Clear();
+            RemovePanels();
+            ClearPanels();
 
             if (_act == Acts.Crypto)
             {
                 ActionButton.Content = "Шифрувати";
 
                 if (_encryptionType == _encryptionTypes[2] || _encryptionType == _encryptionTypes[7]) GetSimpleKeyCryptoStackPanel();
-                if (_encryptionType == _encryptionTypes[8]) GetPairKeyCryptoPanel();
+                if (_encryptionType == _encryptionTypes[8]) GetPairKeyCryptoDockPanel();
+                if (_encryptionType == _encryptionTypes[9])
+                {
+                    GetSimpleKeyCryptoStackPanel();
+                    GetEncodingDockPanels();
+                }
             }
-            if(_act == Acts.Decrypto)
+            if (_act == Acts.Decrypto)
             {
                 ActionButton.Content = "Дешифрувати";
 
                 if (_encryptionType == _encryptionTypes[2] || _encryptionType == _encryptionTypes[7]) GetSimpleKeyDecryptoStackPanel();
-                if (_encryptionType == _encryptionTypes[8]) GetPairKeyDecryptoPanel();
+                if (_encryptionType == _encryptionTypes[8]) GetPairKeyDecryptoDockPanel();
+                if (_encryptionType == _encryptionTypes[9])
+                {
+                    GetSimpleKeyDecryptoStackPanel();
+                    GetEncodingDockPanels();
+                }
+
             }
 
+            SetPanels();
+        }
+
+        private void SetPanels()
+        {
             SetKeyStackPanel();
+            SetEncodingStackPanel();
+        }
+        private void RemovePanels()
+        {
+            MainGrid.Children.Remove(_keyDockPanel);
+            MainGrid.Children.Remove(_encodingInDockPanel);
+            MainGrid.Children.Remove(_encodingOutDockPanel);
+        }
+        private void ClearPanels()
+        {
+            _keyDockPanel.Children.Clear();
+            _encodingInDockPanel.Children.Clear();
+            _encodingOutDockPanel.Children.Clear();
         }
 
         private void SetKeyStackPanel()
         {
-            MainGrid.Children.Add(_keyStackPanel);
-            Grid.SetColumn(_keyStackPanel, 2);
-            Grid.SetRow(_keyStackPanel, 4);
+            _ = MainGrid.Children.Add(_keyDockPanel);
+            Grid.SetColumn(_keyDockPanel, 2);
+            Grid.SetRow(_keyDockPanel, 4);
         }
+        private void SetEncodingStackPanel()
+        {
+            _ = MainGrid.Children.Add(_encodingInDockPanel);
+            Grid.SetColumn(_encodingInDockPanel, 1);
+            Grid.SetRow(_encodingInDockPanel, 0);
+
+            _ = MainGrid.Children.Add(_encodingOutDockPanel);
+            Grid.SetColumn(_encodingOutDockPanel, 3);
+            Grid.SetRow(_encodingOutDockPanel, 0);
+        }
+
 
         private void GetSimpleKeyCryptoStackPanel()
         {
-            GetSimpleKeyTextBox(_keyStackPanel);                     
-            GetSimpleKeyLabel(_keyStackPanel);
-            GetKeyLengthTextBox(_keyStackPanel);     
+            GetSimpleKeyTextBox(_keyDockPanel);
+            GetSimpleKeyLabel(_keyDockPanel);
+            GetKeyLengthTextBox(_keyDockPanel);
         }
-        private void GetSimpleKeyTextBox(StackPanel keyStackPanel)
+        private void GetSimpleKeyTextBox(DockPanel keyDockPanel)
         {
             TextBox keyTextBox = new TextBox { Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style };
             string keyTextBoxPlaceholder = "Ваш ключ...";
@@ -148,15 +191,15 @@ namespace CryptographWPF
                 if (((TextBox)sender).Text == keyTextBoxPlaceholder) ((TextBox)sender).Text = "";
             }
 
-            keyStackPanel.Children.Add(keyTextBox);
+            keyDockPanel.Children.Add(keyTextBox);
         }
-        private void GetSimpleKeyLabel(StackPanel keyStackPanel)
+        private void GetSimpleKeyLabel(DockPanel keyDockPanel)
         {
             Label label = new Label { Style = Application.Current.TryFindResource("SimpleKeyCryptoLabelStyle") as Style };
 
-            keyStackPanel.Children.Add(label);
+            keyDockPanel.Children.Add(label);
         }
-        private void GetKeyLengthTextBox(StackPanel keyStackPanel)
+        private void GetKeyLengthTextBox(DockPanel keyDockPanel)
         {
             TextBox keyLengthTextBox = new TextBox { Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style };
             string keyLengthTextBoxPlaceholder = "Довжина ключа...";
@@ -173,12 +216,12 @@ namespace CryptographWPF
                 if (((TextBox)sender).Text == keyLengthTextBoxPlaceholder) ((TextBox)sender).Text = "";
             }
 
-            keyStackPanel.Children.Add(keyLengthTextBox);
+            keyDockPanel.Children.Add(keyLengthTextBox);
         }
 
         private void GetSimpleKeyDecryptoStackPanel()
         {
-            _keyStackPanel.Children.Clear();
+            _keyDockPanel.Children.Clear();
 
             TextBox keyTextBox = new TextBox{ Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style };
             string keyTextBoxPlaceholder = "Ваш ключ...";
@@ -195,18 +238,18 @@ namespace CryptographWPF
                 if (((TextBox)sender).Text == keyTextBoxPlaceholder) ((TextBox)sender).Text = "";
             }
 
-            _keyStackPanel.Children.Add(keyTextBox);
+            _keyDockPanel.Children.Add(keyTextBox);
         }
 
 
-        private void GetPairKeyCryptoPanel()
+        private void GetPairKeyCryptoDockPanel()
         {
-            GetGeneralKeyTextBox(_keyStackPanel);
-            GetPublicKeyTextBox(_keyStackPanel);
-            GetPrivateKeyTextBox(_keyStackPanel);
-            GetGenerateKeysComboBox(_keyStackPanel);
+            GetGeneralKeyTextBox(_keyDockPanel);
+            GetPublicKeyTextBox(_keyDockPanel);
+            GetPrivateKeyTextBox(_keyDockPanel);
+            GetGenerateKeysComboBox(_keyDockPanel);
         }
-        private void GetGeneralKeyTextBox(StackPanel keyStackPanel)
+        private void GetGeneralKeyTextBox(DockPanel keyDockPanel)
         {
             TextBox generalKeyTextBox = new TextBox { Style = Application.Current.TryFindResource("PairKeyCryptoTextBoxStyle") as Style };
             string generalKeyTextBoxPlaceholder = "Загальний ключ...";
@@ -224,9 +267,9 @@ namespace CryptographWPF
                 if (((TextBox)sender).Text == generalKeyTextBoxPlaceholder) ((TextBox)sender).Text = "";
             }
 
-            keyStackPanel.Children.Add(generalKeyTextBox);
+            keyDockPanel.Children.Add(generalKeyTextBox);
         }
-        private void GetPublicKeyTextBox(StackPanel keyStackPanel)
+        private void GetPublicKeyTextBox(DockPanel keyDockPanel)
         {
             TextBox publicKeyTextBox = new TextBox { Style = Application.Current.TryFindResource("PairKeyCryptoTextBoxStyle") as Style };
             string publicKeyTextBoxPlaceholder = "Публічний ключ...";
@@ -245,9 +288,9 @@ namespace CryptographWPF
                 if (((TextBox)sender).Text == publicKeyTextBoxPlaceholder) ((TextBox)sender).Text = "";
             }
 
-            keyStackPanel.Children.Add(publicKeyTextBox);
+            keyDockPanel.Children.Add(publicKeyTextBox);
         }
-        private void GetPrivateKeyTextBox(StackPanel keyStackPanel)
+        private void GetPrivateKeyTextBox(DockPanel keyDockPanel)
         {
             TextBox privateKeyTextBox = new TextBox { Style = Application.Current.TryFindResource("PairKeyCryptoTextBoxStyle") as Style };
             string privateKeyTextBoxPlaceholder = "Приватний ключ...";
@@ -266,21 +309,52 @@ namespace CryptographWPF
                 if (((TextBox)sender).Text == privateKeyTextBoxPlaceholder) ((TextBox)sender).Text = "";
             }
 
-            keyStackPanel.Children.Add(privateKeyTextBox);
+            keyDockPanel.Children.Add(privateKeyTextBox);
         }
-        private void GetGenerateKeysComboBox(StackPanel keyStackPanel)
+        private void GetGenerateKeysComboBox(DockPanel keyDockPanel)
         {
             CheckBox generateKeysCheckBox = new CheckBox { Style = Application.Current.TryFindResource("GenerateKeysCheckBoxStyle") as Style };
 
-            keyStackPanel.Children.Add(generateKeysCheckBox);
+            keyDockPanel.Children.Add(generateKeysCheckBox);
         }
 
-        private void GetPairKeyDecryptoPanel()
+        private void GetPairKeyDecryptoDockPanel()
         {
-            _keyStackPanel.Children.Clear();
+            GetGeneralKeyTextBox(_keyDockPanel);
+            GetPrivateKeyTextBox(_keyDockPanel);
+        }
 
-            GetGeneralKeyTextBox(_keyStackPanel);
-            GetPrivateKeyTextBox(_keyStackPanel);
+
+        private void GetEncodingDockPanels()
+        {
+            GetInEncodingDockPanel();
+            GetOutEncodingDockPanel();
+        }
+
+        private void GetInEncodingDockPanel()
+        {
+            ComboBox comboBox = new ComboBox { Style = Application.Current.TryFindResource("EncodingComboBoxStyle") as Style };
+            comboBox.HorizontalAlignment = HorizontalAlignment.Right;
+            comboBox.VerticalAlignment = VerticalAlignment.Bottom;
+            ComboBoxItem itemUTF8 = new ComboBoxItem
+            {
+                Style = Application.Current.TryFindResource("OddEncryptionTypeComboBoxItemStyle") as Style,
+                Content = "UTF-8"
+            };
+            ComboBoxItem itemHex = new ComboBoxItem
+            {
+                Style = Application.Current.TryFindResource("OddEncryptionTypeComboBoxItemStyle") as Style,
+                Content = "Hex"
+            };
+            comboBox.Items.Add(itemUTF8);
+            comboBox.Items.Add(itemHex);
+
+            _encodingInDockPanel.Children.Add(comboBox);
+        }
+
+        private void GetOutEncodingDockPanel()
+        {
+
         }
     }
 }
