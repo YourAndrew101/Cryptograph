@@ -37,19 +37,19 @@
             Grid.Column="0"
             BorderThickness="0"
             Margin="10,9,5,3" 
-            Style="{StaticResource SideMenuButton}">
+            Style="{StaticResource CurrentPageSideMenuButton}" Click="EncryptionPageButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE8D7;"/>
         </Button>
 
         <Button 
-            x:Name="ShortHandPageButton"     
+            x:Name="ShorthandPageButton"     
             Grid.Column="0"
             Grid.Row="2" 
             BorderThickness="0"
             Margin="10,9,5,28" 
-            Style="{StaticResource SideMenuButton}">
+            Style="{StaticResource NotCurrentPageSideMenuButton}" Click="ShorthandPageButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xEB9F;"/>
