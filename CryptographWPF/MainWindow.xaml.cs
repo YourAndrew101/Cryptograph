@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace CryptographWPF
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private string _inputPlaceholder = "Текст для шифрування...";
@@ -31,15 +28,14 @@ namespace CryptographWPF
         private enum Acts { Crypto, Decrypto};
         private Acts _act;
 
-        private StackPanel _keyStackPanel = new StackPanel();
-        private DockPanel _encodingInDockPanel = new DockPanel();
-        private DockPanel _encodingOutDockPanel = new DockPanel();
+        private StackPanel _keyStackPanel = new StackPanel { Name = "KeyStackPanel" };
+        private DockPanel _encodingInDockPanel = new DockPanel { Name = "EncodingInDockPanel" };
+        private DockPanel _encodingOutDockPanel = new DockPanel { Name = "EncodingOutDockPanel" };
 
 
         public MainWindow()
         {
             InitializeComponent();
-            InitializeComponentsColors();
             InitializeComponentsSettings();
         }
 
@@ -51,11 +47,6 @@ namespace CryptographWPF
             CryptoRadioButton.IsChecked = true;
 
             EncryptionsComboBox.SelectedIndex = 0;
-        }
-        private void InitializeComponentsColors()
-        {
-            MainGrid.Background = new SolidColorBrush(ColorSchemes.BackgroundColor);
-            SideMenuButton.Background = new SolidColorBrush(ColorSchemes.ButtonColor);
         }
 
         private void InputTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -177,7 +168,11 @@ namespace CryptographWPF
         }
         private void GetSimpleKeyTextBox(StackPanel keyStackPanel)
         {
-            TextBox keyTextBox = new TextBox { Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style };
+            TextBox keyTextBox = new TextBox 
+            { 
+                Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style,
+                Name = "SimpleKeyTextBox"
+            };
             string keyTextBoxPlaceholder = "Ваш ключ...";
             keyTextBox.Text = keyTextBoxPlaceholder;
             keyTextBox.GotFocus += KeyTextBox_GotFocus;
@@ -202,7 +197,11 @@ namespace CryptographWPF
         }
         private void GetKeyLengthTextBox(StackPanel keyStackPanel)
         {
-            TextBox keyLengthTextBox = new TextBox { Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style };
+            TextBox keyLengthTextBox = new TextBox 
+            { 
+                Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style,
+                Name = "SimpleKeyLengthTextBox"
+            };
             string keyLengthTextBoxPlaceholder = "Довжина ключа...";
             keyLengthTextBox.Text = keyLengthTextBoxPlaceholder;
             keyLengthTextBox.GotFocus += KeyLengthTextBox_GotFocus;
@@ -224,7 +223,11 @@ namespace CryptographWPF
         {
             _keyStackPanel.Children.Clear();
 
-            TextBox keyTextBox = new TextBox{ Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style };
+            TextBox keyTextBox = new TextBox
+            { 
+                Style = Application.Current.TryFindResource("SimpleKeyCryptoTextBoxStyle") as Style,
+                Name = "SimpleKeyTextBox"
+            };
             string keyTextBoxPlaceholder = "Ваш ключ...";
             keyTextBox.Text = keyTextBoxPlaceholder;
             keyTextBox.GotFocus += KeyTextBox_GotFocus;
@@ -252,7 +255,11 @@ namespace CryptographWPF
         }
         private void GetGeneralKeyTextBox(StackPanel keyStackPanel)
         {
-            TextBox generalKeyTextBox = new TextBox { Style = Application.Current.TryFindResource("PairKeyCryptoTextBoxStyle") as Style };
+            TextBox generalKeyTextBox = new TextBox 
+            { 
+                Style = Application.Current.TryFindResource("PairKeyCryptoTextBoxStyle") as Style,
+                Name = "GeneralKeyTextBox"
+            };
             string generalKeyTextBoxPlaceholder = "Загальний ключ...";
             generalKeyTextBox.Text = generalKeyTextBoxPlaceholder;
             generalKeyTextBox.HorizontalAlignment = HorizontalAlignment.Center;
@@ -377,48 +384,5 @@ namespace CryptographWPF
             ComboBoxItem cbi2 = (ComboBoxItem)((ComboBox)_encodingOutDockPanel.Children[0]).Items[0];
             cbi2.Content = "UTF-8";
         }
-        /*private void GetDecryptoEncodingDockPanels()
-        {
-            GetDecryptoInEncodingDockPanel();
-            GetDecryptoOutEncodingDockPanel();
-        }
-        private void GetDecryptoInEncodingDockPanel()
-        {
-            ComboBox comboBox = new ComboBox { Style = Application.Current.TryFindResource("EncodingComboBoxStyle") as Style };
-            comboBox.HorizontalAlignment = HorizontalAlignment.Right;
-            ComboBoxItem itemUTF8 = new ComboBoxItem
-            {
-                Style = Application.Current.TryFindResource("EncodingComboBoxItemStyle") as Style,
-                Content = "Base64"
-            };
-            ComboBoxItem itemHex = new ComboBoxItem
-            {
-                Style = Application.Current.TryFindResource("EncodingComboBoxItemStyle") as Style,
-                Content = "Hex"
-            };
-            comboBox.Items.Add(itemUTF8);
-            comboBox.Items.Add(itemHex);
-
-            _encodingInDockPanel.Children.Add(comboBox);
-        }
-        private void GetDecryptoOutEncodingDockPanel()
-        {
-            ComboBox comboBox = new ComboBox { Style = Application.Current.TryFindResource("EncodingComboBoxStyle") as Style };
-            comboBox.HorizontalAlignment = HorizontalAlignment.Left;
-            ComboBoxItem itemBase64 = new ComboBoxItem
-            {
-                Style = Application.Current.TryFindResource("OddEncryptionTypeComboBoxItemStyle") as Style,
-                Content = "UTF-8"
-            };
-            ComboBoxItem itemHex = new ComboBoxItem
-            {
-                Style = Application.Current.TryFindResource("OddEncryptionTypeComboBoxItemStyle") as Style,
-                Content = "Hex"
-            };
-            comboBox.Items.Add(itemBase64);
-            comboBox.Items.Add(itemHex);
-
-            _encodingOutDockPanel.Children.Add(comboBox);
-        }*/
     }
 }

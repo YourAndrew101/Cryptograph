@@ -32,13 +32,27 @@
 
 
         <Button 
-            x:Name="SideMenuButton" 
-            Grid.Row="0" 
+            x:Name="EncryptionPageButton" 
+            Grid.Row="1" 
             Grid.Column="0"
             BorderThickness="0"
-            Margin="5,9,0,42" 
+            Margin="10,9,5,3" 
             Style="{StaticResource SideMenuButton}">
-            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="34" Text="&#xE700;"/>
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xE8D7;"/>
+        </Button>
+
+        <Button 
+            x:Name="ShortHandPageButton"     
+            Grid.Column="0"
+            Grid.Row="2" 
+            BorderThickness="0"
+            Margin="10,9,5,28" 
+            Style="{StaticResource SideMenuButton}">
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xEB9F;"/>
         </Button>
 
         <TextBox x:Name="InputTextBox"

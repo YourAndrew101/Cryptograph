@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <SolidColorBrush x:Key="Button.Static.Background" Color="#4f5b66"/>
-    <SolidColorBrush x:Key="Button.Static.Foreground" Color="#000000"/>
+    <SolidColorBrush x:Key="Button.Static.Foreground" Color="#E9E9CF"/>
     <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#65737e"/>
     <SolidColorBrush x:Key="Button.Pressed.Background" Color="#6F7D88"/>
 
