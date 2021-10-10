@@ -36,6 +36,7 @@ namespace CryptographWPF
         {
             InitializeComponent();
             InitializeComponentsSettings();
+            InitializeWindowControlButtons();
         }
 
         private void InitializeComponentsSettings()
@@ -54,6 +55,11 @@ namespace CryptographWPF
             _currentPage = Pages.EncryptionPage;
             EncryptionPageButton.Style = Application.Current.TryFindResource("CurrentPageSideMenuButton") as Style;
             ShorthandPageButton.Style = Application.Current.TryFindResource("NotCurrentPageSideMenuButton") as Style;
+        }
+        private void InitializeWindowControlButtons()
+        {
+            MinimizeButton.Click += (s, e) => WindowState = WindowState.Minimized;
+            CloseButton.Click += (s, e) => Close();
         }
 
         private void InputTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -137,7 +143,6 @@ namespace CryptographWPF
             EncryptionPageButton.Style = Application.Current.TryFindResource("CurrentPageSideMenuButton") as Style;
             ShorthandPageButton.Style = Application.Current.TryFindResource("NotCurrentPageSideMenuButton") as Style;
         }
-
         private void ShorthandPageButton_Click(object sender, RoutedEventArgs e)
         {
             _currentPage = Pages.ShorthandPage;

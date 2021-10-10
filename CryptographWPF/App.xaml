@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="Theme/SimpleKeyPanelTheme.xaml"/>
                 <ResourceDictionary Source="Theme/PairKeyPanelTheme.xaml"/>
                 <ResourceDictionary Source="Theme/EncodingComboBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TopGridTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
