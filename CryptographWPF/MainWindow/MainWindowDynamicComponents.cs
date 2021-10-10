@@ -74,17 +74,8 @@ namespace CryptographWPF
             };
             string keyTextBoxPlaceholder = "Ваш ключ...";
             keyTextBox.Text = keyTextBoxPlaceholder;
-            keyTextBox.GotFocus += KeyTextBox_GotFocus;
-            keyTextBox.LostFocus += KeyTextBox_LostFocus;
-
-            void KeyTextBox_LostFocus(object sender, RoutedEventArgs e)
-            {
-                if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = keyTextBoxPlaceholder;
-            }
-            void KeyTextBox_GotFocus(object sender, RoutedEventArgs e)
-            {
-                if (((TextBox)sender).Text == keyTextBoxPlaceholder) ((TextBox)sender).Text = "";
-            }
+            keyTextBox.GotFocus += (sender, e) => { if (((TextBox)sender).Text == keyTextBoxPlaceholder) ((TextBox)sender).Text = ""; };
+            keyTextBox.LostFocus += (sender, e) => { if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = keyTextBoxPlaceholder; };
 
             keyStackPanel.Children.Add(keyTextBox);
         }
@@ -103,17 +94,8 @@ namespace CryptographWPF
             };
             string keyLengthTextBoxPlaceholder = "Довжина ключа...";
             keyLengthTextBox.Text = keyLengthTextBoxPlaceholder;
-            keyLengthTextBox.GotFocus += KeyLengthTextBox_GotFocus;
-            keyLengthTextBox.LostFocus += KeyLengthTextBox_LostFocus;
-
-            void KeyLengthTextBox_LostFocus(object sender, RoutedEventArgs e)
-            {
-                if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = keyLengthTextBoxPlaceholder;
-            }
-            void KeyLengthTextBox_GotFocus(object sender, RoutedEventArgs e)
-            {
-                if (((TextBox)sender).Text == keyLengthTextBoxPlaceholder) ((TextBox)sender).Text = "";
-            }
+            keyLengthTextBox.GotFocus += (sender, e) => { if (((TextBox)sender).Text == keyLengthTextBoxPlaceholder) ((TextBox)sender).Text = ""; };
+            keyLengthTextBox.LostFocus += (sender, e) => { if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = keyLengthTextBoxPlaceholder; };
 
             keyStackPanel.Children.Add(keyLengthTextBox);
         }
@@ -129,17 +111,8 @@ namespace CryptographWPF
             };
             string keyTextBoxPlaceholder = "Ваш ключ...";
             keyTextBox.Text = keyTextBoxPlaceholder;
-            keyTextBox.GotFocus += KeyTextBox_GotFocus;
-            keyTextBox.LostFocus += KeyTextBox_LostFocus;
-
-            void KeyTextBox_LostFocus(object sender, RoutedEventArgs e)
-            {
-                if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = keyTextBoxPlaceholder;
-            }
-            void KeyTextBox_GotFocus(object sender, RoutedEventArgs e)
-            {
-                if (((TextBox)sender).Text == keyTextBoxPlaceholder) ((TextBox)sender).Text = "";
-            }
+            keyTextBox.GotFocus += (sender, e) => { if (((TextBox)sender).Text == keyTextBoxPlaceholder) ((TextBox)sender).Text = ""; };
+            keyTextBox.LostFocus += (sender, e) => { if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = keyTextBoxPlaceholder; };
 
             _keyStackPanel.Children.Add(keyTextBox);
         }
@@ -162,17 +135,8 @@ namespace CryptographWPF
             string generalKeyTextBoxPlaceholder = "Загальний ключ...";
             generalKeyTextBox.Text = generalKeyTextBoxPlaceholder;
             generalKeyTextBox.HorizontalAlignment = HorizontalAlignment.Center;
-            generalKeyTextBox.GotFocus += GeneralKeyTextBox_GotFocus;
-            generalKeyTextBox.LostFocus += GeneralKeyTextBox_LostFocus;
-
-            void GeneralKeyTextBox_LostFocus(object sender, RoutedEventArgs e)
-            {
-                if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = generalKeyTextBoxPlaceholder;
-            }
-            void GeneralKeyTextBox_GotFocus(object sender, RoutedEventArgs e)
-            {
-                if (((TextBox)sender).Text == generalKeyTextBoxPlaceholder) ((TextBox)sender).Text = "";
-            }
+            generalKeyTextBox.GotFocus += (sender, e) => { if (((TextBox)sender).Text == generalKeyTextBoxPlaceholder) ((TextBox)sender).Text = ""; };
+            generalKeyTextBox.LostFocus += (sender, e) => { if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = generalKeyTextBoxPlaceholder; };
 
             keyStackPanel.Children.Add(generalKeyTextBox);
         }
@@ -183,17 +147,8 @@ namespace CryptographWPF
             publicKeyTextBox.Text = publicKeyTextBoxPlaceholder;
             publicKeyTextBox.HorizontalAlignment = HorizontalAlignment.Center;
             publicKeyTextBox.Margin = new Thickness(0, 5, 0, 0);
-            publicKeyTextBox.GotFocus += PublicKeyTextBox_GotFocus;
-            publicKeyTextBox.LostFocus += PublicKeyTextBox_LostFocus;
-
-            void PublicKeyTextBox_LostFocus(object sender, RoutedEventArgs e)
-            {
-                if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = publicKeyTextBoxPlaceholder;
-            }
-            void PublicKeyTextBox_GotFocus(object sender, RoutedEventArgs e)
-            {
-                if (((TextBox)sender).Text == publicKeyTextBoxPlaceholder) ((TextBox)sender).Text = "";
-            }
+            publicKeyTextBox.GotFocus += (sender, e) => { if (((TextBox)sender).Text == publicKeyTextBoxPlaceholder) ((TextBox)sender).Text = ""; };
+            publicKeyTextBox.LostFocus += (sender, e) => { if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = publicKeyTextBoxPlaceholder; };
 
             keyStackPanel.Children.Add(publicKeyTextBox);
         }
@@ -204,17 +159,8 @@ namespace CryptographWPF
             privateKeyTextBox.Text = privateKeyTextBoxPlaceholder;
             privateKeyTextBox.HorizontalAlignment = HorizontalAlignment.Center;
             privateKeyTextBox.Margin = new Thickness(0, 5, 0, 0);
-            privateKeyTextBox.GotFocus += PrivateKeyTextBox_GotFocus;
-            privateKeyTextBox.LostFocus += PrivateKeyTextBox_LostFocus;
-
-            void PrivateKeyTextBox_LostFocus(object sender, RoutedEventArgs e)
-            {
-                if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = privateKeyTextBoxPlaceholder;
-            }
-            void PrivateKeyTextBox_GotFocus(object sender, RoutedEventArgs e)
-            {
-                if (((TextBox)sender).Text == privateKeyTextBoxPlaceholder) ((TextBox)sender).Text = "";
-            }
+            privateKeyTextBox.GotFocus += (sender, e) => { if (((TextBox)sender).Text == privateKeyTextBoxPlaceholder) ((TextBox)sender).Text = ""; };
+            privateKeyTextBox.LostFocus += (sender, e) => { if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = privateKeyTextBoxPlaceholder; };
 
             keyStackPanel.Children.Add(privateKeyTextBox);
         }
