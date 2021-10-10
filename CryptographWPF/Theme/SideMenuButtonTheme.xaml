@@ -32,7 +32,7 @@
     </Style>
 
 
-    <SolidColorBrush x:Key="NotCurrentButton.Static.Background" Color="#4f5b66"/>
+    <SolidColorBrush x:Key="NotCurrentButton.Static.Background" Color="#45515C"/>
     <SolidColorBrush x:Key="NotCurrentButton.Static.Foreground" Color="#E9E9CF"/>
     <SolidColorBrush x:Key="NotCurrentButton.MouseOver.Background" Color="#65737e"/>
     <SolidColorBrush x:Key="NotCurrentButton.Pressed.Background" Color="#6F7D88"/>

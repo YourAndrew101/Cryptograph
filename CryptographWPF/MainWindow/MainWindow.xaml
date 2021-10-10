@@ -13,7 +13,7 @@
     </Window.Resources>
 
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="45"/>
+        <WindowChrome CaptionHeight="25"/>
     </WindowChrome.WindowChrome>
 
 
@@ -37,7 +37,6 @@
 
         <Grid  Style="{StaticResource TopGridStyle}"
                Grid.ColumnSpan="5">
-
             <StackPanel 
                 WindowChrome.IsHitTestVisibleInChrome="True" 
                 VerticalAlignment="Center" 
@@ -45,43 +44,85 @@
                 Orientation="Horizontal"
                 Height="35">
                 <Button x:Name="MinimizeButton"
-                        Width="35" Style="{StaticResource TopGridButtonStyle}" VerticalContentAlignment="Bottom">
+                        Width="35" 
+                        Margin ="0, 0, 5, 0"
+                        Style="{StaticResource TopGridButtonStyle}" VerticalContentAlignment="Bottom">
                     <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="15" 
                        Text="&#xEF2D;"/>
                 </Button>
-                <Button x:Name="CloseButton" Width="35" Style="{StaticResource TopGridButtonStyle}">
+                <Button x:Name="CloseButton"
+                        Width="35" 
+                         Margin ="0, 0, 1, 0"
+                        Style="{StaticResource TopGridButtonStyle}">
                     <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="15" 
                        Text="&#xEF2C;"/>
                 </Button>
             </StackPanel>
-
         </Grid>
 
-        <Button 
-            x:Name="EncryptionPageButton" 
+        <Button x:Name="PasteTextButton"
+                Grid.Column="1"
+                HorizontalAlignment="Left"
+                Margin="7, 0, 0, 5"
+                Style="{StaticResource TextControlsButtonStyle}">
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xE77F;"/>
+        </Button>
+        <Button x:Name="LoadTextButton"
+                Grid.Column="1"
+                HorizontalAlignment="Left"
+                Margin="50, 0, 0, 5"
+                Style="{StaticResource TextControlsButtonStyle}">
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xE8E5;"/>
+        </Button>
+
+        <Button x:Name="CopyTextButton"
+                Grid.Column="3"
+                HorizontalAlignment="Right"
+                Margin="0, 0, 50, 5"
+                Style="{StaticResource TextControlsButtonStyle}">
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xE8C8;"/>
+        </Button>
+        <Button x:Name="SaveTextButton"
+                Grid.Column="3"
+                HorizontalAlignment="Right"
+                Margin="0, 0, 5, 5"
+                Style="{StaticResource TextControlsButtonStyle}">
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xE74E;"/>
+        </Button>
+
+        <Button x:Name="EncryptionPageButton" 
             Grid.Row="1" 
             Grid.Column="0"
             BorderThickness="0"
-            Margin="10,9,5,3" 
+            Margin="8,9,7,3" 
             Style="{StaticResource CurrentPageSideMenuButton}" Click="EncryptionPageButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE8D7;"/>
         </Button>
-
-        <Button 
-            x:Name="ShorthandPageButton"     
+        <Button  x:Name="ShorthandPageButton"     
             Grid.Column="0"
             Grid.Row="2" 
             BorderThickness="0"
-            Margin="10,9,5,28" 
-            Style="{StaticResource NotCurrentPageSideMenuButton}" Click="ShorthandPageButton_Click">
+            Margin="8,9,7,28" 
+            Style="{StaticResource NotCurrentPageSideMenuButton}"
+            Click="ShorthandPageButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xEB9F;"/>
         </Button>
+        
+        
 
         <TextBox x:Name="InputTextBox"
                  Height="340"  

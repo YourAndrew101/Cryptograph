@@ -406,7 +406,6 @@ namespace Cryptograph
             this.FileToolStripMenu});
             this.GeneralMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.GeneralMenuStrip.Name = "GeneralMenuStrip";
-            this.GeneralMenuStrip.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
             this.GeneralMenuStrip.Size = new System.Drawing.Size(393, 33);
             this.GeneralMenuStrip.TabIndex = 5;
             this.GeneralMenuStrip.Text = "menuStrip1";
