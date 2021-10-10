@@ -5,7 +5,7 @@
     <SolidColorBrush x:Key="Button.Static.Background" Color="Transparent"/>
     <SolidColorBrush x:Key="Button.Static.Foreground" Color="#E9E9CF"/>
     <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#4465737e"/>
-    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#446F7D88"/>
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#606F7D88"/>
 
     <Style x:Key="TextControlsButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
@@ -20,7 +20,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="border" CornerRadius="8" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                    <Border x:Name="border" CornerRadius="7" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
                         <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Border>
                     <ControlTemplate.Triggers>
