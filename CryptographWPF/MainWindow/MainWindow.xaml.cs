@@ -76,8 +76,14 @@ namespace CryptographWPF
             ShorthandPageButton.Style = Application.Current.TryFindResource("CurrentPageSideMenuButton") as Style;
         }
 
-        private void EncryptionPageButton_Click(object sender, RoutedEventArgs e) => _CurrentPage = Pages.EncryptionPage;
-        private void ShorthandPageButton_Click(object sender, RoutedEventArgs e) => _CurrentPage = Pages.ShorthandPage;
+        private void EncryptionPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_CurrentPage != Pages.EncryptionPage) _CurrentPage = Pages.EncryptionPage;
+        }
+        private void ShorthandPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_CurrentPage != Pages.ShorthandPage) _CurrentPage = Pages.ShorthandPage;
+        }
 
         /*private void InitializeComponentsSettings()
         {

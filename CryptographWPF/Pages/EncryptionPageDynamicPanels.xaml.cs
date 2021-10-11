@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace CryptographWPF.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для EncryptionPageDynamicPanels.xaml
-    /// </summary>
     public partial class EncryptionPage : Page
     {
         private StackPanel _keyStackPanel = new StackPanel { Name = "KeyStackPanel" };
