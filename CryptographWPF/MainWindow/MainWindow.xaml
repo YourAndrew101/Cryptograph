@@ -20,6 +20,62 @@
     <Grid x:Name="MainGrid" Style="{StaticResource MainGridStyle}">
 
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid  Style="{StaticResource TopGridStyle}"
+               Grid.ColumnSpan="5">
+            <StackPanel 
+                WindowChrome.IsHitTestVisibleInChrome="True" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Right"
+                Orientation="Horizontal"
+                Height="35">
+                <Button x:Name="MinimizeButton"
+                        Width="35" 
+                        Margin ="0, 0, 5, 0"
+                        Style="{StaticResource TopGridButtonStyle}" VerticalContentAlignment="Bottom">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="15" 
+                       Text="&#xEF2D;"/>
+                </Button>
+                <Button x:Name="CloseButton"
+                        Width="35" 
+                         Margin ="0, 0, 1, 0"
+                        Style="{StaticResource TopGridButtonStyle}">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="15" 
+                       Text="&#xEF2C;"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Button x:Name="EncryptionPageButton" 
+            Margin="7,75,7,10" 
+            Style="{StaticResource CurrentPageSideMenuButton}" Click="EncryptionPageButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xE8D7;"/>
+            </Button>
+            <Button  x:Name="ShorthandPageButton"     
+            Margin="7,0,7,28" 
+            Style="{StaticResource NotCurrentPageSideMenuButton}"
+            Click="ShorthandPageButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xEB9F;"/>
+            </Button>
+        </StackPanel>
+
+        <Frame x:Name="ActionFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="15*"/>
             <ColumnDefinition Width="54*"/>
             <ColumnDefinition Width="42*"/>
@@ -61,6 +117,8 @@
                 </Button>
             </StackPanel>
         </Grid>
+
+        <Frame x:Name="Page" Grid.Row="4" Grid.Column="2"/>
 
         <Button x:Name="PasteTextButton"
                 Grid.Column="1"
@@ -218,7 +276,7 @@
                 Grid.Row="3"
                 Margin="30,19,30,0"              
                 VerticalAlignment="Top" 
-                Style="{StaticResource ActionButtonStyle}" />
+                Style="{StaticResource ActionButtonStyle}" />-->
     </Grid>
 
 

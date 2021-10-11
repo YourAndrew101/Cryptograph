@@ -1,4 +1,4 @@
-﻿using CryptographWPF.Pages;
+﻿using CryptographWPF.Encryption;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,76 +19,37 @@ namespace CryptographWPF
 {
     public partial class MainWindow : Window
     {
+        private string _inputPlaceholder = "Текст для шифрування...";
+        private string _outputPlaceholder = "Зашифрований текст";
+
+        private readonly string[] _encryptionTypes = {"ROT1", "ROT13", "Шифр Цезаря", "Транспозиція", "Двійковий код",
+            "Вісімковий код", "Шістнадцятковий код", "Шифр Віженера", "RSA шифрування", "AES шифрування"};
+        private string _encryptionType;
+
+        private enum Acts { Crypto, Decrypto};
+        private Acts _act;
+
+
         private enum Pages {EncryptionPage, ShorthandPage};
         private Pages _currentPage;
-        private Pages _CurrentPage
-        {
-            get => _currentPage;
-            set
-            {
-                _currentPage = value;
-                ChangePage();
-            }
-        }
 
         public MainWindow()
         {
             InitializeComponent();
+            InitializeComponentsSettings();
             InitializeWindowControlButtons();
-            InitializeFrame();
-        }
-        
-        private void InitializeWindowControlButtons()
-        {
-            MinimizeButton.Click += (s, e) => WindowState = WindowState.Minimized;
-            CloseButton.Click += (s, e) => Close();
         }
 
-        private void InitializeFrame()
+        private void InitializeComponentsSettings()
         {
-            ActionFrame.Content = new EncryptionPage();
-            SetEncryptionButtonCurrentPage();
-        }
-
-        private void ChangePage()
-        {
-            if(_CurrentPage == Pages.EncryptionPage)
-            {
-                ActionFrame.Content = new EncryptionPage();
-                SetEncryptionButtonCurrentPage();
-            }
-            else if(_CurrentPage == Pages.ShorthandPage)
-            {
-                //TODO change page
-                ActionFrame.Content = new EncryptionPage();
-                SetShorthandButtonCurrentPage();
-            }
-        }
-
-        private void SetEncryptionButtonCurrentPage()
-        {
-            EncryptionPageButton.Style = Application.Current.TryFindResource("CurrentPageSideMenuButton") as Style;
-            ShorthandPageButton.Style = Application.Current.TryFindResource("NotCurrentPageSideMenuButton") as Style;
-        }
-        private void SetShorthandButtonCurrentPage()
-        {
-            EncryptionPageButton.Style = Application.Current.TryFindResource("NotCurrentPageSideMenuButton") as Style;
-            ShorthandPageButton.Style = Application.Current.TryFindResource("CurrentPageSideMenuButton") as Style;
-        }
-
-        private void EncryptionPageButton_Click(object sender, RoutedEventArgs e) => _CurrentPage = Pages.EncryptionPage;
-        private void ShorthandPageButton_Click(object sender, RoutedEventArgs e) => _CurrentPage = Pages.ShorthandPage;
-
-        /*private void InitializeComponentsSettings()
-        {
-            InputTextBox.Text = _inputPlaceholder;
+            /*InputTextBox.Text = _inputPlaceholder;
             OutputTextBox.Text = _outputPlaceholder;
 
             CryptoRadioButton.IsChecked = true;
 
             EncryptionsComboBox.SelectedIndex = 0;
 
-            SetPageSettings();
+            SetPageSettings();*/
         }
         private void SetPageSettings()
         {
@@ -96,7 +57,11 @@ namespace CryptographWPF
             EncryptionPageButton.Style = Application.Current.TryFindResource("CurrentPageSideMenuButton") as Style;
             ShorthandPageButton.Style = Application.Current.TryFindResource("NotCurrentPageSideMenuButton") as Style;
         }
-        
+        private void InitializeWindowControlButtons()
+        {
+            MinimizeButton.Click += (s, e) => WindowState = WindowState.Minimized;
+            CloseButton.Click += (s, e) => Close();
+        }
 
         private void InputTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -137,7 +102,7 @@ namespace CryptographWPF
 
         private void UpdatePanels()
         {
-            InputTextBox.Text = _inputPlaceholder;
+            /*InputTextBox.Text = _inputPlaceholder;
             OutputTextBox.Text = _outputPlaceholder;
 
             RemovePanels();
@@ -170,9 +135,22 @@ namespace CryptographWPF
 
             }
 
-            SetPanels();
+            SetPanels();*/
         }
 
-        */
+        private void EncryptionPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            _currentPage = Pages.EncryptionPage;
+            EncryptionPageButton.Style = Application.Current.TryFindResource("CurrentPageSideMenuButton") as Style;
+            ShorthandPageButton.Style = Application.Current.TryFindResource("NotCurrentPageSideMenuButton") as Style;
+
+            EncryptionFrame.Content = new Page1();
+        }
+        private void ShorthandPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            _currentPage = Pages.ShorthandPage;
+            EncryptionPageButton.Style = Application.Current.TryFindResource("NotCurrentPageSideMenuButton") as Style;
+            ShorthandPageButton.Style = Application.Current.TryFindResource("CurrentPageSideMenuButton") as Style;
+        }
     }
 }

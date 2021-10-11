@@ -1,0 +1,165 @@
+﻿<Page x:Class="CryptographWPF.Pages.EncryptionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CryptographWPF.Pages"
+      mc:Ignorable="d"
+      d:DesignHeight="415" d:DesignWidth="775"
+      Title="Page1">
+
+    <Grid x:Name="MainGridEncryptionPage">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="270*"/>
+            <ColumnDefinition Width="205*"/>
+            <ColumnDefinition Width="270*"/>
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="59*"/>
+            <RowDefinition Height="95*"/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="68*"/>
+            <RowDefinition Height="113*"/>
+        </Grid.RowDefinitions>
+
+
+        <Button x:Name="PasteTextButton"
+                HorizontalAlignment="Left"
+                Margin="10,0,0,4.333"
+                Style="{StaticResource TextControlsButtonStyle}">
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xE77F;"/>
+        </Button>
+        <Button x:Name="LoadTextButton"
+                HorizontalAlignment="Left"
+                Margin="50,0,0,4.333"
+                Style="{StaticResource TextControlsButtonStyle}">
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xE8E5;"/>
+        </Button>
+
+        <Button x:Name="CopyTextButton"
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                Margin="0,0,50,4.333"
+                Style="{StaticResource TextControlsButtonStyle}">
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xE8C8;"/>
+        </Button>
+        <Button x:Name="SaveTextButton"
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                Margin="0,0,5,4.333"
+                Style="{StaticResource TextControlsButtonStyle}">
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xE74E;"/>
+        </Button>
+
+
+
+        <TextBox x:Name="InputTextBox"
+                 Height="355"  
+                 Width="270" 
+                 Padding="5, 0, 5, 0"
+                 Grid.RowSpan="4"
+                 Grid.Row="1"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 Style="{StaticResource InputTextBox}"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"             
+                 Margin="0,0.667,0,-0.333"
+                 GotFocus="InputTextBox_GotFocus"
+                 LostFocus="InputTextBox_LostFocus"/>
+        <TextBox x:Name="OutputTextBox"                  
+                 Height="355"
+                 Width="270"
+                 Padding="5, 0, 5, 0"
+                 Grid.Column="2" 
+                 Grid.RowSpan="4" 
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"             
+                 Style="{StaticResource OutputTextBox}"         
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True" Grid.Row="1" Margin="1,0.667,0,-0.333"/>
+
+        <ComboBox x:Name="EncryptionsComboBox"
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  Margin="30,9.667,30,0"     
+                  VerticalAlignment="Top"
+                  Height="22" 
+                  Style="{StaticResource EncryptionTypesComboBoxStyle}"
+                  SelectionChanged="EncryptionsComboBox_SelectionChanged">
+            <ComboBoxItem Style="{StaticResource OddEncryptionTypeComboBoxItemStyle}">
+                <TextBlock Text="ROT1"/>
+            </ComboBoxItem>
+            <ComboBoxItem Style="{StaticResource PairEncryptionTypeComboBoxItemStyle}">
+                <TextBlock Text="ROT13"/>
+            </ComboBoxItem>
+            <ComboBoxItem Style="{StaticResource OddEncryptionTypeComboBoxItemStyle}">
+                <TextBlock Text="Шифр Цезаря"/>
+            </ComboBoxItem>
+            <ComboBoxItem Style="{StaticResource PairEncryptionTypeComboBoxItemStyle}">
+                <TextBlock Text="Транспозиція"/>
+            </ComboBoxItem>
+            <ComboBoxItem Style="{StaticResource OddEncryptionTypeComboBoxItemStyle}">
+                <TextBlock Text="Двійковий код"/>
+            </ComboBoxItem>
+            <ComboBoxItem Style="{StaticResource PairEncryptionTypeComboBoxItemStyle}">
+                <TextBlock Text="Вісімковий код"/>
+            </ComboBoxItem>
+            <ComboBoxItem Style="{StaticResource OddEncryptionTypeComboBoxItemStyle}">
+                <TextBlock Text="Шістнадцятковий код"/>
+            </ComboBoxItem>
+            <ComboBoxItem Style="{StaticResource PairEncryptionTypeComboBoxItemStyle}">
+                <TextBlock Text="Шифр Віженера"/>
+            </ComboBoxItem>
+            <ComboBoxItem Style="{StaticResource OddEncryptionTypeComboBoxItemStyle}">
+                <TextBlock Text="RSA шифрування"/>
+            </ComboBoxItem>
+            <ComboBoxItem Style="{StaticResource PairEncryptionTypeComboBoxItemStyle}">
+                <TextBlock Text="AES шифрування"/>
+            </ComboBoxItem>
+        </ComboBox>
+
+        <RadioButton x:Name="CryptoRadioButton"
+                     Content="Шифрувати"
+                     FontSize="15"
+                     Grid.Column="1"
+                     Grid.Row="2" 
+                     Margin="36,10,60,0"                                  
+                     VerticalAlignment="Top" 
+                     Height="20"
+                     Style="{StaticResource RadioButtonStyle1}"
+                     Checked="CryptoRadioButton_Checked"/>
+        <RadioButton x:Name="DecryptoRadioButton"
+                     Content="Розшифрувати"
+                     FontSize="15"
+                     Grid.Column="1"
+                     Grid.Row="2" 
+                     Margin="36,44,0,0"   
+                     HorizontalAlignment="Left"                                  
+                     VerticalAlignment="Top"
+                     Height="20"
+                     Width="127"
+                     Style="{StaticResource RadioButtonStyle1}" 
+                     Checked="DecryptoRadioButton_Checked"/>
+
+        <Button x:Name="ActionButton"
+                FontSize="17"
+                Content="Шифрувати"
+                Height="29"                
+                Grid.Column="1"
+                Grid.Row="3"
+                Margin="30,19,30,0"              
+                VerticalAlignment="Top" 
+                Style="{StaticResource ActionButtonStyle}" />
+
+    </Grid>
+</Page>
