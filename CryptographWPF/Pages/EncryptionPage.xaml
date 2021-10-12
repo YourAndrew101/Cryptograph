@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:CryptographWPF.Pages"
       mc:Ignorable="d"
       d:DesignHeight="415" d:DesignWidth="775"
-      Title="Page1">
+      Title="EncryptionPage">
 
     <Grid x:Name="MainGridEncryptionPage">
         <Grid.ColumnDefinitions>
@@ -16,11 +16,11 @@
             <ColumnDefinition Width="30*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="59*"/>
+            <RowDefinition Height="60*"/>
             <RowDefinition Height="95*"/>
             <RowDefinition Height="80*"/>
-            <RowDefinition Height="68*"/>
-            <RowDefinition Height="113*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="110*"/>
         </Grid.RowDefinitions>
 
 
