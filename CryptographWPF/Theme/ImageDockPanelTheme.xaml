@@ -3,12 +3,20 @@
 
 
     <SolidColorBrush x:Key="Border.Static.BorderBrush" Color="#E9E9CF"/>
+    <SolidColorBrush x:Key="Border.Static.Background" Color="#343d46"/>
+    <SolidColorBrush x:Key="Border.IsMouseOver.Background" Color="#3E4750"/>
 
     <Style x:Key="ImageBorderStyle" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="{StaticResource Border.Static.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Border.Static.BorderBrush}"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="CornerRadius" Value="15"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource Border.IsMouseOver.Background}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 
