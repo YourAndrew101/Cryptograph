@@ -28,7 +28,7 @@
 
         <Button x:Name="PasteTextButton"
                 HorizontalAlignment="Left"
-                Margin="10,0,0,4"
+                Margin="10,0,0,5"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
@@ -36,7 +36,7 @@
         </Button>
         <Button x:Name="LoadTextButton"
                 HorizontalAlignment="Left"
-                Margin="50,0,0,4"
+                Margin="50,0,0,5"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
@@ -46,7 +46,7 @@
         <Button x:Name="CopyTextButton"
                 Grid.Column="2"
                 HorizontalAlignment="Right"
-                Margin="0,0,50,4"
+                Margin="0,0,50,5"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
@@ -55,7 +55,7 @@
         <Button x:Name="SaveTextButton"
                 Grid.Column="2"
                 HorizontalAlignment="Right"
-                Margin="0,0,5,4"
+                Margin="0,0,5,5"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
@@ -78,37 +78,28 @@
                  Margin="0,1,0,-1"/>
 
 
-        <DockPanel x:Name="In_OutImage"
-                    Grid.Column="2"
-                    Grid.Row="1" 
-                    Grid.RowSpan="4"                             
-                    AllowDrop="True">
-            <Border BorderBrush="{StaticResource TextBox.Static.Foreground}"
-                    BorderThickness="2"
-                    VerticalAlignment="Top"
-                    CornerRadius="15" 
-                    Height="355">
+        <DockPanel x:Name="ImageDockPanel"
+                   Grid.Column="2"
+                   Grid.Row="1" 
+                   Grid.RowSpan="4"                             
+                   AllowDrop="True">
+            <Border x:Name="ImageBorder"
+                    Height="355" 
+                    Style="{StaticResource ImageBorderStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Foreground="{StaticResource TextBox.Static.Foreground}"
-                               FontSize="14"
-                               Margin="0, 0, 0, 10"
-                               VerticalAlignment="Bottom"
-                               HorizontalAlignment="Center" 
-                               TextAlignment="Center">
+                    <TextBlock x:Name="ImageDragNDropText"
+                               Style="{StaticResource ImageDragNDropTextBlockStyle}">
                            Натисніть двічі для вибору зображення <LineBreak/>
                            або перетягніть його
                     </TextBlock>
-                    <Image
-                        Source="Assets\drag-n-drop.png"
-                        HorizontalAlignment="Center" 
-                        Height="100"
-                        VerticalAlignment="Top" 
-                        Grid.Row="2"/>
+                    <Image x:Name="ImageDragNDropImage"
+                           Source="Assets\drag_N_drop.png"                     
+                           Style="{StaticResource ImageDragNDropImageStyle}"/>
                 </Grid>
             </Border>
         </DockPanel>

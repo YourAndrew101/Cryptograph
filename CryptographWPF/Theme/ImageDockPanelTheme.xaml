@@ -2,8 +2,39 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
-    <Style x:Key="ImageDockPanelStyle" TargetType="{x:Type DockPanel}">
-        
+    <SolidColorBrush x:Key="Border.Static.BorderBrush" Color="#E9E9CF"/>
+
+    <Style x:Key="ImageBorderStyle" TargetType="{x:Type Border}">
+        <Setter Property="BorderBrush" Value="{StaticResource Border.Static.BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="CornerRadius" Value="15"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
+
+
+    <SolidColorBrush x:Key="TextBlock.Static.Foreground" Color="#E9E9CF"/>
+
+    <Style x:Key="ImageDragNDropTextBlockStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FlowDirection" Value="LeftToRight"/>
+        <Setter Property="Foreground" Value="{StaticResource TextBlock.Static.Foreground}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Margin" Value="0, 0, 0, 20"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+
+    
+    <Style x:Key="ImageDragNDropImageStyle" TargetType="{x:Type Image}">
+        <Setter Property="Height" Value="139"/>
+        <Setter Property="Width" Value="270"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Stretch" Value="UniformToFill"/>
+        <Setter Property="Margin" Value="0,118,0,94"/>
+        <Setter Property="Stretch" Value="UniformToFill"/>
+        <Setter Property="Grid.RowSpan" Value="2"/>
+    </Style>
+
 
 </ResourceDictionary>

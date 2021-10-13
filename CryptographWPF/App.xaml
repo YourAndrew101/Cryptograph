@@ -18,6 +18,7 @@
                 <ResourceDictionary Source="Theme/EncodingComboBoxTheme.xaml"/>
                 <ResourceDictionary Source="Theme/TopGridTheme.xaml"/>
                 <ResourceDictionary Source="Theme/TextControlsButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ImageDockPanelTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

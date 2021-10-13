@@ -181,7 +181,7 @@
     <Resource Include="Pages\Assets\NoImage.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Pages\Assets\drag-n-drop.png" />
+    <Resource Include="Pages\Assets\drag_N_drop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
