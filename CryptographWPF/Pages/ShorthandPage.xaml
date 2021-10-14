@@ -103,6 +103,20 @@
                 </Grid>
             </Border>
         </DockPanel>
+        <Button
+            Content="Button"
+            Grid.Column="1" 
+            Width="75"
+            HorizontalAlignment="Center"
+            Grid.Row="2" 
+            VerticalAlignment="Top" />
+        <Button 
+            Content="Button"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            Grid.Row="3" 
+            VerticalAlignment="Top" 
+            Width="75"/>
 
     </Grid>
 </Page>

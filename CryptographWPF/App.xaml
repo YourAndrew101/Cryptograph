@@ -6,19 +6,19 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme/MainGridTheme.xaml"/>
-                <ResourceDictionary Source="Theme/SideMenuButtonTheme.xaml"/>
-                <ResourceDictionary Source="Theme/InputTextBoxTheme.xaml"/>
-                <ResourceDictionary Source="Theme/OutputTextBoxTheme.xaml"/>
-                <ResourceDictionary Source="Theme/EncryptionTypesComboBoxTheme.xaml"/>
-                <ResourceDictionary Source="Theme/TypeOfActionRadioButtonTheme.xaml"/>
-                <ResourceDictionary Source="Theme/ActionButtonTheme.xaml"/>
-                <ResourceDictionary Source="Theme/SimpleKeyPanelTheme.xaml"/>
-                <ResourceDictionary Source="Theme/PairKeyPanelTheme.xaml"/>
-                <ResourceDictionary Source="Theme/EncodingComboBoxTheme.xaml"/>
-                <ResourceDictionary Source="Theme/TopGridTheme.xaml"/>
-                <ResourceDictionary Source="Theme/TextControlsButtonTheme.xaml"/>
-                <ResourceDictionary Source="Theme/ImageDockPanelTheme.xaml"/>
+                <ResourceDictionary Source="Theme/MainWindow/MainGridTheme.xaml"/>
+                <ResourceDictionary Source="Theme/MainWindow/TopGridTheme.xaml"/>
+                <ResourceDictionary Source="Theme/MainWindow/SideMenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/EncryptionPage/OutputTextBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/EncryptionPage/EncryptionTypesComboBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/EncryptionPage/TypeOfActionRadioButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/EncryptionPage/ActionButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/EncryptionPage/SimpleKeyPanelTheme.xaml"/>
+                <ResourceDictionary Source="Theme/EncryptionPage/PairKeyPanelTheme.xaml"/>
+                <ResourceDictionary Source="Theme/EncryptionPage/EncodingComboBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ShorthandPage/InputTextBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ShorthandPage/TextControlsButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ShorthandPage/ImageDockPanelTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

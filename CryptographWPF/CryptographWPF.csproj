@@ -87,55 +87,55 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\ActionButtonTheme.xaml">
+    <Page Include="Theme\EncryptionPage\ActionButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\EncodingComboBoxTheme.xaml">
+    <Page Include="Theme\EncryptionPage\EncodingComboBoxTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\EncryptionTypesComboBoxTheme.xaml">
+    <Page Include="Theme\EncryptionPage\EncryptionTypesComboBoxTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\ImageDockPanelTheme.xaml">
+    <Page Include="Theme\ShorthandPage\ImageDockPanelTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\InputTextBoxTheme.xaml">
+    <Page Include="Theme\ShorthandPage\InputTextBoxTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\MainGridTheme.xaml">
+    <Page Include="Theme\MainWindow\MainGridTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\OutputTextBoxTheme.xaml">
+    <Page Include="Theme\EncryptionPage\OutputTextBoxTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\PairKeyPanelTheme.xaml">
+    <Page Include="Theme\EncryptionPage\PairKeyPanelTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\SideMenuButtonTheme.xaml">
+    <Page Include="Theme\MainWindow\SideMenuButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\SimpleKeyPanelTheme.xaml">
+    <Page Include="Theme\EncryptionPage\SimpleKeyPanelTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\TextControlsButtonTheme.xaml">
+    <Page Include="Theme\ShorthandPage\TextControlsButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\TopGridTheme.xaml">
+    <Page Include="Theme\MainWindow\TopGridTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\TypeOfActionRadioButtonTheme.xaml">
+    <Page Include="Theme\EncryptionPage\TypeOfActionRadioButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,5 +183,6 @@
   <ItemGroup>
     <Resource Include="Pages\Assets\drag_N_drop.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
