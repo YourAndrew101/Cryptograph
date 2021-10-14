@@ -19,6 +19,7 @@
                 <ResourceDictionary Source="Theme/ShorthandPage/InputTextBoxTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ShorthandPage/TextControlsButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ShorthandPage/ImageDockPanelTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ShorthandPage/ActionButtonsTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -104,19 +104,24 @@
             </Border>
         </DockPanel>
         <Button
-            Content="Button"
             Grid.Column="1" 
-            Width="75"
-            HorizontalAlignment="Center"
+            Margin= "0, 0, 65, 0"
+            Padding="0,0,5,0"
             Grid.Row="2" 
-            VerticalAlignment="Top" />
+            Style="{StaticResource ActionButtonsStyle}">
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="25" 
+                       Text="&#xE96F;&#xE96F;"/>
+        </Button>
         <Button 
-            Content="Button"
             Grid.Column="1"
-            HorizontalAlignment="Center"
-            Grid.Row="3" 
-            VerticalAlignment="Top" 
-            Width="75"/>
-
+            Grid.Row="2" 
+            Margin= "65, 0, 0, 0"
+            Padding="5,0,0,0"
+            Style="{StaticResource ActionButtonsStyle}">
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="25" 
+                       Text="&#xE970;&#xE970;"/>
+        </Button>
     </Grid>
 </Page>
