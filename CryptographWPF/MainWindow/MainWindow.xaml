@@ -46,7 +46,7 @@
                 </Button>
                 <Button x:Name="CloseButton"
                         Width="35" 
-                         Margin ="0, 0, 1, 0"
+                        Margin ="0, 0, 1, 0"
                         Style="{StaticResource TopGridButtonStyle}">
                     <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="15" 
@@ -55,7 +55,7 @@
             </StackPanel>
         </Grid>
 
-        
+
         <StackPanel Grid.Row="1" Grid.Column="0">
             <Button x:Name="EncryptionPageButton" 
             Margin="7,75,7,10" 

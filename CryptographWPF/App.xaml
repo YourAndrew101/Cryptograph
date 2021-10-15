@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="Theme/MainWindow/MainGridTheme.xaml"/>
                 <ResourceDictionary Source="Theme/MainWindow/TopGridTheme.xaml"/>
                 <ResourceDictionary Source="Theme/MainWindow/SideMenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/MainWindow/MainToolTipTheme.xaml"/>
                 <ResourceDictionary Source="Theme/EncryptionPage/OutputTextBoxTheme.xaml"/>
                 <ResourceDictionary Source="Theme/EncryptionPage/EncryptionTypesComboBoxTheme.xaml"/>
                 <ResourceDictionary Source="Theme/EncryptionPage/TypeOfActionRadioButtonTheme.xaml"/>

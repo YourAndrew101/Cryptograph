@@ -29,6 +29,7 @@
         <Button x:Name="PasteTextButton"
                 HorizontalAlignment="Left"
                 Margin="10,0,0,5"
+                ToolTip="Вставити текст"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
@@ -38,6 +39,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Left"
                 Margin="50,0,5,5"
+                ToolTip="Зберегти текст"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
@@ -46,6 +48,7 @@
         <Button x:Name="LoadTextButton"
                 HorizontalAlignment="Left"
                 Margin="90,0,0,5"
+                ToolTip="Завантажити текст"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
@@ -57,6 +60,7 @@
                 Grid.Column="2"
                 HorizontalAlignment="Right"
                 Margin="0,0,90,5"
+                ToolTip="Видалити зображення"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
@@ -66,6 +70,7 @@
                 Grid.Column="2"
                 HorizontalAlignment="Right"
                 Margin="0,0,50,5"
+                ToolTip="Зберегти зображення"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
@@ -75,13 +80,14 @@
                 Grid.Column="2"
                 HorizontalAlignment="Right"
                 Margin="0,0,10,5"
+                ToolTip="Вставити зображення"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE77F;"/>
         </Button>
 
-        
+
 
 
 

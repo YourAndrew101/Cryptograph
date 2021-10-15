@@ -27,6 +27,7 @@
         <Button x:Name="PasteTextButton"
                 HorizontalAlignment="Left"
                 Margin="10,0,0,5"
+                ToolTip="Вставити вхідний текст"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
@@ -35,6 +36,7 @@
         <Button x:Name="LoadTextButton"
                 HorizontalAlignment="Left"
                 Margin="50,0,0,5"
+                ToolTip="Завантажити вхідний текст"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
@@ -45,6 +47,7 @@
                 Grid.Column="2"
                 HorizontalAlignment="Right"
                 Margin="0,0,50,5"
+                ToolTip="Копіювати вихідний текст"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
@@ -54,6 +57,7 @@
                 Grid.Column="2"
                 HorizontalAlignment="Right"
                 Margin="0,0,5,5"
+                ToolTip="Зберегти вихідний текст"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 

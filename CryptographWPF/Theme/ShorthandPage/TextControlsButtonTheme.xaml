@@ -7,7 +7,7 @@
     <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#4465737e"/>
     <SolidColorBrush x:Key="Button.Pressed.Background" Color="#606F7D88"/>
 
-    <Style x:Key="TextControlsButtonStyle" TargetType="{x:Type Button}">
+    <Style x:Key="TextControlsButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MainToolTipStyle}">
         <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
         <Setter Property="Foreground" Value="{StaticResource Button.Static.Foreground}"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -36,7 +36,7 @@
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
+
         </Setter>
     </Style>
-
 </ResourceDictionary>
