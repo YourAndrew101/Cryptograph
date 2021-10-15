@@ -34,33 +34,54 @@
                        FontSize="34" 
                        Text="&#xE77F;"/>
         </Button>
+        <Button x:Name="SaveTextButton"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                Margin="50,0,5,5"
+                Style="{StaticResource TextControlsButtonStyle}">
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xE74E;"/>
+        </Button>
         <Button x:Name="LoadTextButton"
                 HorizontalAlignment="Left"
-                Margin="50,0,0,5"
+                Margin="90,0,0,5"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE8E5;"/>
         </Button>
 
-        <Button x:Name="CopyTextButton"
+
+        <Button x:Name="DeleteImageButton"
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                Margin="0,0,90,5"
+                Style="{StaticResource TextControlsButtonStyle}">
+            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                       FontSize="34" 
+                       Text="&#xE74D;"/>
+        </Button>
+        <Button x:Name="SaveImageButton"
                 Grid.Column="2"
                 HorizontalAlignment="Right"
                 Margin="0,0,50,5"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
-                       Text="&#xE8C8;"/>
+                       Text="&#xE74E;"/>
         </Button>
-        <Button x:Name="SaveTextButton"
+        <Button x:Name="PasteImageButton"
                 Grid.Column="2"
                 HorizontalAlignment="Right"
-                Margin="0,0,5,5"
+                Margin="0,0,10,5"
                 Style="{StaticResource TextControlsButtonStyle}">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
-                       Text="&#xE74E;"/>
+                       Text="&#xE77F;"/>
         </Button>
+
+        
 
 
 
