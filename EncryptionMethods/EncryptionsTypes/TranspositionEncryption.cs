@@ -20,6 +20,7 @@ namespace EncryptionMethods
         }
         public override void Decrypto()
         {
+            StringIn = StringIn.TrimEnd();
             StringBuilder sb = new StringBuilder(StringIn);           
 
             for (int i = 0; i < StringIn.Length - 1; i += 2)

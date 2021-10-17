@@ -58,7 +58,7 @@ namespace CryptographWPF.Pages
         }
 
 
-        private void GetSimpleKeyCryptoStackPanel()
+        private void SetSimpleKeyCryptoStackPanel()
         {
             GetSimpleKeyTextBox(_keyStackPanel);
             GetSimpleKeyLabel(_keyStackPanel);

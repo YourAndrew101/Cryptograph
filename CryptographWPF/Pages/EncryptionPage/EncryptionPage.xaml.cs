@@ -143,7 +143,7 @@ namespace CryptographWPF.Pages
             {
                 ActionButton.Content = "Шифрувати";
 
-                if (EncryptionType == EncryptionTypes.Cesar || _encryptionType == EncryptionTypes.Vigener || _encryptionType == EncryptionTypes.AES) GetSimpleKeyCryptoStackPanel();
+                if (EncryptionType == EncryptionTypes.Cesar || _encryptionType == EncryptionTypes.Vigener || _encryptionType == EncryptionTypes.AES) SetSimpleKeyCryptoStackPanel();
                 if (EncryptionType == EncryptionTypes.RSA) GetPairKeyCryptoStackPanel();
                 if (EncryptionType == EncryptionTypes.AES) GetCryptoEncodingDockPanels();
             }
