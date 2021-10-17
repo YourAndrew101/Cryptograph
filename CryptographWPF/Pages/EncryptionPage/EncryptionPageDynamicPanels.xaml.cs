@@ -49,11 +49,11 @@ namespace CryptographWPF.Pages
         private void SetEncodingDockPanel()
         {
             _ = MainGridEncryptionPage.Children.Add(_encodingInDockPanel);
-            Grid.SetColumn(_encodingInDockPanel, 1);
+            Grid.SetColumn(_encodingInDockPanel, 0);
             Grid.SetRow(_encodingInDockPanel, 0);
 
             _ = MainGridEncryptionPage.Children.Add(_encodingOutDockPanel);
-            Grid.SetColumn(_encodingOutDockPanel, 3);
+            Grid.SetColumn(_encodingOutDockPanel, 2);
             Grid.SetRow(_encodingOutDockPanel, 0);
         }
 
