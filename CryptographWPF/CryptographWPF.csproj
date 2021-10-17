@@ -76,15 +76,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\EncryptionPage.xaml">
+    <Page Include="Pages\EncryptionPage\EncryptionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\EncryptionPageDynamicPanels.xaml">
+    <Page Include="Pages\EncryptionPage\EncryptionPageDynamicPanels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ShorthandPage.xaml">
+    <Page Include="Pages\ShorthandPage\ShorthandPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,13 +151,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow\MainWindowDynamicComponents.cs" />
-    <Compile Include="Pages\EncryptionPage.xaml.cs">
+    <Compile Include="Pages\EncryptionPage\EncryptionPage.xaml.cs">
       <DependentUpon>EncryptionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\EncryptionPageDynamicPanels.xaml.cs">
+    <Compile Include="Pages\EncryptionPage\EncryptionPageDynamicPanels.xaml.cs">
       <DependentUpon>EncryptionPageDynamicPanels.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ShorthandPage.xaml.cs">
+    <Compile Include="Pages\EncryptionPage\EncryptionPageLogic.cs" />
+    <Compile Include="Pages\ShorthandPage\ShorthandPage.xaml.cs">
       <DependentUpon>ShorthandPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">

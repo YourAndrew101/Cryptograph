@@ -103,7 +103,7 @@ namespace CryptographWPF.Pages
 
             ShortHand shortHand = new ShortHand(In_OutTextBox.Text, BitmapImage2Bitmap(_Image));
             shortHand.Crypto();
-            _Image = BitmapToImageSource(shortHand.OutputImage);
+            //_Image = BitmapToImageSource(shortHand.OutputImage);
 
             MessageBox.Show("Текст записано");
         }
