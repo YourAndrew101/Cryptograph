@@ -39,15 +39,9 @@
     <SolidColorBrush x:Key="NotCurrentButton.MouseOver.Background" Color="#596570"/>
     <SolidColorBrush x:Key="NotCurrentButton.Pressed.Background" Color="#6F7D88"/>
 
-    <Style x:Key="NotCurrentPageSideMenuButton" TargetType="{x:Type Button}">
+    <Style x:Key="NotCurrentPageSideMenuButton" TargetType="{x:Type Button}" BasedOn="{StaticResource CurrentPageSideMenuButton}">
         <Setter Property="Background" Value="{StaticResource NotCurrentButton.Static.Background}"/>
         <Setter Property="Foreground" Value="{StaticResource NotCurrentButton.Static.Foreground}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Width" Value="60"/>
-        <Setter Property="Height" Value="60"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">

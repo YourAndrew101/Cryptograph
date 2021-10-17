@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -191,6 +192,15 @@
   <ItemGroup>
     <Resource Include="Pages\Assets\drag_N_drop.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\EncryptionMethods\EncryptionMethods.csproj">
+      <Project>{23B63BE1-660B-44CA-9E2A-CC5BA9F5E365}</Project>
+      <Name>EncryptionMethods</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShortHand\ShortHandMethods.csproj">
+      <Project>{85EAB087-7472-4AF7-8FC0-F6FDEEB74DEB}</Project>
+      <Name>ShortHandMethods</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
