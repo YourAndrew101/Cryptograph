@@ -17,8 +17,32 @@ namespace CryptographWPF.Pages
 {
     public partial class EncryptionPage : Page
     {
-        private string _inputPlaceholder = "Текст для шифрування...";
-        private string _outputPlaceholder = "Зашифрований текст";
+        private const string _inputPlaceholderForCrypto = "Текст для шифрування...";
+        private const string _inputPlaceholderForDecrypto = "Текст для дешифрування...";
+
+        private string _inputPlaceholder;
+        private string InputPlaceholder 
+        {
+            get => _inputPlaceholder;
+            set 
+            {
+                _inputPlaceholder = value;
+                if (CheckForEmptyInputTextBox()) InputTextBox.Text = InputPlaceholder;
+            }
+        }
+        private const string _outputPlaceholderForCrypto = "Зашифрований текст";
+        private const string _outputPlaceholderForDecrypto = "Розшифрований текст";
+        private string _outputPlaceholder;
+        private string OutputPlaceholder
+        {
+            get => _outputPlaceholder;
+            set
+            {
+                _outputPlaceholder = value;
+                if (CheckForEmptyOutoutTextBox()) OutputTextBox.Text = OutputPlaceholder;
+            }
+        }
+        private string InputText { get; set; }
 
         private enum EncryptionTypes
         {
@@ -33,9 +57,8 @@ namespace CryptographWPF.Pages
             RSA = 8,
             AES = 9
         }
-
         private EncryptionTypes _encryptionType;
-        private EncryptionTypes _EncryptionType
+        private EncryptionTypes EncryptionType
         {
             get => _encryptionType;
             set
@@ -47,10 +70,10 @@ namespace CryptographWPF.Pages
 
         private enum Acts { Crypto, Decrypto };
         private Acts _act;
-        private Acts _Act
+        private Acts Act 
         {
             get => _act;
-            set
+            set 
             {
                 _act = value;
                 UpdatePanels();
@@ -65,8 +88,11 @@ namespace CryptographWPF.Pages
 
         private void InitializeComponentsSettings()
         {
-            InputTextBox.Text = _inputPlaceholder;
-            OutputTextBox.Text = _outputPlaceholder;
+            InputPlaceholder = _inputPlaceholderForCrypto;
+            OutputPlaceholder = _outputPlaceholderForCrypto;
+
+            InputTextBox.Text = InputPlaceholder;
+            OutputTextBox.Text = OutputPlaceholder;
 
             CryptoRadioButton.IsChecked = true;
 
@@ -81,47 +107,53 @@ namespace CryptographWPF.Pages
         {
             if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = _inputPlaceholder;
         }
+        private void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            InputText = InputTextBox.Text;
+            if (!CheckForEmptyInputTextBox()) OutputTextBox.Text = OutputPlaceholder;
+        }
 
 
-        private void EncryptionsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => _EncryptionType = (EncryptionTypes)((ComboBox)sender).SelectedIndex;
+        private void EncryptionsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => EncryptionType = (EncryptionTypes)((ComboBox)sender).SelectedIndex;
 
         private void CryptoRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            _Act = Acts.Crypto;
-            _inputPlaceholder = "Текст для шифрування...";
-            _outputPlaceholder = "Зашифрований текст";
+        {  
+            Act = Acts.Crypto;
+            InputPlaceholder = _inputPlaceholderForCrypto;
+            OutputPlaceholder =_outputPlaceholderForCrypto;
         }
         private void DecryptoRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            _Act = Acts.Decrypto;
-            _inputPlaceholder = "Текст для дешифрування...";
-            _outputPlaceholder = "Розшифрований текст";
+        {  
+            Act = Acts.Decrypto;
+            InputPlaceholder = _inputPlaceholderForDecrypto;
+            OutputPlaceholder = _outputPlaceholderForDecrypto;
         }
+
+
+        private bool CheckForEmptyInputTextBox() => (InputText == "" || InputText == null || InputText == _inputPlaceholderForCrypto || InputText == _inputPlaceholderForDecrypto);
+        private bool CheckForEmptyOutoutTextBox() => (OutputText == "" || OutputText == null || OutputText == _outputPlaceholderForCrypto || OutputText == _outputPlaceholderForDecrypto);
 
 
         private void UpdatePanels()
         {
-            InputTextBox.Text = _inputPlaceholder;
-            OutputTextBox.Text = _outputPlaceholder;
-
             RemovePanels();
             ClearPanels();
 
-            if (_Act == Acts.Crypto)
+            if (Act == Acts.Crypto)
             {
                 ActionButton.Content = "Шифрувати";
 
-                if (_encryptionType == EncryptionTypes.Cesar || _encryptionType == EncryptionTypes.Vigener || _encryptionType == EncryptionTypes.AES) GetSimpleKeyCryptoStackPanel();
-                if (_encryptionType == EncryptionTypes.RSA) GetPairKeyCryptoStackPanel();
-                if (_encryptionType == EncryptionTypes.AES) GetCryptoEncodingDockPanels();
+                if (EncryptionType == EncryptionTypes.Cesar || _encryptionType == EncryptionTypes.Vigener || _encryptionType == EncryptionTypes.AES) GetSimpleKeyCryptoStackPanel();
+                if (EncryptionType == EncryptionTypes.RSA) GetPairKeyCryptoStackPanel();
+                if (EncryptionType == EncryptionTypes.AES) GetCryptoEncodingDockPanels();
             }
-            if (_Act == Acts.Decrypto)
+            if (Act == Acts.Decrypto)
             {
                 ActionButton.Content = "Дешифрувати";
 
-                if (_encryptionType == EncryptionTypes.Cesar || _encryptionType == EncryptionTypes.Vigener || _encryptionType == EncryptionTypes.AES) GetSimpleKeyDecryptoStackPanel();
-                if (_encryptionType == EncryptionTypes.RSA) GetPairKeyDecryptoStackPanel();
-                if (_encryptionType == EncryptionTypes.AES)
+                if (EncryptionType == EncryptionTypes.Cesar || _encryptionType == EncryptionTypes.Vigener || _encryptionType == EncryptionTypes.AES) GetSimpleKeyDecryptoStackPanel();
+                if (EncryptionType == EncryptionTypes.RSA) GetPairKeyDecryptoStackPanel();
+                if (EncryptionType == EncryptionTypes.AES)
                 {
                     GetCryptoEncodingDockPanels();
                     SwapEncodingsDockPanels();

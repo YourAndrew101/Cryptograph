@@ -79,7 +79,7 @@
                  AcceptsReturn="True"             
                  Margin="0,0.667,0,-0.333"
                  GotFocus="InputTextBox_GotFocus"
-                 LostFocus="InputTextBox_LostFocus"/>
+                 LostFocus="InputTextBox_LostFocus" TextChanged="InputTextBox_TextChanged"/>
         <TextBox x:Name="OutputTextBox"                  
                  Height="355"
                  Width="270"
@@ -165,7 +165,7 @@
                 Grid.Row="3"
                 Margin="30,19,30,0"              
                 VerticalAlignment="Top" 
-                Style="{StaticResource ActionButtonStyle}" />
+                Style="{StaticResource ActionButtonStyle}" Click="ActionButton_Click" />
 
     </Grid>
 </Page>

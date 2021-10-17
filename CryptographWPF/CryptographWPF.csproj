@@ -198,6 +198,10 @@
       <Project>{23B63BE1-660B-44CA-9E2A-CC5BA9F5E365}</Project>
       <Name>EncryptionMethods</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Managers\Managers.csproj">
+      <Project>{0BD44630-2C2B-46CA-B22E-48EF16D0989C}</Project>
+      <Name>Managers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShortHand\ShortHandMethods.csproj">
       <Project>{85EAB087-7472-4AF7-8FC0-F6FDEEB74DEB}</Project>
       <Name>ShortHandMethods</Name>
