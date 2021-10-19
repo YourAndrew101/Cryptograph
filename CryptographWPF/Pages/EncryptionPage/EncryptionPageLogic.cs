@@ -20,6 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Managers.CommandManagers;
 using EncryptionMethods;
+using UsefulMethods;
 
 namespace CryptographWPF.Pages
 {
@@ -48,7 +49,7 @@ namespace CryptographWPF.Pages
                     Rot13Encryption();
                     break;
                 case EncryptionTypes.Cesar:
-                    Rot1Encryption();
+                    CesarEncryption();
                     break;
                 case EncryptionTypes.Transposition:
                     TranspositionEncryption();
@@ -80,6 +81,11 @@ namespace CryptographWPF.Pages
 
         private bool CheckKeyBoxForNull(string placeholder, Control keyTextBox) => (((TextBox)keyTextBox).Text == "" || ((TextBox)keyTextBox).Text == null || ((TextBox)keyTextBox).Text == placeholder);
 
+        private Control GetControl(string name, StackPanel parentPanel)
+        {
+            foreach (Control control in parentPanel.Children) if (control.Name == name) return control;
+            return null;
+        }
 
         private void Rot1Encryption()
         {
@@ -100,40 +106,46 @@ namespace CryptographWPF.Pages
             OutputText = rotEncryption.StringOut;
         }
 
-        /*private void CesarEncryption()
+        private void CesarEncryption()
         {
             CesarEncryption cesarEncryption = new CesarEncryption(InputText);
 
             if (Act == Acts.Crypto)
             {
-                int key = GetSimpleKey();
-                cesarEncryption = new CesarEncryption(InputText);
+                string key = GetSimpleKeyCrypto(cesarEncryption.Alphabet);
+                cesarEncryption = new CesarEncryption(InputText, key);
                 cesarEncryption.Crypto();
             }
             else
             {
-                cesarEncryption = new CesarEncryption(_stringIn, GetKeysForm.GetSimpleKeyForDecrypto(SimpleKeyDecryptoBox));
+                string key = GetSimpleKeyDecrypto();
+                cesarEncryption = new CesarEncryption(InputText, key);
                 cesarEncryption.Decrypto();
             }
 
             OutputText = cesarEncryption.StringOut;
         }
 
-        private string GetSimpleKey()
+        private string GetSimpleKeyCrypto(char[] alphabet)
         {
+            //TODO make notify
             TextBox keyTextBox = (TextBox)GetControl("SimpleKeyTextBox", _keyStackPanel);
             TextBox keyLengthTextBox = (TextBox)GetControl("SimpleKeyLengthTextBox", _keyStackPanel);
             if (!CheckKeyBoxForNull("Ваш ключ...", keyTextBox)) return keyTextBox.Text;
             else
             {
-
+                string key = KeyMethods.KeyGenerate(alphabet, Convert.ToInt32(keyLengthTextBox.Text));
+                keyTextBox.Text = key;
+                return key;
             }
         }
-        */
-        private Control GetControl(string name, StackPanel parentPanel)
+        private string GetSimpleKeyDecrypto()
         {
-            foreach (Control control in parentPanel.Children) if (control.Name == name) return control;
-            return null;
+            //TODO make notify
+            TextBox keyTextBox = (TextBox)GetControl("SimpleKeyTextBox", _keyStackPanel);
+
+            if (!CheckKeyBoxForNull("Ваш ключ...", keyTextBox)) return keyTextBox.Text;
+            else return null;
         }
 
 
@@ -190,13 +202,47 @@ namespace CryptographWPF.Pages
 
         private void VigenerEncryption()
         {
+            VigenerEncryption vigenerEncryption = new VigenerEncryption(InputText);
 
+            if (Act == Acts.Crypto)
+            {
+                string key = GetSimpleKeyCrypto(vigenerEncryption.Alphabet);
+                vigenerEncryption = new VigenerEncryption(InputText, key);
+                vigenerEncryption.Crypto();
+            }
+            else
+            {
+                string key = GetSimpleKeyDecrypto();
+                vigenerEncryption = new VigenerEncryption(InputText, key);
+                vigenerEncryption.Decrypto();
+            }
+
+            OutputText = vigenerEncryption.StringOut;
         }
 
         private void RsaEncryption()
         {
+            RsaEncryption rsaEncryption;
 
+            if (_act == Acts.Crypto)
+            {
+                var (publicKey, generalKey, privateKey) = GetKeysForm.GetPairKeysForCrypto(GeneralKeyBox, AnotherKeyBox, PrivateKeyBox, GeneratePairKeysCheckBox);
+
+                rsaEncryption = new RsaEncryption(_stringIn, publicKey, generalKey, privateKey);
+                rsaEncryption.Crypto();
+                _stringOut = rsaEncryption.StringOut;
+            }
+            else
+            {
+                RsaWaitLabel.Visible = true;
+
+                _stringOut = "";
+                try { backgroundWorker.RunWorkerAsync(); }
+                catch (InvalidOperationException) { BackgroundWorker_Cancel(); }
+            }
         }
+
+
 
         private void AesEncryption()
         {

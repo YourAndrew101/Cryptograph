@@ -9,7 +9,7 @@ namespace EncryptionMethods
         public string Key { get; private set; }
         public override void Crypto()
         {    
-            int key = KeyMethods.Decrypto_Key(Key, Alphabet); 
+            int key = KeyMethods.DecryptoKey(Key, Alphabet); 
 
             RotEncryption rotEncryption = new RotEncryption(StringIn, key);
             rotEncryption.Crypto();
@@ -19,7 +19,7 @@ namespace EncryptionMethods
         {
             StringBuilder sb = new StringBuilder(StringIn.Length);
 
-            int key = KeyMethods.Decrypto_Key(Key, Alphabet);
+            int key = KeyMethods.DecryptoKey(Key, Alphabet);
             if (key > Alphabet.Length) key %= Alphabet.Length;
 
             foreach (char item in StringIn)

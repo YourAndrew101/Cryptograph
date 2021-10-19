@@ -9,7 +9,7 @@ namespace UsefulMethods
     {
         private static Random rand = new Random();
 
-        public static int Decrypto_Key(string keyString, char[] alphabet)
+        public static int DecryptoKey(string keyString, char[] alphabet)
         {
             int key = 0;
 
@@ -21,7 +21,7 @@ namespace UsefulMethods
 
             return key == alphabet.Length ? key : ++key;
         }
-        public static string Key_Generate(char[] alphabet, int keyLength)
+        public static string KeyGenerate(char[] alphabet, int keyLength)
         {
             StringBuilder sb = new StringBuilder(keyLength);
 

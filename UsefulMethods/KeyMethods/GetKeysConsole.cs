@@ -15,7 +15,7 @@ namespace UsefulMethods
             {
                 case 1:
                     int keyLength = Entering.EnterInt("Довжина ключа: ", 1, int.MaxValue, "\nНЕВІРНИЙ ПАРАМЕТР\nПотрібно вказати цілу додатню довжину ключа\n");
-                    string key = KeyMethods.Key_Generate(alphabet, keyLength);
+                    string key = KeyMethods.KeyGenerate(alphabet, keyLength);
 
                     Console.WriteLine("Bаш ключ: {0}", key);
                     return key;

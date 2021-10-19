@@ -46,6 +46,7 @@
     <Compile Include="ArrayMethods.cs" />
     <Compile Include="KeyMethods\GetKeysForm.cs" />
     <Compile Include="KeyMethods\GetKeysConsole.cs" />
+    <Compile Include="KeyMethods\GetKeysWPF.cs" />
     <Compile Include="KeyMethods\KeyMethods.cs" />
     <Compile Include="MathMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

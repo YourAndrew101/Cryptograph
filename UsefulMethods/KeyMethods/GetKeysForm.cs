@@ -8,7 +8,7 @@ namespace UsefulMethods
     {
         public static string GetSimpleKeyForCrypto(TextBox keyStringBox, NumericUpDown keyLengthUpDown, char[] alphabet)
         {
-            if (keyStringBox.Text == "") keyStringBox.Text = KeyMethods.Key_Generate(alphabet, (int)keyLengthUpDown.Value);
+            if (keyStringBox.Text == "") keyStringBox.Text = KeyMethods.KeyGenerate(alphabet, (int)keyLengthUpDown.Value);
 
             return keyStringBox.Text;
         }

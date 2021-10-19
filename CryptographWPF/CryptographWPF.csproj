@@ -206,6 +206,10 @@
       <Project>{85EAB087-7472-4AF7-8FC0-F6FDEEB74DEB}</Project>
       <Name>ShortHandMethods</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UsefulMethods\UsefulMethods.csproj">
+      <Project>{06B1E21A-B270-4429-8B8C-D4EE08AAE054}</Project>
+      <Name>UsefulMethods</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
