@@ -85,7 +85,7 @@ namespace Cryptograph
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 460F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 307F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.OutputTextBox, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 2);
@@ -97,22 +97,24 @@ namespace Cryptograph
             this.tableLayoutPanel1.Controls.Add(this.InputTextBox, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 218F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 88F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 142F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.39069F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1246, 1055);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(831, 686);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // OutputTextBox
             // 
             this.OutputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OutputTextBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OutputTextBox.Location = new System.Drawing.Point(856, 309);
+            this.OutputTextBox.Location = new System.Drawing.Point(571, 201);
+            this.OutputTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OutputTextBox.Name = "OutputTextBox";
-            this.OutputTextBox.Size = new System.Drawing.Size(387, 358);
+            this.OutputTextBox.Size = new System.Drawing.Size(258, 232);
             this.OutputTextBox.TabIndex = 1;
             this.OutputTextBox.Text = "";
             this.OutputTextBox.TextChanged += new System.EventHandler(this.OutputTextBox_TextChanged);
@@ -120,15 +122,16 @@ namespace Cryptograph
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.52381F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanel2.Controls.Add(this.CryptoButton, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.DecryptoButton, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.ActionButton, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.CryptoMethodsListBox, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(396, 309);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(264, 201);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 6;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.01087F));
@@ -137,7 +140,7 @@ namespace Cryptograph
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.782609F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.1087F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.67391F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(454, 358);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(303, 232);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // CryptoButton
@@ -145,9 +148,10 @@ namespace Cryptograph
             this.CryptoButton.AutoSize = true;
             this.CryptoButton.Checked = true;
             this.CryptoButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.CryptoButton.Location = new System.Drawing.Point(65, 169);
+            this.CryptoButton.Location = new System.Drawing.Point(43, 108);
+            this.CryptoButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CryptoButton.Name = "CryptoButton";
-            this.CryptoButton.Size = new System.Drawing.Size(340, 24);
+            this.CryptoButton.Size = new System.Drawing.Size(227, 17);
             this.CryptoButton.TabIndex = 0;
             this.CryptoButton.TabStop = true;
             this.CryptoButton.Text = "Шифрувати";
@@ -158,9 +162,10 @@ namespace Cryptograph
             // 
             this.DecryptoButton.AutoSize = true;
             this.DecryptoButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.DecryptoButton.Location = new System.Drawing.Point(65, 204);
+            this.DecryptoButton.Location = new System.Drawing.Point(43, 130);
+            this.DecryptoButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DecryptoButton.Name = "DecryptoButton";
-            this.DecryptoButton.Size = new System.Drawing.Size(340, 24);
+            this.DecryptoButton.Size = new System.Drawing.Size(227, 17);
             this.DecryptoButton.TabIndex = 1;
             this.DecryptoButton.Text = "Розшифрувати";
             this.DecryptoButton.UseVisualStyleBackColor = true;
@@ -170,9 +175,10 @@ namespace Cryptograph
             // 
             this.ActionButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ActionButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ActionButton.Location = new System.Drawing.Point(65, 265);
+            this.ActionButton.Location = new System.Drawing.Point(43, 170);
+            this.ActionButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ActionButton.Name = "ActionButton";
-            this.ActionButton.Size = new System.Drawing.Size(340, 35);
+            this.ActionButton.Size = new System.Drawing.Size(227, 23);
             this.ActionButton.TabIndex = 2;
             this.ActionButton.Text = "Шифрувати";
             this.ActionButton.UseVisualStyleBackColor = true;
@@ -194,27 +200,29 @@ namespace Cryptograph
             "Шифр Віженера",
             "RSA шифрування",
             "AES шифрування"});
-            this.CryptoMethodsListBox.Location = new System.Drawing.Point(65, 82);
+            this.CryptoMethodsListBox.Location = new System.Drawing.Point(43, 53);
+            this.CryptoMethodsListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CryptoMethodsListBox.Name = "CryptoMethodsListBox";
-            this.CryptoMethodsListBox.Size = new System.Drawing.Size(340, 28);
+            this.CryptoMethodsListBox.Size = new System.Drawing.Size(227, 21);
             this.CryptoMethodsListBox.TabIndex = 3;
             this.CryptoMethodsListBox.SelectedIndexChanged += new System.EventHandler(this.CryptoMethodsListBox_SelectedIndexChanged);
             // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 454F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 303F));
             this.tableLayoutPanel3.Controls.Add(this.KeysRSAPanel, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.KeyCryptoPanel, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.KeyDecryptoPanel, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(396, 673);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(264, 437);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.20513F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 154F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(454, 379);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(303, 247);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // KeysRSAPanel
@@ -227,71 +235,76 @@ namespace Cryptograph
             this.KeysRSAPanel.Controls.Add(this.AnotherKeyNameLabel);
             this.KeysRSAPanel.Controls.Add(this.GeneralKeyBox);
             this.KeysRSAPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.KeysRSAPanel.Location = new System.Drawing.Point(3, 228);
+            this.KeysRSAPanel.Location = new System.Drawing.Point(2, 149);
+            this.KeysRSAPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.KeysRSAPanel.Name = "KeysRSAPanel";
-            this.KeysRSAPanel.Size = new System.Drawing.Size(448, 148);
+            this.KeysRSAPanel.Size = new System.Drawing.Size(299, 96);
             this.KeysRSAPanel.TabIndex = 7;
             this.KeysRSAPanel.Visible = false;
             // 
             // GeneratePairKeysCheckBox
             // 
             this.GeneratePairKeysCheckBox.AutoSize = true;
-            this.GeneratePairKeysCheckBox.Location = new System.Drawing.Point(81, 118);
+            this.GeneratePairKeysCheckBox.Location = new System.Drawing.Point(54, 77);
+            this.GeneratePairKeysCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.GeneratePairKeysCheckBox.Name = "GeneratePairKeysCheckBox";
-            this.GeneratePairKeysCheckBox.Size = new System.Drawing.Size(264, 24);
+            this.GeneratePairKeysCheckBox.Size = new System.Drawing.Size(177, 17);
             this.GeneratePairKeysCheckBox.TabIndex = 7;
             this.GeneratePairKeysCheckBox.Text = "Згенерувати ключі випадково";
             this.GeneratePairKeysCheckBox.UseVisualStyleBackColor = true;
             // 
             // PrivateKeyLabel
             // 
-            this.PrivateKeyLabel.Location = new System.Drawing.Point(255, 83);
+            this.PrivateKeyLabel.Location = new System.Drawing.Point(170, 54);
             this.PrivateKeyLabel.Margin = new System.Windows.Forms.Padding(0);
             this.PrivateKeyLabel.Name = "PrivateKeyLabel";
-            this.PrivateKeyLabel.Size = new System.Drawing.Size(148, 25);
+            this.PrivateKeyLabel.Size = new System.Drawing.Size(99, 16);
             this.PrivateKeyLabel.TabIndex = 6;
             this.PrivateKeyLabel.Text = "Приватний ключ";
             this.PrivateKeyLabel.Visible = false;
             // 
             // PrivateKeyBox
             // 
-            this.PrivateKeyBox.Location = new System.Drawing.Point(62, 80);
+            this.PrivateKeyBox.Location = new System.Drawing.Point(41, 52);
+            this.PrivateKeyBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PrivateKeyBox.Name = "PrivateKeyBox";
-            this.PrivateKeyBox.Size = new System.Drawing.Size(174, 26);
+            this.PrivateKeyBox.Size = new System.Drawing.Size(117, 20);
             this.PrivateKeyBox.TabIndex = 5;
             this.PrivateKeyBox.Visible = false;
             // 
             // GeneralKeyName
             // 
-            this.GeneralKeyName.Location = new System.Drawing.Point(42, 45);
+            this.GeneralKeyName.Location = new System.Drawing.Point(28, 29);
             this.GeneralKeyName.Margin = new System.Windows.Forms.Padding(0);
             this.GeneralKeyName.Name = "GeneralKeyName";
-            this.GeneralKeyName.Size = new System.Drawing.Size(134, 25);
+            this.GeneralKeyName.Size = new System.Drawing.Size(89, 16);
             this.GeneralKeyName.TabIndex = 3;
             this.GeneralKeyName.Text = "Загальний ключ";
             // 
             // AnotherKeyBox
             // 
-            this.AnotherKeyBox.Location = new System.Drawing.Point(260, 9);
+            this.AnotherKeyBox.Location = new System.Drawing.Point(173, 6);
+            this.AnotherKeyBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AnotherKeyBox.Name = "AnotherKeyBox";
-            this.AnotherKeyBox.Size = new System.Drawing.Size(162, 26);
+            this.AnotherKeyBox.Size = new System.Drawing.Size(109, 20);
             this.AnotherKeyBox.TabIndex = 2;
             // 
             // AnotherKeyNameLabel
             // 
             this.AnotherKeyNameLabel.AutoSize = true;
-            this.AnotherKeyNameLabel.Location = new System.Drawing.Point(274, 45);
+            this.AnotherKeyNameLabel.Location = new System.Drawing.Point(183, 29);
             this.AnotherKeyNameLabel.Margin = new System.Windows.Forms.Padding(0);
             this.AnotherKeyNameLabel.Name = "AnotherKeyNameLabel";
-            this.AnotherKeyNameLabel.Size = new System.Drawing.Size(129, 20);
+            this.AnotherKeyNameLabel.Size = new System.Drawing.Size(85, 13);
             this.AnotherKeyNameLabel.TabIndex = 1;
             this.AnotherKeyNameLabel.Text = "Публічний ключ";
             // 
             // GeneralKeyBox
             // 
-            this.GeneralKeyBox.Location = new System.Drawing.Point(20, 9);
+            this.GeneralKeyBox.Location = new System.Drawing.Point(13, 6);
+            this.GeneralKeyBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.GeneralKeyBox.Name = "GeneralKeyBox";
-            this.GeneralKeyBox.Size = new System.Drawing.Size(182, 26);
+            this.GeneralKeyBox.Size = new System.Drawing.Size(123, 20);
             this.GeneralKeyBox.TabIndex = 0;
             // 
             // KeyCryptoPanel
@@ -302,57 +315,61 @@ namespace Cryptograph
             this.KeyCryptoPanel.Controls.Add(this.SimpleKeyCryptoBox);
             this.KeyCryptoPanel.Controls.Add(this.OR_label);
             this.KeyCryptoPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.KeyCryptoPanel.Location = new System.Drawing.Point(3, 159);
+            this.KeyCryptoPanel.Location = new System.Drawing.Point(2, 104);
+            this.KeyCryptoPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.KeyCryptoPanel.Name = "KeyCryptoPanel";
-            this.KeyCryptoPanel.Size = new System.Drawing.Size(448, 63);
+            this.KeyCryptoPanel.Size = new System.Drawing.Size(299, 41);
             this.KeyCryptoPanel.TabIndex = 4;
             this.KeyCryptoPanel.Visible = false;
             // 
             // SimpleKeyLengthUpDown
             // 
-            this.SimpleKeyLengthUpDown.Location = new System.Drawing.Point(244, 9);
+            this.SimpleKeyLengthUpDown.Location = new System.Drawing.Point(163, 6);
+            this.SimpleKeyLengthUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SimpleKeyLengthUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this.SimpleKeyLengthUpDown.Name = "SimpleKeyLengthUpDown";
-            this.SimpleKeyLengthUpDown.Size = new System.Drawing.Size(150, 26);
+            this.SimpleKeyLengthUpDown.Size = new System.Drawing.Size(100, 20);
             this.SimpleKeyLengthUpDown.TabIndex = 0;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(242, 38);
+            this.label2.Location = new System.Drawing.Point(161, 25);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(147, 65);
+            this.label2.Size = new System.Drawing.Size(98, 42);
             this.label2.TabIndex = 1;
             this.label2.Text = "Довжина ключа для генерації ";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 38);
+            this.label1.Location = new System.Drawing.Point(0, 25);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 20);
+            this.label1.Size = new System.Drawing.Size(99, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Ключ шифрування";
             // 
             // SimpleKeyCryptoBox
             // 
-            this.SimpleKeyCryptoBox.Location = new System.Drawing.Point(0, 9);
+            this.SimpleKeyCryptoBox.Location = new System.Drawing.Point(0, 6);
+            this.SimpleKeyCryptoBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SimpleKeyCryptoBox.Name = "SimpleKeyCryptoBox";
-            this.SimpleKeyCryptoBox.Size = new System.Drawing.Size(139, 26);
+            this.SimpleKeyCryptoBox.Size = new System.Drawing.Size(94, 20);
             this.SimpleKeyCryptoBox.TabIndex = 0;
             // 
             // OR_label
             // 
             this.OR_label.AutoSize = true;
             this.OR_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.OR_label.Location = new System.Drawing.Point(162, 9);
-            this.OR_label.Margin = new System.Windows.Forms.Padding(10, 20, 0, 0);
+            this.OR_label.Location = new System.Drawing.Point(108, 6);
+            this.OR_label.Margin = new System.Windows.Forms.Padding(7, 13, 0, 0);
             this.OR_label.Name = "OR_label";
-            this.OR_label.Size = new System.Drawing.Size(65, 29);
+            this.OR_label.Size = new System.Drawing.Size(46, 20);
             this.OR_label.TabIndex = 6;
             this.OR_label.Text = "АБО";
             // 
@@ -361,26 +378,28 @@ namespace Cryptograph
             this.KeyDecryptoPanel.Controls.Add(this.SimpleKeyDecryptoBox);
             this.KeyDecryptoPanel.Controls.Add(this.label3);
             this.KeyDecryptoPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.KeyDecryptoPanel.Location = new System.Drawing.Point(3, 3);
+            this.KeyDecryptoPanel.Location = new System.Drawing.Point(2, 2);
+            this.KeyDecryptoPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.KeyDecryptoPanel.Name = "KeyDecryptoPanel";
-            this.KeyDecryptoPanel.Size = new System.Drawing.Size(448, 108);
+            this.KeyDecryptoPanel.Size = new System.Drawing.Size(299, 70);
             this.KeyDecryptoPanel.TabIndex = 6;
             this.KeyDecryptoPanel.Visible = false;
             // 
             // SimpleKeyDecryptoBox
             // 
-            this.SimpleKeyDecryptoBox.Location = new System.Drawing.Point(130, 11);
+            this.SimpleKeyDecryptoBox.Location = new System.Drawing.Point(87, 7);
+            this.SimpleKeyDecryptoBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SimpleKeyDecryptoBox.Name = "SimpleKeyDecryptoBox";
-            this.SimpleKeyDecryptoBox.Size = new System.Drawing.Size(139, 26);
+            this.SimpleKeyDecryptoBox.Size = new System.Drawing.Size(94, 20);
             this.SimpleKeyDecryptoBox.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(128, 40);
+            this.label3.Location = new System.Drawing.Point(85, 26);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(152, 20);
+            this.label3.Size = new System.Drawing.Size(99, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Ключ шифрування";
             // 
@@ -389,9 +408,10 @@ namespace Cryptograph
             this.RsaWaitLabel.AutoSize = true;
             this.RsaWaitLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.RsaWaitLabel.Font = new System.Drawing.Font("Perpetua", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RsaWaitLabel.Location = new System.Drawing.Point(856, 670);
+            this.RsaWaitLabel.Location = new System.Drawing.Point(571, 435);
+            this.RsaWaitLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.RsaWaitLabel.Name = "RsaWaitLabel";
-            this.RsaWaitLabel.Size = new System.Drawing.Size(387, 28);
+            this.RsaWaitLabel.Size = new System.Drawing.Size(258, 18);
             this.RsaWaitLabel.TabIndex = 4;
             this.RsaWaitLabel.Text = "Дані розшифровуються...";
             this.RsaWaitLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -399,14 +419,14 @@ namespace Cryptograph
             // 
             // GeneralMenuStrip
             // 
-            this.GeneralMenuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.GeneralMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.GeneralMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AppModesMenu,
             this.FileToolStripMenu});
             this.GeneralMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.GeneralMenuStrip.Name = "GeneralMenuStrip";
-            this.GeneralMenuStrip.Size = new System.Drawing.Size(393, 33);
+            this.GeneralMenuStrip.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
+            this.GeneralMenuStrip.Size = new System.Drawing.Size(262, 24);
             this.GeneralMenuStrip.TabIndex = 5;
             this.GeneralMenuStrip.Text = "menuStrip1";
             // 
@@ -415,13 +435,13 @@ namespace Cryptograph
             this.AppModesMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AppModesShorthandMenuItem});
             this.AppModesMenu.Name = "AppModesMenu";
-            this.AppModesMenu.Size = new System.Drawing.Size(180, 29);
+            this.AppModesMenu.Size = new System.Drawing.Size(122, 22);
             this.AppModesMenu.Text = "Режими програми";
             // 
             // AppModesShorthandMenuItem
             // 
             this.AppModesShorthandMenuItem.Name = "AppModesShorthandMenuItem";
-            this.AppModesShorthandMenuItem.Size = new System.Drawing.Size(209, 34);
+            this.AppModesShorthandMenuItem.Size = new System.Drawing.Size(140, 22);
             this.AppModesShorthandMenuItem.Text = "Стінографія";
             this.AppModesShorthandMenuItem.Click += new System.EventHandler(this.AppModesShorthandMenuItem_Click);
             // 
@@ -431,14 +451,14 @@ namespace Cryptograph
             this.LoadToolStripMenu,
             this.SaveToolStripMenuItem});
             this.FileToolStripMenu.Name = "FileToolStripMenu";
-            this.FileToolStripMenu.Size = new System.Drawing.Size(69, 29);
+            this.FileToolStripMenu.Size = new System.Drawing.Size(48, 22);
             this.FileToolStripMenu.Text = "Файл";
             // 
             // LoadToolStripMenu
             // 
             this.LoadToolStripMenu.Name = "LoadToolStripMenu";
             this.LoadToolStripMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.LoadToolStripMenu.Size = new System.Drawing.Size(250, 34);
+            this.LoadToolStripMenu.Size = new System.Drawing.Size(165, 22);
             this.LoadToolStripMenu.Text = "Відкрити";
             this.LoadToolStripMenu.Click += new System.EventHandler(this.LoadToolStripMenu_Click);
             // 
@@ -447,7 +467,7 @@ namespace Cryptograph
             this.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem";
             this.SaveToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+S";
             this.SaveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.SaveToolStripMenuItem.Size = new System.Drawing.Size(250, 34);
+            this.SaveToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.SaveToolStripMenuItem.Text = "Зберегти";
             this.SaveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
@@ -458,12 +478,13 @@ namespace Cryptograph
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.19689F));
             this.tableLayoutPanel4.Controls.Add(this.InputStringFormatComboBox, 1, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 221);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(2, 144);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(387, 82);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(258, 53);
             this.tableLayoutPanel4.TabIndex = 8;
             // 
             // InputStringFormatComboBox
@@ -471,27 +492,29 @@ namespace Cryptograph
             this.InputStringFormatComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InputStringFormatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.InputStringFormatComboBox.FormattingEnabled = true;
-            this.InputStringFormatComboBox.Location = new System.Drawing.Point(257, 44);
+            this.InputStringFormatComboBox.Location = new System.Drawing.Point(171, 28);
+            this.InputStringFormatComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.InputStringFormatComboBox.Name = "InputStringFormatComboBox";
-            this.InputStringFormatComboBox.Size = new System.Drawing.Size(127, 28);
+            this.InputStringFormatComboBox.Size = new System.Drawing.Size(85, 21);
             this.InputStringFormatComboBox.TabIndex = 4;
             this.InputStringFormatComboBox.Visible = false;
             // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 3;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 86F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.03891F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.96109F));
             this.tableLayoutPanel5.Controls.Add(this.CopyButton, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.OutputStringFormatComboBox, 0, 1);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(856, 221);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(571, 144);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.61728F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.38272F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(386, 82);
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(257, 53);
             this.tableLayoutPanel5.TabIndex = 9;
             // 
             // CopyButton
@@ -503,10 +526,11 @@ namespace Cryptograph
             this.CopyButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CopyButton.FlatAppearance.BorderSize = 0;
             this.CopyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CopyButton.Location = new System.Drawing.Point(311, 3);
+            this.CopyButton.Location = new System.Drawing.Point(207, 2);
+            this.CopyButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CopyButton.Name = "CopyButton";
             this.tableLayoutPanel5.SetRowSpan(this.CopyButton, 2);
-            this.CopyButton.Size = new System.Drawing.Size(72, 76);
+            this.CopyButton.Size = new System.Drawing.Size(48, 49);
             this.CopyButton.TabIndex = 6;
             this.CopyButton.UseVisualStyleBackColor = false;
             this.CopyButton.Visible = false;
@@ -516,18 +540,20 @@ namespace Cryptograph
             // 
             this.OutputStringFormatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.OutputStringFormatComboBox.FormattingEnabled = true;
-            this.OutputStringFormatComboBox.Location = new System.Drawing.Point(3, 44);
+            this.OutputStringFormatComboBox.Location = new System.Drawing.Point(2, 28);
+            this.OutputStringFormatComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OutputStringFormatComboBox.Name = "OutputStringFormatComboBox";
-            this.OutputStringFormatComboBox.Size = new System.Drawing.Size(121, 28);
+            this.OutputStringFormatComboBox.Size = new System.Drawing.Size(82, 21);
             this.OutputStringFormatComboBox.TabIndex = 4;
             this.OutputStringFormatComboBox.Visible = false;
             // 
             // InputTextBox
             // 
             this.InputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InputTextBox.Location = new System.Drawing.Point(3, 309);
+            this.InputTextBox.Location = new System.Drawing.Point(2, 201);
+            this.InputTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.InputTextBox.Name = "InputTextBox";
-            this.InputTextBox.Size = new System.Drawing.Size(387, 358);
+            this.InputTextBox.Size = new System.Drawing.Size(258, 232);
             this.InputTextBox.TabIndex = 0;
             this.InputTextBox.Text = "";
             this.InputTextBox.TextChanged += new System.EventHandler(this.InputTextBox_TextChanged);
@@ -542,11 +568,12 @@ namespace Cryptograph
             // 
             // EncryptionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1246, 1055);
+            this.ClientSize = new System.Drawing.Size(831, 686);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MainMenuStrip = this.GeneralMenuStrip;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "EncryptionForm";
             this.Text = "Шифрування";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EncryptionForm_FormClosed);

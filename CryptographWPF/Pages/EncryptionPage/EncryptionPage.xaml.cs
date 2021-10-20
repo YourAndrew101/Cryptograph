@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FileIOControllers;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,7 +44,19 @@ namespace CryptographWPF.Pages
                 if (CheckForEmptyOutoutTextBox()) OutputTextBox.Text = OutputPlaceholder;
             }
         }
-        private string InputText { get; set; }
+
+        private string _inputText;
+        private string InputText 
+        { 
+            get => _inputText; 
+            set
+            {
+                _inputText = value;
+                InputTextBox.Text = InputText;
+
+                if (!CheckForEmptyInputTextBox()) OutputTextBox.Text = OutputPlaceholder;
+            }
+        }
 
         private enum EncryptionTypes
         {
@@ -80,11 +94,17 @@ namespace CryptographWPF.Pages
             }
         }
 
+        private OpenFileDialog _openFileDialog = new OpenFileDialog();
+        private SaveFileDialog _saveFileDialog = new SaveFileDialog();
+
+
         public EncryptionPage()
         {
             InitializeComponent();
             InitializeComponentsSettings();
             InitializeBackgroundWorker();
+
+            SetFileDialogFilter();
         }
 
         private void InitializeComponentsSettings()
@@ -99,13 +119,18 @@ namespace CryptographWPF.Pages
 
             EncryptionsComboBox.SelectedIndex = 0;
         }
-
         private void InitializeBackgroundWorker()
         {
             _backgroundWorker.DoWork += BackgroundWorker_DoWork;
             _backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
             _backgroundWorker.WorkerSupportsCancellation = true;
         }
+        private void SetFileDialogFilter()
+        {
+            _openFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            _saveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+        }
+
 
         private void InputTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -115,35 +140,33 @@ namespace CryptographWPF.Pages
         {
             if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = _inputPlaceholder;
         }
-        private void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            InputText = InputTextBox.Text;
-            if (!CheckForEmptyInputTextBox()) OutputTextBox.Text = OutputPlaceholder;
-        }
+        private void InputTextBox_TextChanged(object sender, TextChangedEventArgs e) => InputText = InputTextBox.Text;
 
 
         private void EncryptionsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => EncryptionType = (EncryptionTypes)((ComboBox)sender).SelectedIndex;
 
         private void CryptoRadioButton_Checked(object sender, RoutedEventArgs e)
-        {  
+        {
             Act = Acts.Crypto;
             InputPlaceholder = _inputPlaceholderForCrypto;
             OutputPlaceholder =_outputPlaceholderForCrypto;
         }
         private void DecryptoRadioButton_Checked(object sender, RoutedEventArgs e)
-        {  
+        {
             Act = Acts.Decrypto;
             InputPlaceholder = _inputPlaceholderForDecrypto;
             OutputPlaceholder = _outputPlaceholderForDecrypto;
         }
 
 
-        private bool CheckForEmptyInputTextBox() => (InputText == "" || InputText == null || InputText == _inputPlaceholderForCrypto || InputText == _inputPlaceholderForDecrypto);
-        private bool CheckForEmptyOutoutTextBox() => (OutputText == "" || OutputText == null || OutputText == _outputPlaceholderForCrypto || OutputText == _outputPlaceholderForDecrypto);
+        private bool CheckForEmptyInputTextBox() => InputText == "" || InputText == null || InputText == _inputPlaceholderForCrypto || InputText == _inputPlaceholderForDecrypto;
+        private bool CheckForEmptyOutoutTextBox() => OutputText == "" || OutputText == null || OutputText == _outputPlaceholderForCrypto || OutputText == _outputPlaceholderForDecrypto;
 
 
         private void UpdatePanels()
         {
+            BackgroundWorker_Cancel();
+
             RemovePanels();
             ClearPanels();
 
@@ -166,10 +189,38 @@ namespace CryptographWPF.Pages
                     GetCryptoEncodingDockPanels();
                     SwapEncodingsDockPanels();
                 }
-
             }
 
             SetPanels();
+        }
+
+        private void CopyTextButton_Click(object sender, RoutedEventArgs e) => Clipboard.SetText(OutputText);
+        private void PasteTextButton_Click(object sender, RoutedEventArgs e) => InputText = Clipboard.GetText();
+
+        private void LoadTextButton_Click(object sender, RoutedEventArgs e)
+        {
+            BackgroundWorker_Cancel();
+             
+            if (_openFileDialog.ShowDialog() == false) return;
+            string filename = _openFileDialog.FileName;
+            InputText = TxtFileController.Load(filename);
+        }
+
+        private void SaveTextButton_Click(object sender, RoutedEventArgs e)
+        {
+            BackgroundWorker_Cancel();
+
+            //TODO add notify
+            /*if (OutputText == "" || _stringOut == null)
+            {
+                MessageBox.Show("Відсутній текст для збереження");
+                return;
+            }*/
+
+            if (_saveFileDialog.ShowDialog() == false) return;
+
+            string path = _saveFileDialog.FileName;
+            TxtFileController.Save(path, OutputText);
         }
     }
 }

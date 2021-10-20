@@ -28,7 +28,8 @@
                 HorizontalAlignment="Left"
                 Margin="10,0,0,5"
                 ToolTip="Вставити вхідний текст"
-                Style="{StaticResource TextControlsButtonStyle}">
+                Style="{StaticResource TextControlsButtonStyle}"
+                Click="PasteTextButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE77F;"/>
@@ -37,7 +38,7 @@
                 HorizontalAlignment="Left"
                 Margin="50,0,0,5"
                 ToolTip="Завантажити вхідний текст"
-                Style="{StaticResource TextControlsButtonStyle}">
+                Style="{StaticResource TextControlsButtonStyle}" Click="LoadTextButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE8E5;"/>
@@ -48,7 +49,8 @@
                 HorizontalAlignment="Right"
                 Margin="0,0,50,5"
                 ToolTip="Копіювати вихідний текст"
-                Style="{StaticResource TextControlsButtonStyle}">
+                Style="{StaticResource TextControlsButtonStyle}"
+                Click="CopyTextButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE8C8;"/>
@@ -58,7 +60,7 @@
                 HorizontalAlignment="Right"
                 Margin="0,0,5,5"
                 ToolTip="Зберегти вихідний текст"
-                Style="{StaticResource TextControlsButtonStyle}">
+                Style="{StaticResource TextControlsButtonStyle}" Click="SaveTextButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE74E;"/>

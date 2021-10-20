@@ -198,6 +198,10 @@
       <Project>{23B63BE1-660B-44CA-9E2A-CC5BA9F5E365}</Project>
       <Name>EncryptionMethods</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileIOControllers\FileIOControllers.csproj">
+      <Project>{90A1A907-7992-4C43-A247-1A026B262755}</Project>
+      <Name>FileIOControllers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Managers\Managers.csproj">
       <Project>{0BD44630-2C2B-46CA-B22E-48EF16D0989C}</Project>
       <Name>Managers</Name>
