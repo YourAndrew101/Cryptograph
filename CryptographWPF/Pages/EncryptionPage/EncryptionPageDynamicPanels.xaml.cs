@@ -141,7 +141,11 @@ namespace CryptographWPF.Pages
         }
         private void GetPublicKeyTextBox(StackPanel keyStackPanel)
         {
-            TextBox publicKeyTextBox = new TextBox { Style = Application.Current.TryFindResource("PairKeyCryptoTextBoxStyle") as Style };
+            TextBox publicKeyTextBox = new TextBox 
+            { 
+                Style = Application.Current.TryFindResource("PairKeyCryptoTextBoxStyle") as Style,
+                Name = "PublicKeyTextBox"
+            };
             string publicKeyTextBoxPlaceholder = "Публічний ключ...";
             publicKeyTextBox.Text = publicKeyTextBoxPlaceholder;
             publicKeyTextBox.HorizontalAlignment = HorizontalAlignment.Center;
@@ -153,7 +157,11 @@ namespace CryptographWPF.Pages
         }
         private void GetPrivateKeyTextBox(StackPanel keyStackPanel)
         {
-            TextBox privateKeyTextBox = new TextBox { Style = Application.Current.TryFindResource("PairKeyCryptoTextBoxStyle") as Style };
+            TextBox privateKeyTextBox = new TextBox 
+            { 
+                Style = Application.Current.TryFindResource("PairKeyCryptoTextBoxStyle") as Style,
+                Name = "PrivateKeyTextBox"
+            };
             string privateKeyTextBoxPlaceholder = "Приватний ключ...";
             privateKeyTextBox.Text = privateKeyTextBoxPlaceholder;
             privateKeyTextBox.HorizontalAlignment = HorizontalAlignment.Center;
@@ -165,7 +173,11 @@ namespace CryptographWPF.Pages
         }
         private void GetGenerateKeysComboBox(StackPanel keyStackPanel)
         {
-            CheckBox generateKeysCheckBox = new CheckBox { Style = Application.Current.TryFindResource("GenerateKeysCheckBoxStyle") as Style };
+            CheckBox generateKeysCheckBox = new CheckBox 
+            { 
+                Style = Application.Current.TryFindResource("GenerateKeysCheckBoxStyle") as Style,
+                Name = "GenerateKeysCheckBox"
+            };
 
             keyStackPanel.Children.Add(generateKeysCheckBox);
         }

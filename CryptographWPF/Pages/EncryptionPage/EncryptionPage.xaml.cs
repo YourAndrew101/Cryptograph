@@ -84,6 +84,7 @@ namespace CryptographWPF.Pages
         {
             InitializeComponent();
             InitializeComponentsSettings();
+            InitializeBackgroundWorker();
         }
 
         private void InitializeComponentsSettings()
@@ -97,6 +98,13 @@ namespace CryptographWPF.Pages
             CryptoRadioButton.IsChecked = true;
 
             EncryptionsComboBox.SelectedIndex = 0;
+        }
+
+        private void InitializeBackgroundWorker()
+        {
+            _backgroundWorker.DoWork += BackgroundWorker_DoWork;
+            _backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
+            _backgroundWorker.WorkerSupportsCancellation = true;
         }
 
         private void InputTextBox_GotFocus(object sender, RoutedEventArgs e)

@@ -21,21 +21,25 @@ using System.Windows.Shapes;
 using Managers.CommandManagers;
 using EncryptionMethods;
 using UsefulMethods;
+using System.ComponentModel;
 
 namespace CryptographWPF.Pages
 {
     public partial class EncryptionPage : Page
     {
+        private readonly BackgroundWorker _backgroundWorker = new BackgroundWorker();
+        private bool _backgroundWorkerIsCancelled = false;
+
         private string _outputText;
         private string OutputText
         {
             get => _outputText;
-            set 
+            set
             {
                 _outputText = value;
                 SetOutPutTextBox();
             }
-        }       
+        }
         private void SetOutPutTextBox() => OutputTextBox.Text = OutputText;
 
         private void ActionButton_Click(object sender, RoutedEventArgs e)
@@ -86,6 +90,7 @@ namespace CryptographWPF.Pages
             foreach (Control control in parentPanel.Children) if (control.Name == name) return control;
             return null;
         }
+
 
         private void Rot1Encryption()
         {
@@ -222,26 +227,101 @@ namespace CryptographWPF.Pages
 
         private void RsaEncryption()
         {
+            //TODO RSAWaitLabel
             RsaEncryption rsaEncryption;
 
             if (_act == Acts.Crypto)
             {
-                var (publicKey, generalKey, privateKey) = GetKeysForm.GetPairKeysForCrypto(GeneralKeyBox, AnotherKeyBox, PrivateKeyBox, GeneratePairKeysCheckBox);
+                var (publicKey, generalKey, privateKey) = GetPairKeysCrypto();
 
-                rsaEncryption = new RsaEncryption(_stringIn, publicKey, generalKey, privateKey);
+                rsaEncryption = new RsaEncryption(InputText, publicKey, generalKey, privateKey);
                 rsaEncryption.Crypto();
-                _stringOut = rsaEncryption.StringOut;
+                OutputText = rsaEncryption.StringOut;
             }
             else
             {
-                RsaWaitLabel.Visible = true;
+                var (_generalKey, _privateKey) = GetPairKeysDecrypto();
+                privateKey = _privateKey;
+                generalKey = _generalKey;
+                OutputText = "";
 
-                _stringOut = "";
-                try { backgroundWorker.RunWorkerAsync(); }
+                try { _backgroundWorker.RunWorkerAsync(); }
                 catch (InvalidOperationException) { BackgroundWorker_Cancel(); }
             }
         }
+        private ulong privateKey, generalKey;
 
+        private (ulong, ulong, ulong) GetPairKeysCrypto()
+        {
+            //TODO make notify
+            ulong _publicKey = 0, _generalKey = 0, _privateKey = 0;
+
+            TextBox generalKeyTextBox = (TextBox)GetControl("GeneralKeyTextBox", _keyStackPanel);
+            TextBox publicKeyTextBox = (TextBox)GetControl("PublicKeyTextBox", _keyStackPanel);
+            TextBox privateKeyTextBox = (TextBox)GetControl("PrivateKeyTextBox", _keyStackPanel);
+
+            CheckBox generateKeysCheckBox = (CheckBox)GetControl("GenerateKeysCheckBox", _keyStackPanel);
+
+            if (generateKeysCheckBox.IsChecked == true)
+            {
+                KeyMethods.CalculateKeys(out _generalKey, out _publicKey, out _privateKey);
+
+                generalKeyTextBox.Text = KeyMethods.KeyNumberToString(_generalKey);
+                publicKeyTextBox.Text = KeyMethods.KeyNumberToString(_generalKey);
+                privateKeyTextBox.Text = KeyMethods.KeyNumberToString(_privateKey);
+            }
+            else
+            {
+                if (!CheckKeyBoxForNull("Загальний ключ...", generalKeyTextBox)) _publicKey = Convert.ToUInt64(generalKeyTextBox.Text);
+                if (!CheckKeyBoxForNull("Публічний ключ...", publicKeyTextBox)) _generalKey = Convert.ToUInt64(generalKeyTextBox.Text);
+                if (!CheckKeyBoxForNull("Приватний ключ...", privateKeyTextBox)) _privateKey = Convert.ToUInt64(generalKeyTextBox.Text);
+            }
+
+            return (_publicKey, _generalKey, _privateKey);
+        }
+        private (ulong, ulong) GetPairKeysDecrypto()
+        {
+            //TODO make notify
+            ulong _generalKey = 0, _privateKey = 0;
+
+            TextBox generalKeyTextBox = (TextBox)GetControl("GeneralKeyTextBox", _keyStackPanel);
+            TextBox privateKeyTextBox = (TextBox)GetControl("PrivateKeyTextBox", _keyStackPanel);
+
+
+            if (!CheckKeyBoxForNull("Загальний ключ...", generalKeyTextBox)) _generalKey = KeyMethods.KeyStringToNumber(generalKeyTextBox.Text);
+            if (!CheckKeyBoxForNull("Приватний ключ...", privateKeyTextBox)) _privateKey = KeyMethods.KeyStringToNumber(privateKeyTextBox.Text);
+
+            return (_generalKey, _privateKey);
+        }
+
+        private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (!_backgroundWorkerIsCancelled)
+            {
+                OutputText = (string)e.Result;
+
+                //RsaWaitLabel.Visible = false;
+            }
+            else _backgroundWorkerIsCancelled = false;
+        }
+        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            RsaEncryption rsaEncryption = new RsaEncryption(InputText, generalKey, privateKey);
+            Task task = Task.Run(() => rsaEncryption.Decrypto());
+            task.Wait();
+
+            e.Result = rsaEncryption.StringOut;
+        }
+        private void BackgroundWorker_Cancel()
+        {
+            if (_backgroundWorker.IsBusy)
+            {
+                _backgroundWorkerIsCancelled = true;
+                _backgroundWorker.CancelAsync();
+                _backgroundWorker.Dispose();
+                //RsaWaitLabel.Visible = false;
+            }
+        }
 
 
         private void AesEncryption()

@@ -89,7 +89,6 @@ namespace UsefulMethods
         }
         public static ulong KeyStringToNumber(string keyString)
         {
-            keyString = BigInteger.Parse(keyString).ToString();
             StringBuilder sb = new StringBuilder();
             ulong keyNumber;
 

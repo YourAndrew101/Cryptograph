@@ -12,7 +12,7 @@ namespace EncryptionMethods
 
         private string _stringIn;
         public virtual string StringIn { protected get => _stringIn; set => _stringIn = value.Trim(); }
-        public string StringOut { get; protected set; }
+        public virtual string StringOut { get; protected set; }
 
         public enum Languages
         {
@@ -27,12 +27,16 @@ namespace EncryptionMethods
         {
             for (int i = 0; i < StringIn.Length; i++)
             {
-                if (char.IsLetter(StringIn[i]) && Array.IndexOf(alphabets[(int)Languages.Eng], StringIn[i]) != -1)
+                if (char.IsLetter(StringIn[i]) && 
+                    Array.IndexOf(alphabets[(int)Languages.Eng],
+                    StringIn[i]) != -1)
                 {
                     Language = Languages.Eng;
                     return;
                 }
-                if (char.IsLetter(StringIn[i]) && Array.IndexOf(alphabets[(int)Languages.Rus], StringIn[i]) != -1)
+                if (char.IsLetter(StringIn[i]) && 
+                    Array.IndexOf(alphabets[(int)Languages.Rus],
+                    StringIn[i]) != -1)
                 {
                     Language = Languages.Rus;
                     return;
