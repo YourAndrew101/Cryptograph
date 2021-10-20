@@ -196,12 +196,16 @@ namespace CryptographWPF.Pages
         }
         private void GetCryptoInEncodingDockPanel()
         {
-            ComboBox comboBox = new ComboBox { Style = Application.Current.TryFindResource("EncodingComboBoxStyle") as Style };
+            ComboBox comboBox = new ComboBox 
+            { 
+                Style = Application.Current.TryFindResource("EncodingComboBoxStyle") as Style,
+                Name = "EncodingComboBox"
+            };
             comboBox.HorizontalAlignment = HorizontalAlignment.Right;
             ComboBoxItem itemUTF8 = new ComboBoxItem
             {
                 Style = Application.Current.TryFindResource("EncodingComboBoxItemStyle") as Style,
-                Content = "UTF-8"
+                Content = "UTF8"
             };
             ComboBoxItem itemHex = new ComboBoxItem
             {
@@ -215,7 +219,11 @@ namespace CryptographWPF.Pages
         }
         private void GetCryptoOutEncodingDockPanel()
         {
-            ComboBox comboBox = new ComboBox { Style = Application.Current.TryFindResource("EncodingComboBoxStyle") as Style };
+            ComboBox comboBox = new ComboBox 
+            { 
+                Style = Application.Current.TryFindResource("EncodingComboBoxStyle") as Style,
+                Name = "EncodingComboBox"
+            };
             comboBox.HorizontalAlignment = HorizontalAlignment.Left;
             ComboBoxItem itemBase64 = new ComboBoxItem
             {
@@ -238,7 +246,7 @@ namespace CryptographWPF.Pages
             ComboBoxItem cbi1 = (ComboBoxItem)((ComboBox)_encodingInDockPanel.Children[0]).Items[0];
             cbi1.Content = "Base64";
             ComboBoxItem cbi2 = (ComboBoxItem)((ComboBox)_encodingOutDockPanel.Children[0]).Items[0];
-            cbi2.Content = "UTF-8";
+            cbi2.Content = "UTF8";
         }
     }
 }

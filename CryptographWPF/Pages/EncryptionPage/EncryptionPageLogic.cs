@@ -1,27 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using EncryptionMethods;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Managers.CommandManagers;
-using EncryptionMethods;
 using UsefulMethods;
-using System.ComponentModel;
 
 namespace CryptographWPF.Pages
 {
@@ -74,7 +57,7 @@ namespace CryptographWPF.Pages
                     RsaEncryption();
                     break;
                 case EncryptionTypes.AES:
-                    AesEncryption();
+                    AESEncryption();
                     break;
                 default:
                     OutputText = "";
@@ -86,6 +69,11 @@ namespace CryptographWPF.Pages
         private bool CheckKeyBoxForNull(string placeholder, Control keyTextBox) => (((TextBox)keyTextBox).Text == "" || ((TextBox)keyTextBox).Text == null || ((TextBox)keyTextBox).Text == placeholder);
 
         private Control GetControl(string name, StackPanel parentPanel)
+        {
+            foreach (Control control in parentPanel.Children) if (control.Name == name) return control;
+            return null;
+        }
+        private Control GetControl(string name, DockPanel parentPanel)
         {
             foreach (Control control in parentPanel.Children) if (control.Name == name) return control;
             return null;
@@ -324,9 +312,49 @@ namespace CryptographWPF.Pages
         }
 
 
-        private void AesEncryption()
+        private void AESEncryption()
         {
+            AesEncryption aesEncryption = new AesEncryption(InputText);
 
+            if (_act == Acts.Crypto)
+            {
+                var (inputStringFormat, outputStringFormat) = GetStringsFormats();
+                try
+                {
+                    string key = GetSimpleKeyCrypto(aesEncryption.Alphabet);
+                    aesEncryption = new AesEncryption(InputText, key, inputStringFormat, outputStringFormat);
+                }
+                catch (Exception) { MessageBox.Show("Неправильний формат вхідного тексту"); return; }
+                aesEncryption.Crypto();
+            }
+            if (_act == Acts.Decrypto)
+            {
+                var (inputStringFormat, outputStringFormat) = GetStringsFormats();
+                try
+                {
+                    string key = GetSimpleKeyDecrypto();
+                    aesEncryption = new AesEncryption(InputText, key, inputStringFormat, outputStringFormat);
+                }
+                catch (Exception) { return; }
+                aesEncryption.Decrypto();
+            }
+
+            OutputText = aesEncryption.StringOut;
         }
+
+        private (AesEncryption.TypesOfInputs, AesEncryption.TypesOfInputs) GetStringsFormats()
+        {
+            ComboBox inputEncodingcomboBox = (ComboBox)GetControl("EncodingComboBox", _encodingInDockPanel);
+            ComboBox outputEncodingcomboBox = (ComboBox)GetControl("EncodingComboBox", _encodingOutDockPanel);
+
+            ComboBoxItem selectedItemInputEncoding = (ComboBoxItem)inputEncodingcomboBox.SelectedItem;
+            ComboBoxItem selectedItemOutputEncoding = (ComboBoxItem)outputEncodingcomboBox.SelectedItem;
+
+
+            return ((AesEncryption.TypesOfInputs)Enum.Parse(typeof(AesEncryption.TypesOfInputs), selectedItemInputEncoding.Content.ToString()),
+                (AesEncryption.TypesOfInputs)Enum.Parse(typeof(AesEncryption.TypesOfInputs), selectedItemOutputEncoding.Content.ToString()));
+        }
+
+
     }
 }
