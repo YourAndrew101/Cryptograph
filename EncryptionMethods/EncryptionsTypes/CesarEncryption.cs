@@ -17,19 +17,12 @@ namespace EncryptionMethods
         }
         public override void Decrypto()
         {
-            StringBuilder sb = new StringBuilder(StringIn.Length);
-
             int key = KeyMethods.DecryptoKey(Key, Alphabet);
             if (key > Alphabet.Length) key %= Alphabet.Length;
 
-            foreach (char item in StringIn)
-            {   int letterIndex = Array.IndexOf(Alphabet, item);
-                if ((letterIndex - key) < 0) letterIndex = Alphabet.Length + letterIndex;
-
-                sb.Append(Alphabet[letterIndex - key]);
-            }
-
-            StringOut = sb.ToString();
+            RotEncryption rotEncryption = new RotEncryption(StringIn, key);
+            rotEncryption.Decrypto();
+            StringOut = rotEncryption.StringOut;
         }
         
         public CesarEncryption(string string_in) : base(string_in) {}

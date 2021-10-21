@@ -48,9 +48,9 @@ namespace EncryptionMethods
         public abstract void Crypto();
         public abstract void Decrypto();
 
-        protected MainEncryption(string string_in)
+        protected MainEncryption(string stringIn)
         {
-            StringIn = string_in;
+            StringIn = stringIn;
 
             GetLanguage();
             GetAlphabet();
