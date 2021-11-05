@@ -39,7 +39,7 @@
                 <Button x:Name="MinimizeButton"
                         Width="35" 
                         Margin ="0, 0, 5, 0"
-                        Style="{StaticResource TopGridButtonStyle}" VerticalContentAlignment="Bottom">
+                        Style="{StaticResource TopGridButtonStyle}" VerticalContentAlignment="Bottom" Click="MinimizeButton_Click">
                     <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="15" 
                        Text="&#xEF2D;"/>
@@ -47,7 +47,7 @@
                 <Button x:Name="CloseButton"
                         Width="35" 
                         Margin ="0, 0, 1, 0"
-                        Style="{StaticResource TopGridButtonStyle}">
+                        Style="{StaticResource TopGridButtonStyle}" Click="CloseButton_Click">
                     <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="15" 
                        Text="&#xEF2C;"/>
@@ -58,16 +58,19 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0">
             <Button x:Name="EncryptionPageButton" 
-            Margin="7,75,7,10" 
-            Style="{StaticResource CurrentPageSideMenuButton}" Click="EncryptionPageButton_Click">
+                    Margin="7,75,7,10"
+                    ToolTip="Криптографія" 
+                    Style="{StaticResource CurrentPageSideMenuButton}" Click="EncryptionPageButton_Click">
                 <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE8D7;"/>
+                
             </Button>
             <Button  x:Name="ShorthandPageButton"     
-            Margin="7,0,7,28" 
-            Style="{StaticResource NotCurrentPageSideMenuButton}"
-            Click="ShorthandPageButton_Click">
+                     Margin="7,0,7,28"
+                     ToolTip="Стінографія"
+                     Style="{StaticResource NotCurrentPageSideMenuButton}"
+                     Click="ShorthandPageButton_Click">
                 <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xEB9F;"/>

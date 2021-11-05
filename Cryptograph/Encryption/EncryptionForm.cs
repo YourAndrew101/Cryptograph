@@ -65,21 +65,17 @@ namespace Cryptograph
 
         private void GetSettings()
         {
-            //try
-            //{
-                using (BinaryReader binaryReader = new BinaryReader(fileSettings.Open(FileMode.OpenOrCreate)))
-                {
-                    if (binaryReader.PeekChar() == -1) return;
-                    binaryReader.ReadString();
+            using (BinaryReader binaryReader = new BinaryReader(fileSettings.Open(FileMode.OpenOrCreate)))
+            {
+                if (binaryReader.PeekChar() == -1) return;
+                binaryReader.ReadString();
 
-                    if (binaryReader.PeekChar() == -1) return;
-                    _act = (Acts)Enum.Parse(typeof(Acts), binaryReader.ReadString());
-                    _cryptoType = binaryReader.ReadString();
+                if (binaryReader.PeekChar() == -1) return;
+                _act = (Acts)Enum.Parse(typeof(Acts), binaryReader.ReadString());
+                _cryptoType = binaryReader.ReadString();
 
-                    ApplySettings();
-                }
-            //}
-            //catch (UnauthorizedAccessException) { }
+                ApplySettings();
+            }
         }
         private void ApplySettings()
         {
@@ -139,9 +135,9 @@ namespace Cryptograph
             {
                 ActionButton.Text = "Шифрувати";
 
-                if (_cryptoType == "Шифр Цезаря" || _cryptoType == "Шифр Віженера"){ SetSimpleKeysPanelForCrypto(); return; }
-                if (_cryptoType == "RSA шифрування"){ SetKeysRSAPanelForCrypto(); return; }
-                if (_cryptoType == "AES шифрування"){ SetKeysAESPanelForCrypto(); return; }
+                if (_cryptoType == "Шифр Цезаря" || _cryptoType == "Шифр Віженера") { SetSimpleKeysPanelForCrypto(); return; }
+                if (_cryptoType == "RSA шифрування") { SetKeysRSAPanelForCrypto(); return; }
+                if (_cryptoType == "AES шифрування") { SetKeysAESPanelForCrypto(); return; }
 
                 SetSimpleNoKeysPanelForCrypto();
             }
@@ -230,7 +226,7 @@ namespace Cryptograph
 
             InputStringFormatComboBox.Visible = true;
             OutputStringFormatComboBox.Visible = true;
-            
+
             InputStringFormatComboBox.Items.Clear();
             InputStringFormatComboBox.Items.Add("UTF8");
             InputStringFormatComboBox.Items.Add("Hex");
@@ -323,7 +319,7 @@ namespace Cryptograph
 
         private void InputTextBox_DragEnter(object sender, DragEventArgs e)
         {
-            if(e.Data.GetDataPresent(DataFormats.FileDrop))  e.Effect = DragDropEffects.Copy;
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
 
         private void InputTextBox_DragDrop(object sender, DragEventArgs e)

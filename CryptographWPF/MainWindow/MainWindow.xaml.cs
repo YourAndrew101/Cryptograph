@@ -1,6 +1,7 @@
 ﻿using CryptographWPF.Pages;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,25 +32,42 @@ namespace CryptographWPF
             }
         }
 
+        readonly FileInfo fileSettings = new FileInfo("AppStartSettings.dat");
+
         public MainWindow()
         {
             InitializeComponent();
-            InitializeWindowControlButtons();
             InitializePage();
-        }
-        
-        private void InitializeWindowControlButtons()
-        {
-            MinimizeButton.Click += (s, e) => WindowState = WindowState.Minimized;
-            CloseButton.Click += (s, e) => Close();
+
+            GetSettings();
         }
 
         private void InitializePage()
         {
             //TODO load settings from file
             ActionFrame.Content = new EncryptionPage();
-            _CurrentPage = Pages.EncryptionPage;
         }
+
+        private void GetSettings()
+        {
+            using (BinaryReader binaryReader = new BinaryReader(fileSettings.Open(FileMode.OpenOrCreate)))
+            {
+                if (binaryReader.PeekChar() == -1) return;
+                _CurrentPage = (Pages)Enum.Parse(typeof(Pages), binaryReader.ReadString());
+            }
+        }
+
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (BinaryWriter binaryWriter = new BinaryWriter(fileSettings.OpenWrite()))
+            {
+                binaryWriter.Write(_CurrentPage.ToString());
+            }
+
+            Close();
+        }
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
 
         private void ChangePage()
@@ -77,7 +95,6 @@ namespace CryptographWPF
             ShorthandPageButton.Style = Application.Current.TryFindResource("CurrentPageSideMenuButton") as Style;
         }
 
-        //TODO add labels to not understendable buttons
         private void EncryptionPageButton_Click(object sender, RoutedEventArgs e)
         {
             if (_CurrentPage != Pages.EncryptionPage) _CurrentPage = Pages.EncryptionPage;
@@ -85,6 +102,7 @@ namespace CryptographWPF
         private void ShorthandPageButton_Click(object sender, RoutedEventArgs e)
         {
             if (_CurrentPage != Pages.ShorthandPage) _CurrentPage = Pages.ShorthandPage;
-        } 
+        }
+
     }
 }

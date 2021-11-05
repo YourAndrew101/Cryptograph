@@ -5,7 +5,19 @@
     <SolidColorBrush x:Key="Button.Static.Foreground" Color="#E9E9CF"/>
     <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#65737e"/>
 
+    <SolidColorBrush x:Key="ToolTip.Static.Background" Color="#4f5b66"/>
+    <SolidColorBrush x:Key="ToolTip.Static.Foreground" Color="#E9E9CF"/>
+    <SolidColorBrush x:Key="ToolTip.Static.Border" Color="#E9E9CF"/>
+
     <Style x:Key="CurrentPageSideMenuButton" TargetType="{x:Type Button}">
+        <Style.Resources>
+            <Style TargetType="ToolTip">
+                <Setter Property="Background" Value="{StaticResource ToolTip.Static.Background}"/>
+                <Setter Property="Foreground" Value="{StaticResource ToolTip.Static.Foreground}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource ToolTip.Static.Border}"/>
+                <Setter Property="BorderThickness" Value="0.75"/>
+            </Style>
+        </Style.Resources>
         <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
         <Setter Property="Foreground" Value="{StaticResource Button.Static.Foreground}"/>
         <Setter Property="BorderThickness" Value="0"/>
