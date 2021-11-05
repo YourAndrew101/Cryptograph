@@ -22,7 +22,7 @@ namespace CryptographWPF
     {
         private enum Pages {EncryptionPage, ShorthandPage};
         private Pages _currentPage;
-        private Pages _CurrentPage
+        private Pages CurrentPage
         {
             get => _currentPage;
             set
@@ -32,52 +32,43 @@ namespace CryptographWPF
             }
         }
 
-        readonly FileInfo fileSettings = new FileInfo("AppStartSettings.dat");
+        internal readonly FileInfo fileSettings = new FileInfo("AppStartSettings.dat");
 
         public MainWindow()
         {
             InitializeComponent();
-            InitializePage();
-
-            GetSettings();
+            LoadSettings();      
         }
 
-        private void InitializePage()
-        {
-            //TODO load settings from file
-            ActionFrame.Content = new EncryptionPage();
-        }
 
-        private void GetSettings()
+        private void LoadSettings()
         {
             using (BinaryReader binaryReader = new BinaryReader(fileSettings.Open(FileMode.OpenOrCreate)))
             {
                 if (binaryReader.PeekChar() == -1) return;
-                _CurrentPage = (Pages)Enum.Parse(typeof(Pages), binaryReader.ReadString());
+                CurrentPage = (Pages)Enum.Parse(typeof(Pages), binaryReader.ReadString());
             }
         }
-
+        
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            using (BinaryWriter binaryWriter = new BinaryWriter(fileSettings.OpenWrite()))
-            {
-                binaryWriter.Write(_CurrentPage.ToString());
-            }
+            using (BinaryWriter binaryWrite = new BinaryWriter(fileSettings.OpenWrite())) binaryWrite.Write(CurrentPage.ToString());
 
             Close();
         }
+
         private void MinimizeButton_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
 
         private void ChangePage()
         {
-            if(_CurrentPage == Pages.EncryptionPage)
+            if(CurrentPage == Pages.EncryptionPage)
             {
                 ActionFrame.Content = new EncryptionPage();
                 SetEncryptionButtonCurrentPage();
             }
-            else if(_CurrentPage == Pages.ShorthandPage)
+            else if(CurrentPage == Pages.ShorthandPage)
             {
                 ActionFrame.Content = new ShorthandPage();
                 SetShorthandButtonCurrentPage();
@@ -97,11 +88,11 @@ namespace CryptographWPF
 
         private void EncryptionPageButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_CurrentPage != Pages.EncryptionPage) _CurrentPage = Pages.EncryptionPage;
+            if (CurrentPage != Pages.EncryptionPage) CurrentPage = Pages.EncryptionPage;
         }
         private void ShorthandPageButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_CurrentPage != Pages.ShorthandPage) _CurrentPage = Pages.ShorthandPage;
+            if (CurrentPage != Pages.ShorthandPage) CurrentPage = Pages.ShorthandPage;
         }
 
     }

@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,6 +97,8 @@ namespace CryptographWPF.Pages
 
         private OpenFileDialog _openFileDialog = new OpenFileDialog();
         private SaveFileDialog _saveFileDialog = new SaveFileDialog();
+
+        internal readonly FileInfo fileSettings = new FileInfo("AppStartSettings.dat");
 
 
         public EncryptionPage()
