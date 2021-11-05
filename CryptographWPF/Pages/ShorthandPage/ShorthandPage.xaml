@@ -126,7 +126,7 @@
                            або перетягніть його
                     </TextBlock>
                     <Image x:Name="ImageDragNDropImage"
-                           Source="Assets\drag_N_drop.png" 
+                           Source="/Pages/Assets/drag_N_drop.png"
                            Style="{StaticResource ImageDragNDropImageStyle}" 
                            Stretch="UniformToFill"/>
                     <Image x:Name="ActionImage"                    

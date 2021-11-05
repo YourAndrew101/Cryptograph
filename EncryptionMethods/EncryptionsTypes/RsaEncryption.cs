@@ -146,6 +146,7 @@ namespace EncryptionMethods
             PrivateKey = privateKey;
             SwapKeys();
         }
+
         public RsaEncryption(string string_in, ulong publicKey, ulong generalKey, ulong privateKey) : base(string_in)
         {
             PublicKey = publicKey;

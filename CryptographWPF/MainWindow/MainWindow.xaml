@@ -28,7 +28,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid  Style="{StaticResource TopGridStyle}"
+        <Grid Style="{StaticResource TopGridStyle}"
                Grid.ColumnSpan="5">
             <StackPanel 
                 WindowChrome.IsHitTestVisibleInChrome="True" 

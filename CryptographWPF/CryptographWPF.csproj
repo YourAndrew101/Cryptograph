@@ -150,7 +150,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindow\MainWindowDynamicComponents.cs" />
     <Compile Include="Pages\EncryptionPage\EncryptionPage.xaml.cs">
       <DependentUpon>EncryptionPage.xaml</DependentUpon>
     </Compile>
@@ -191,9 +190,6 @@
     <Resource Include="Pages\Assets\NoImage.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Pages\Assets\drag_N_drop.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\EncryptionMethods\EncryptionMethods.csproj">
       <Project>{23B63BE1-660B-44CA-9E2A-CC5BA9F5E365}</Project>
       <Name>EncryptionMethods</Name>
@@ -214,6 +210,9 @@
       <Project>{06B1E21A-B270-4429-8B8C-D4EE08AAE054}</Project>
       <Name>UsefulMethods</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pages\Assets\drag_N_drop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -75,8 +75,7 @@ namespace EncryptionMethods
         {
             protected get => _stringIn;
             set => _stringIn = value.Trim();
-        }
-        private readonly List<byte[][]> _stringInBytes = new List<byte[][]>();
+        }        private readonly List<byte[][]> _stringInBytes = new List<byte[][]>();
 
 
         private byte[] _keyHashByte;
@@ -207,8 +206,6 @@ namespace EncryptionMethods
 
         public override void Crypto()
         {
-            StringBuilder sb = new StringBuilder();
-
             List<byte> _stringOutBytes = new List<byte>();
             for (int i = 0; i < _stringInBytes.Count; i++)
             {
@@ -228,8 +225,7 @@ namespace EncryptionMethods
                 _stringOutBytes.AddRange(GetByteOutputText(_stringInBytes[i]));              
             }
 
-            sb.Append(GetOutputStringFromByteArray(_stringOutBytes.ToArray()));
-            StringOut = sb.ToString();
+            StringOut = GetOutputStringFromByteArray(_stringOutBytes.ToArray());
         }
 
         private void AddRoundKey(byte[][] stringInMatrix, byte[][] keyMatrix)
