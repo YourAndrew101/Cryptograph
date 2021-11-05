@@ -49,8 +49,6 @@ namespace CryptographWPF
                 CurrentPage = (Pages)Enum.Parse(typeof(Pages), binaryReader.ReadString());
             }
         }
-        
-
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             using (BinaryWriter binaryWrite = new BinaryWriter(fileSettings.OpenWrite())) binaryWrite.Write(CurrentPage.ToString());
