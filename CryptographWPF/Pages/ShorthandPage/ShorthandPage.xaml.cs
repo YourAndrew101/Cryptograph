@@ -191,7 +191,7 @@ namespace CryptographWPF.Pages
         {
             if (CryptoString == "")
             {
-                MessageBox.Show("Відсутнє текст для збереження");
+                MessageBox.Show("Відсутній текст для збереження");
                 return;
             }
 
@@ -202,6 +202,16 @@ namespace CryptographWPF.Pages
         {
             if (_openTextFileDialog.ShowDialog() == false) return;
             CryptoString = TxtFileController.Load(_openTextFileDialog.FileName);
+        }
+
+
+        private void ImageBorder_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                _Image = new Bitmap(files[0]);
+            }
         }
     }
 }

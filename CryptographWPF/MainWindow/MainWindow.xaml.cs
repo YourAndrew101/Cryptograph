@@ -104,7 +104,5 @@ namespace CryptographWPF
             if (CurrentPage != Pages.ShorthandPage) CurrentPage = Pages.ShorthandPage;
         }
 
-
-
     }
 }

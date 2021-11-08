@@ -6,9 +6,9 @@
       xmlns:local="clr-namespace:CryptographWPF.Pages"
       mc:Ignorable="d"
       d:DesignHeight="415" d:DesignWidth="775"
-      Title="ShorthandPage">
+      Title="ShorthandPage" >
 
-    <Grid x:Name="MainGridShorthandPage">
+    <Grid x:Name="MainGridShorthandPage" AllowDrop="True" >
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="54*"/>
@@ -102,16 +102,19 @@
                  AllowDrop="True"
                  Margin="0,1,0,-1"
                  GotFocus="In_OutTextBox_GotFocus"
-                 LostFocus="In_OutTextBox_LostFocus" TextChanged="In_OutTextBox_TextChanged"/>
+                 LostFocus="In_OutTextBox_LostFocus" 
+                 TextChanged="In_OutTextBox_TextChanged"/>
 
 
         <DockPanel x:Name="ImageDockPanel"
                    Grid.Column="2"
                    Grid.Row="1" 
                    Grid.RowSpan="4"                             
-                   AllowDrop="True" MouseDown="ImageDockPanel_MouseDown">
+                   AllowDrop="True" 
+                   MouseDown="ImageDockPanel_MouseDown">
             <Border x:Name="ImageBorder"
                     Height="355" 
+                    Drop="ImageBorder_Drop"
                     Style="{StaticResource ImageBorderStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
