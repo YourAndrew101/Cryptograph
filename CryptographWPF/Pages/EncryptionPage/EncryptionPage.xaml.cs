@@ -214,9 +214,9 @@ namespace CryptographWPF.Pages
             BackgroundWorker_Cancel();
 
             //TODO add notify
-            /*if (OutputText == "" || _stringOut == null)
+            /*if (OutputText == "" || OutputText == null)
             {
-                MessageBox.Show("Відсутній текст для збереження");
+                MainWindow.Not.Show("Відсутній текст для збереження");
                 return;
             }*/
 

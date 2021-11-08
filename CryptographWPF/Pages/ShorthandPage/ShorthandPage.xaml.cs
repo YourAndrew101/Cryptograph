@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,8 +31,8 @@ namespace CryptographWPF.Pages
         private SaveFileDialog _saveImageFileDialog = new SaveFileDialog();
         private SaveFileDialog _saveTextFileDialog = new SaveFileDialog();
 
-        private BitmapImage _image;
-        private BitmapImage _Image
+        private Bitmap _image;
+        private Bitmap _Image
         {
             get => _image;
             set
@@ -40,6 +41,31 @@ namespace CryptographWPF.Pages
                 RefreshImageDockPanel();
             }
         }
+
+        private string _cryptoString;
+        private string CryptoString
+        {
+            get => _cryptoString;
+            set
+            {
+                _cryptoString = value;
+                RefreshTextBox();
+            }
+        }
+
+
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool DeleteObject([In] IntPtr hObject);
+
+
+
+        private bool CheckImageNull(Bitmap image)
+        {
+            return image == null || image.Width == 1 || image.Height == 1;
+        }
+
+
 
         public ShorthandPage()
         {
@@ -55,6 +81,7 @@ namespace CryptographWPF.Pages
             _saveTextFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
             _openTextFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
+
 
         private void In_OutTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -73,53 +100,110 @@ namespace CryptographWPF.Pages
                 GetPictureFromFileDialog();
             }
         }
-
         private void GetPictureFromFileDialog()
         {
             if (_openImageFileDialog.ShowDialog() == false) return;
-            _Image = new BitmapImage(new Uri(_openImageFileDialog.FileName));
+            _Image = new Bitmap(_openImageFileDialog.FileName);
         }
+
 
         private void RefreshImageDockPanel()
         {
-            ActionImage.Source = _Image;
+            ActionImage.Source = ImageSourceFromBitmap(_Image);
+            ImageSource ImageSourceFromBitmap(Bitmap bmp)
+            {
+                var handle = bmp.GetHbitmap();
+                try
+                {
+                    return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                }
+                finally { DeleteObject(handle); }
+            }
+
             ImageDragNDropImage.Visibility = Visibility.Hidden;
             ImageDragNDropText.Visibility = Visibility.Hidden;
             ImageBorder.BorderThickness = new Thickness(0);
         }
+        private void RefreshTextBox() => In_OutTextBox.Text = CryptoString;
+
 
         private void ToImageActionButton_Click(object sender, RoutedEventArgs e)
         {
             if (In_OutTextBox.Text == "")
             {
+                //TODO make notify
                 MessageBox.Show("Вкажіть вхідний текст");
                 return;
             }
-            if (ActionImage.Source == null)
+            if (CheckImageNull(_Image))
             {
                 MessageBox.Show("Вкажіть вихідне зображення");
                 return;
             }
 
-            ShortHand shortHand = new ShortHand(In_OutTextBox.Text, BitmapImage2Bitmap(_Image));
+            ShortHand shortHand = new ShortHand(In_OutTextBox.Text, _Image);
             shortHand.Crypto();
-            //_Image = BitmapToImageSource(shortHand.OutputImage);
+            _Image = shortHand.OutputImage;
 
             MessageBox.Show("Текст записано");
         }
-
-        private Bitmap BitmapImage2Bitmap(BitmapImage bitmapImage)
+        private void ToTextActionButton_Click(object sender, RoutedEventArgs e)
         {
-            // BitmapImage bitmapImage = new BitmapImage(new Uri("../Images/test.png", UriKind.Relative));
-
-            using (MemoryStream outStream = new MemoryStream())
+            if (CheckImageNull(_Image))
             {
-                BitmapEncoder enc = new BmpBitmapEncoder();
-                enc.Frames.Add(BitmapFrame.Create(bitmapImage));
-                enc.Save(outStream);
-                Bitmap bitmap = new Bitmap(outStream);
+                MessageBox.Show("Вкажіть вхідне зображення");
+                return;
+            }
 
-                return new Bitmap(bitmap);
+            ShortHand shortHand = new ShortHand(_Image);
+            try { shortHand.Decrypto(); }
+            catch (BadImageFormatException ex) { MessageBox.Show(ex.Message); }
+
+            CryptoString = shortHand.StringOut;
+        }
+
+
+        private void DeleteImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            _Image = new Bitmap(1, 1);
+
+            ImageDragNDropImage.Visibility = Visibility.Visible;
+            ImageDragNDropText.Visibility = Visibility.Visible;
+            ImageBorder.BorderThickness = new Thickness(2);
+        }
+        private void SaveImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CheckImageNull(_Image))
+            {
+                MessageBox.Show("Відсутнє зображення для збереження");
+                return;
+            }
+
+            if (_saveImageFileDialog.ShowDialog() == false) return;
+            _Image.Save(_saveImageFileDialog.FileName);
+        }
+        private void PasteImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Clipboard.GetImage() == null) return;
+            _Image = BitmapSourceToBitmap2(Clipboard.GetImage());
+
+            Bitmap BitmapSourceToBitmap2(BitmapSource srs)
+            {
+                int width = srs.PixelWidth;
+                int height = srs.PixelHeight;
+                int stride = width * ((srs.Format.BitsPerPixel + 7) / 8);
+                IntPtr ptr = IntPtr.Zero;
+                try
+                {
+                    ptr = Marshal.AllocHGlobal(height * stride);
+                    srs.CopyPixels(new Int32Rect(0, 0, width, height), ptr, height * stride, stride);
+                    using (Bitmap btm = new Bitmap(width, height, stride, System.Drawing.Imaging.PixelFormat.Format1bppIndexed, ptr)) return new Bitmap(btm);
+                }
+                finally
+                {
+                    if (ptr != IntPtr.Zero)
+                        Marshal.FreeHGlobal(ptr);
+                }
             }
         }
     }

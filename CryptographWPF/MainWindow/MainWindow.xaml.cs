@@ -32,14 +32,16 @@ namespace CryptographWPF
             }
         }
 
+        public DockPanel NotifyPanel { get; set; } = new DockPanel();
+
         internal readonly FileInfo fileSettings = new FileInfo("AppStartSettings.dat");
 
         public MainWindow()
         {
             InitializeComponent();
-            LoadSettings();      
+            LoadSettings();
+            SetNotifyPanel();
         }
-
 
         private void LoadSettings()
         {
@@ -49,13 +51,22 @@ namespace CryptographWPF
                 CurrentPage = (Pages)Enum.Parse(typeof(Pages), binaryReader.ReadString());
             }
         }
+
+        private void SetNotifyPanel()
+        {
+            MainGrid.Children.Add(NotifyPanel);
+            NotifyPanel.Name = "NotifyPanel";
+            NotifyPanel.Visibility = Visibility.Visible;
+            Grid.SetColumn(NotifyPanel, 2);
+            Grid.SetRowSpan(NotifyPanel, 2);
+        }
+
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             using (BinaryWriter binaryWrite = new BinaryWriter(fileSettings.OpenWrite())) binaryWrite.Write(CurrentPage.ToString());
 
             Close();
         }
-
         private void MinimizeButton_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
 
@@ -92,6 +103,8 @@ namespace CryptographWPF
         {
             if (CurrentPage != Pages.ShorthandPage) CurrentPage = Pages.ShorthandPage;
         }
+
+
 
     }
 }

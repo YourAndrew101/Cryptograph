@@ -215,7 +215,6 @@ namespace CryptographWPF.Pages
 
         private void RsaEncryption()
         {
-            //TODO RSAWaitLabel
             RsaEncryption rsaEncryption;
 
             if (_act == Acts.Crypto)

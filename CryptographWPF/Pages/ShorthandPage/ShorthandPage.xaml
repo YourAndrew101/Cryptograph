@@ -60,7 +60,7 @@
                 HorizontalAlignment="Right"
                 Margin="0,0,90,5"
                 ToolTip="Видалити зображення"
-                Style="{StaticResource TextControlsButtonStyle}">
+                Style="{StaticResource TextControlsButtonStyle}" Click="DeleteImageButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE74D;"/>
@@ -70,7 +70,7 @@
                 HorizontalAlignment="Right"
                 Margin="0,0,50,5"
                 ToolTip="Зберегти зображення"
-                Style="{StaticResource TextControlsButtonStyle}">
+                Style="{StaticResource TextControlsButtonStyle}" Click="SaveImageButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE74E;"/>
@@ -80,7 +80,7 @@
                 HorizontalAlignment="Right"
                 Margin="0,0,10,5"
                 ToolTip="Вставити зображення"
-                Style="{StaticResource TextControlsButtonStyle}">
+                Style="{StaticResource TextControlsButtonStyle}" Click="PasteImageButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE77F;"/>
@@ -144,7 +144,7 @@
                 Margin= "0, 0, 65, 0"
                 Padding="0,0,5,0"
                 Grid.Row="2" 
-                Style="{StaticResource ActionButtonsStyle}">
+                Style="{StaticResource ActionButtonsStyle}" Click="ToTextActionButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="25" 
                        Text="&#xE96F;&#xE96F;"/>
