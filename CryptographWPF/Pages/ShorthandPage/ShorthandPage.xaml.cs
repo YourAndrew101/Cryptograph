@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using FileIOControllers;
+using Microsoft.Win32;
 using ShortHandMethods;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace CryptographWPF.Pages
 {
@@ -45,7 +47,7 @@ namespace CryptographWPF.Pages
         private string _cryptoString;
         private string CryptoString
         {
-            get => _cryptoString;
+            get => (_cryptoString == _textPlaceholder || _cryptoString == null) ? "" : _cryptoString;
             set
             {
                 _cryptoString = value;
@@ -60,11 +62,7 @@ namespace CryptographWPF.Pages
 
 
 
-        private bool CheckImageNull(Bitmap image)
-        {
-            return image == null || image.Width == 1 || image.Height == 1;
-        }
-
+        private bool CheckImageNull(Bitmap image) => image == null || image.Width == 1 || image.Height == 1;
 
 
         public ShorthandPage()
@@ -90,6 +88,10 @@ namespace CryptographWPF.Pages
         private void In_OutTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == null) ((TextBox)sender).Text = _textPlaceholder;
+        }
+        private void In_OutTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _cryptoString = In_OutTextBox.Text;
         }
 
 
@@ -129,7 +131,7 @@ namespace CryptographWPF.Pages
 
         private void ToImageActionButton_Click(object sender, RoutedEventArgs e)
         {
-            if (In_OutTextBox.Text == "")
+            if (CryptoString == "")
             {
                 //TODO make notify
                 MessageBox.Show("Вкажіть вхідний текст");
@@ -141,7 +143,7 @@ namespace CryptographWPF.Pages
                 return;
             }
 
-            ShortHand shortHand = new ShortHand(In_OutTextBox.Text, _Image);
+            ShortHand shortHand = new ShortHand(CryptoString, _Image);
             shortHand.Crypto();
             _Image = shortHand.OutputImage;
 
@@ -182,29 +184,24 @@ namespace CryptographWPF.Pages
             if (_saveImageFileDialog.ShowDialog() == false) return;
             _Image.Save(_saveImageFileDialog.FileName);
         }
-        private void PasteImageButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (Clipboard.GetImage() == null) return;
-            _Image = BitmapSourceToBitmap2(Clipboard.GetImage());
+        private void PasteImageButton_Click(object sender, RoutedEventArgs e) => _Image = System.Windows.Forms.Clipboard.GetImage() as Bitmap;
 
-            Bitmap BitmapSourceToBitmap2(BitmapSource srs)
+        private void PasteTextButton_Click(object sender, RoutedEventArgs e) => CryptoString = Clipboard.GetText();
+        private void SaveTextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CryptoString == "")
             {
-                int width = srs.PixelWidth;
-                int height = srs.PixelHeight;
-                int stride = width * ((srs.Format.BitsPerPixel + 7) / 8);
-                IntPtr ptr = IntPtr.Zero;
-                try
-                {
-                    ptr = Marshal.AllocHGlobal(height * stride);
-                    srs.CopyPixels(new Int32Rect(0, 0, width, height), ptr, height * stride, stride);
-                    using (Bitmap btm = new Bitmap(width, height, stride, System.Drawing.Imaging.PixelFormat.Format1bppIndexed, ptr)) return new Bitmap(btm);
-                }
-                finally
-                {
-                    if (ptr != IntPtr.Zero)
-                        Marshal.FreeHGlobal(ptr);
-                }
+                MessageBox.Show("Відсутнє текст для збереження");
+                return;
             }
+
+            if (_saveTextFileDialog.ShowDialog() == false) return;
+            TxtFileController.Save(_saveTextFileDialog.FileName, CryptoString);
+        }
+        private void LoadTextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_openTextFileDialog.ShowDialog() == false) return;
+            CryptoString = TxtFileController.Load(_openTextFileDialog.FileName);
         }
     }
 }

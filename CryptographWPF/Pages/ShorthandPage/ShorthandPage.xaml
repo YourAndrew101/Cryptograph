@@ -29,7 +29,7 @@
                 HorizontalAlignment="Left"
                 Margin="10,0,0,5"
                 ToolTip="Вставити текст"
-                Style="{StaticResource TextControlsButtonStyle}">
+                Style="{StaticResource TextControlsButtonStyle}" Click="PasteTextButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE77F;"/>
@@ -39,7 +39,7 @@
                 HorizontalAlignment="Left"
                 Margin="50,0,5,5"
                 ToolTip="Зберегти текст"
-                Style="{StaticResource TextControlsButtonStyle}">
+                Style="{StaticResource TextControlsButtonStyle}" Click="SaveTextButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE74E;"/>
@@ -48,7 +48,7 @@
                 HorizontalAlignment="Left"
                 Margin="90,0,0,5"
                 ToolTip="Завантажити текст"
-                Style="{StaticResource TextControlsButtonStyle}">
+                Style="{StaticResource TextControlsButtonStyle}" Click="LoadTextButton_Click">
             <TextBlock FontFamily="Segoe MDL2 Assets" 
                        FontSize="34" 
                        Text="&#xE8E5;"/>
@@ -102,7 +102,7 @@
                  AllowDrop="True"
                  Margin="0,1,0,-1"
                  GotFocus="In_OutTextBox_GotFocus"
-                 LostFocus="In_OutTextBox_LostFocus"/>
+                 LostFocus="In_OutTextBox_LostFocus" TextChanged="In_OutTextBox_TextChanged"/>
 
 
         <DockPanel x:Name="ImageDockPanel"
@@ -132,7 +132,6 @@
                     <Image x:Name="ActionImage"                    
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           Stretch="None"
                            Margin="0,0,-0.333,-0.333" 
                            Grid.RowSpan="2"/>
                 </Grid>
