@@ -27,6 +27,12 @@ namespace CryptographWPF.Pages
 
         private void ActionButton_Click(object sender, RoutedEventArgs e)
         {
+            if (CheckForEmptyInputTextBox())
+            {
+                MessageBox.Show("Вкажіть вхідний текст для шифрування");
+                return;
+            }
+
             switch (EncryptionType)
             {
                 case EncryptionTypes.ROT1:
@@ -66,7 +72,7 @@ namespace CryptographWPF.Pages
         }
 
 
-        private bool CheckKeyBoxForNull(string placeholder, Control keyTextBox) => (((TextBox)keyTextBox).Text == "" || ((TextBox)keyTextBox).Text == null || ((TextBox)keyTextBox).Text == placeholder);
+        private bool CheckKeyBoxForNull(string placeholder, Control keyTextBox) => ((TextBox)keyTextBox).Text == "" || ((TextBox)keyTextBox).Text == null || ((TextBox)keyTextBox).Text == placeholder;
 
         private Control GetControl(string name, StackPanel parentPanel)
         {
@@ -78,7 +84,6 @@ namespace CryptographWPF.Pages
             foreach (Control control in parentPanel.Children) if (control.Name == name) return control;
             return null;
         }
-
 
         private void Rot1Encryption()
         {
@@ -106,12 +111,16 @@ namespace CryptographWPF.Pages
             if (Act == Acts.Crypto)
             {
                 string key = GetSimpleKeyCrypto(cesarEncryption.Alphabet);
+                if (key == null) return;
+
                 cesarEncryption = new CesarEncryption(InputText, key);
                 cesarEncryption.Crypto();
             }
             else
             {
                 string key = GetSimpleKeyDecrypto();
+                if (key == null) return;
+
                 cesarEncryption = new CesarEncryption(InputText, key);
                 cesarEncryption.Decrypto();
             }
@@ -124,21 +133,30 @@ namespace CryptographWPF.Pages
             //TODO make notify
             TextBox keyTextBox = (TextBox)GetControl("SimpleKeyTextBox", _keyStackPanel);
             TextBox keyLengthTextBox = (TextBox)GetControl("SimpleKeyLengthTextBox", _keyStackPanel);
+
             if (!CheckKeyBoxForNull("Ваш ключ...", keyTextBox)) return keyTextBox.Text;
             else
             {
-                string key = KeyMethods.KeyGenerate(alphabet, Convert.ToInt32(keyLengthTextBox.Text));
+                string key;
+                try
+                {
+                    key = KeyMethods.KeyGenerate(alphabet, Convert.ToInt32(keyLengthTextBox.Text));
+                }
+                catch (Exception) { MessageBox.Show("Вкажіть дійсну довжину ключа."); return null; }
                 keyTextBox.Text = key;
                 return key;
             }
         }
         private string GetSimpleKeyDecrypto()
         {
-            //TODO make notify
             TextBox keyTextBox = (TextBox)GetControl("SimpleKeyTextBox", _keyStackPanel);
 
             if (!CheckKeyBoxForNull("Ваш ключ...", keyTextBox)) return keyTextBox.Text;
-            else return null;
+            else
+            {
+                MessageBox.Show("Вкажіть ключ шифрування");
+                return null;
+            }
         }
 
 
@@ -200,12 +218,16 @@ namespace CryptographWPF.Pages
             if (Act == Acts.Crypto)
             {
                 string key = GetSimpleKeyCrypto(vigenerEncryption.Alphabet);
+                if (key == null) return;
+
                 vigenerEncryption = new VigenerEncryption(InputText, key);
                 vigenerEncryption.Crypto();
             }
             else
             {
                 string key = GetSimpleKeyDecrypto();
+                if (key == null) return;
+
                 vigenerEncryption = new VigenerEncryption(InputText, key);
                 vigenerEncryption.Decrypto();
             }
@@ -219,7 +241,8 @@ namespace CryptographWPF.Pages
 
             if (_act == Acts.Crypto)
             {
-                var (publicKey, generalKey, privateKey) = GetPairKeysCrypto();
+                (ulong publicKey, ulong generalKey, ulong privateKey) = GetPairKeysCrypto();
+                if ((publicKey * generalKey * privateKey) == 0) return;
 
                 rsaEncryption = new RsaEncryption(InputText, publicKey, generalKey, privateKey);
                 rsaEncryption.Crypto();
@@ -227,7 +250,9 @@ namespace CryptographWPF.Pages
             }
             else
             {
-                var (_generalKey, _privateKey) = GetPairKeysDecrypto();
+                (ulong _generalKey, ulong _privateKey) = GetPairKeysDecrypto();
+                if ((_generalKey * _privateKey) == 0) return;
+
                 privateKey = _privateKey;
                 generalKey = _generalKey;
                 OutputText = "";
@@ -259,9 +284,20 @@ namespace CryptographWPF.Pages
             }
             else
             {
-                if (!CheckKeyBoxForNull("Загальний ключ...", generalKeyTextBox)) _publicKey = Convert.ToUInt64(generalKeyTextBox.Text);
-                if (!CheckKeyBoxForNull("Публічний ключ...", publicKeyTextBox)) _generalKey = Convert.ToUInt64(generalKeyTextBox.Text);
-                if (!CheckKeyBoxForNull("Приватний ключ...", privateKeyTextBox)) _privateKey = Convert.ToUInt64(generalKeyTextBox.Text);
+                try
+                {
+                    if (!CheckKeyBoxForNull("Загальний ключ...", generalKeyTextBox)) _publicKey = Convert.ToUInt64(generalKeyTextBox.Text);
+                    else throw new Exception();
+                    if (!CheckKeyBoxForNull("Публічний ключ...", publicKeyTextBox)) _generalKey = Convert.ToUInt64(generalKeyTextBox.Text);
+                    else throw new Exception();
+                    if (!CheckKeyBoxForNull("Приватний ключ...", privateKeyTextBox)) _privateKey = Convert.ToUInt64(generalKeyTextBox.Text);
+                    else throw new Exception();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Вкажіть правильні ключі шифрування");
+                    return (0, 0, 0);
+                }
             }
 
             return (_publicKey, _generalKey, _privateKey);
@@ -274,10 +310,18 @@ namespace CryptographWPF.Pages
             TextBox generalKeyTextBox = (TextBox)GetControl("GeneralKeyTextBox", _keyStackPanel);
             TextBox privateKeyTextBox = (TextBox)GetControl("PrivateKeyTextBox", _keyStackPanel);
 
-
-            if (!CheckKeyBoxForNull("Загальний ключ...", generalKeyTextBox)) _generalKey = KeyMethods.KeyStringToNumber(generalKeyTextBox.Text);
-            if (!CheckKeyBoxForNull("Приватний ключ...", privateKeyTextBox)) _privateKey = KeyMethods.KeyStringToNumber(privateKeyTextBox.Text);
-
+            try
+            {
+                if (!CheckKeyBoxForNull("Загальний ключ...", generalKeyTextBox)) _generalKey = KeyMethods.KeyStringToNumber(generalKeyTextBox.Text);
+                else throw new Exception();
+                if (!CheckKeyBoxForNull("Приватний ключ...", privateKeyTextBox)) _privateKey = KeyMethods.KeyStringToNumber(privateKeyTextBox.Text);
+                else throw new Exception();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Вкажіть правильні ключі шифрування");
+                return (0, 0);
+            }
             return (_generalKey, _privateKey);
         }
 
@@ -286,8 +330,6 @@ namespace CryptographWPF.Pages
             if (!_backgroundWorkerIsCancelled)
             {
                 OutputText = (string)e.Result;
-
-                //RsaWaitLabel.Visible = false;
             }
             else _backgroundWorkerIsCancelled = false;
         }
@@ -306,7 +348,6 @@ namespace CryptographWPF.Pages
                 _backgroundWorkerIsCancelled = true;
                 _backgroundWorker.CancelAsync();
                 _backgroundWorker.Dispose();
-                //RsaWaitLabel.Visible = false;
             }
         }
 
@@ -321,6 +362,8 @@ namespace CryptographWPF.Pages
                 try
                 {
                     string key = GetSimpleKeyCrypto(aesEncryption.Alphabet);
+                    if (key == null) return;
+
                     aesEncryption = new AesEncryption(InputText, key, inputStringFormat, outputStringFormat);
                 }
                 catch (Exception) { MessageBox.Show("Неправильний формат вхідного тексту"); return; }
@@ -332,9 +375,11 @@ namespace CryptographWPF.Pages
                 try
                 {
                     string key = GetSimpleKeyDecrypto();
+                    if (key == null) return;
+
                     aesEncryption = new AesEncryption(InputText, key, inputStringFormat, outputStringFormat);
                 }
-                catch (Exception) { return; }
+                catch (Exception) { MessageBox.Show("Неправильний формат вхідного тексту"); return; }
                 aesEncryption.Decrypto();
             }
 
@@ -353,7 +398,5 @@ namespace CryptographWPF.Pages
             return ((AesEncryption.TypesOfInputs)Enum.Parse(typeof(AesEncryption.TypesOfInputs), selectedItemInputEncoding.Content.ToString()),
                 (AesEncryption.TypesOfInputs)Enum.Parse(typeof(AesEncryption.TypesOfInputs), selectedItemOutputEncoding.Content.ToString()));
         }
-
-
     }
 }

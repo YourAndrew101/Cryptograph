@@ -199,7 +199,6 @@ namespace CryptographWPF.Pages
 
         private void CopyTextButton_Click(object sender, RoutedEventArgs e) => Clipboard.SetText(OutputText);
         private void PasteTextButton_Click(object sender, RoutedEventArgs e) => InputText = Clipboard.GetText();
-
         private void LoadTextButton_Click(object sender, RoutedEventArgs e)
         {
             BackgroundWorker_Cancel();
@@ -208,17 +207,16 @@ namespace CryptographWPF.Pages
             string filename = _openFileDialog.FileName;
             InputText = TxtFileController.Load(filename);
         }
-
         private void SaveTextButton_Click(object sender, RoutedEventArgs e)
         {
             BackgroundWorker_Cancel();
 
             //TODO add notify
-            /*if (OutputText == "" || OutputText == null)
+            if (OutputText == "" || OutputText == null)
             {
-                MainWindow.Not.Show("Відсутній текст для збереження");
+                MessageBox.Show("Відсутній текст для збереження");
                 return;
-            }*/
+            }
 
             if (_saveFileDialog.ShowDialog() == false) return;
 
